@@ -1,0 +1,2563 @@
+{
+  "format": "SSRW F0-F5 wide glyph mapping",
+  "policy": "append Hangul in first-appearance order; prefer unused original text slots",
+  "entry_count": 284,
+  "entries": [
+    {
+      "sequence": 0,
+      "character": "장",
+      "glyph_index": 110,
+      "message_bytes": "F0 6E",
+      "original_text_usage_count": 0,
+      "font_offset": 475640,
+      "font_offset_hex": "0x741F8"
+    },
+    {
+      "sequence": 1,
+      "character": "교",
+      "glyph_index": 455,
+      "message_bytes": "F1 C7",
+      "original_text_usage_count": 0,
+      "font_offset": 486680,
+      "font_offset_hex": "0x76D18"
+    },
+    {
+      "sequence": 2,
+      "character": "반",
+      "glyph_index": 456,
+      "message_bytes": "F1 C8",
+      "original_text_usage_count": 0,
+      "font_offset": 486712,
+      "font_offset_hex": "0x76D38"
+    },
+    {
+      "sequence": 3,
+      "character": "응",
+      "glyph_index": 460,
+      "message_bytes": "F1 CC",
+      "original_text_usage_count": 0,
+      "font_offset": 486840,
+      "font_offset_hex": "0x76DB8"
+    },
+    {
+      "sequence": 4,
+      "character": "은",
+      "glyph_index": 462,
+      "message_bytes": "F1 CE",
+      "original_text_usage_count": 0,
+      "font_offset": 486904,
+      "font_offset_hex": "0x76DF8"
+    },
+    {
+      "sequence": 5,
+      "character": "뭐",
+      "glyph_index": 579,
+      "message_bytes": "F2 43",
+      "original_text_usage_count": 0,
+      "font_offset": 490648,
+      "font_offset_hex": "0x77C98"
+    },
+    {
+      "sequence": 6,
+      "character": "지",
+      "glyph_index": 590,
+      "message_bytes": "F2 4E",
+      "original_text_usage_count": 0,
+      "font_offset": 491000,
+      "font_offset_hex": "0x77DF8"
+    },
+    {
+      "sequence": 7,
+      "character": "발",
+      "glyph_index": 593,
+      "message_bytes": "F2 51",
+      "original_text_usage_count": 0,
+      "font_offset": 491096,
+      "font_offset_hex": "0x77E58"
+    },
+    {
+      "sequence": 8,
+      "character": "생",
+      "glyph_index": 596,
+      "message_bytes": "F2 54",
+      "original_text_usage_count": 0,
+      "font_offset": 491192,
+      "font_offset_hex": "0x77EB8"
+    },
+    {
+      "sequence": 9,
+      "character": "는",
+      "glyph_index": 599,
+      "message_bytes": "F2 57",
+      "original_text_usage_count": 0,
+      "font_offset": 491288,
+      "font_offset_hex": "0x77F18"
+    },
+    {
+      "sequence": 10,
+      "character": "어",
+      "glyph_index": 606,
+      "message_bytes": "F2 5E",
+      "original_text_usage_count": 0,
+      "font_offset": 491512,
+      "font_offset_hex": "0x77FF8"
+    },
+    {
+      "sequence": 11,
+      "character": "디",
+      "glyph_index": 612,
+      "message_bytes": "F2 64",
+      "original_text_usage_count": 0,
+      "font_offset": 491704,
+      "font_offset_hex": "0x780B8"
+    },
+    {
+      "sequence": 12,
+      "character": "냐",
+      "glyph_index": 615,
+      "message_bytes": "F2 67",
+      "original_text_usage_count": 0,
+      "font_offset": 491800,
+      "font_offset_hex": "0x78118"
+    },
+    {
+      "sequence": 13,
+      "character": "병",
+      "glyph_index": 622,
+      "message_bytes": "F2 6E",
+      "original_text_usage_count": 0,
+      "font_offset": 492024,
+      "font_offset_hex": "0x781F8"
+    },
+    {
+      "sequence": 14,
+      "character": "사",
+      "glyph_index": 632,
+      "message_bytes": "F2 78",
+      "original_text_usage_count": 0,
+      "font_offset": 492344,
+      "font_offset_hex": "0x78338"
+    },
+    {
+      "sequence": 15,
+      "character": "조",
+      "glyph_index": 634,
+      "message_bytes": "F2 7A",
+      "original_text_usage_count": 0,
+      "font_offset": 492408,
+      "font_offset_hex": "0x78378"
+    },
+    {
+      "sequence": 16,
+      "character": "중",
+      "glyph_index": 635,
+      "message_bytes": "F2 7B",
+      "original_text_usage_count": 0,
+      "font_offset": 492440,
+      "font_offset_hex": "0x78398"
+    },
+    {
+      "sequence": 17,
+      "character": "입",
+      "glyph_index": 638,
+      "message_bytes": "F2 7E",
+      "original_text_usage_count": 0,
+      "font_offset": 492536,
+      "font_offset_hex": "0x783F8"
+    },
+    {
+      "sequence": 18,
+      "character": "니",
+      "glyph_index": 641,
+      "message_bytes": "F2 81",
+      "original_text_usage_count": 0,
+      "font_offset": 492632,
+      "font_offset_hex": "0x78458"
+    },
+    {
+      "sequence": 19,
+      "character": "다",
+      "glyph_index": 652,
+      "message_bytes": "F2 8C",
+      "original_text_usage_count": 0,
+      "font_offset": 492984,
+      "font_offset_hex": "0x785B8"
+    },
+    {
+      "sequence": 20,
+      "character": "엄",
+      "glyph_index": 666,
+      "message_bytes": "F2 9A",
+      "original_text_usage_count": 0,
+      "font_offset": 493432,
+      "font_offset_hex": "0x78778"
+    },
+    {
+      "sequence": 21,
+      "character": "청",
+      "glyph_index": 676,
+      "message_bytes": "F2 A4",
+      "original_text_usage_count": 0,
+      "font_offset": 493752,
+      "font_offset_hex": "0x788B8"
+    },
+    {
+      "sequence": 22,
+      "character": "난",
+      "glyph_index": 680,
+      "message_bytes": "F2 A8",
+      "original_text_usage_count": 0,
+      "font_offset": 493880,
+      "font_offset_hex": "0x78938"
+    },
+    {
+      "sequence": 23,
+      "character": "양",
+      "glyph_index": 686,
+      "message_bytes": "F2 AE",
+      "original_text_usage_count": 0,
+      "font_offset": 494072,
+      "font_offset_hex": "0x789F8"
+    },
+    {
+      "sequence": 24,
+      "character": "인",
+      "glyph_index": 689,
+      "message_bytes": "F2 B1",
+      "original_text_usage_count": 0,
+      "font_offset": 494168,
+      "font_offset_hex": "0x78A58"
+    },
+    {
+      "sequence": 25,
+      "character": "데",
+      "glyph_index": 691,
+      "message_bytes": "F2 B3",
+      "original_text_usage_count": 0,
+      "font_offset": 494232,
+      "font_offset_hex": "0x78A98"
+    },
+    {
+      "sequence": 26,
+      "character": "서",
+      "glyph_index": 710,
+      "message_bytes": "F2 C6",
+      "original_text_usage_count": 0,
+      "font_offset": 494840,
+      "font_offset_hex": "0x78CF8"
+    },
+    {
+      "sequence": 27,
+      "character": "둘",
+      "glyph_index": 714,
+      "message_bytes": "F2 CA",
+      "original_text_usage_count": 0,
+      "font_offset": 494968,
+      "font_offset_hex": "0x78D78"
+    },
+    {
+      "sequence": 28,
+      "character": "러",
+      "glyph_index": 715,
+      "message_bytes": "F2 CB",
+      "original_text_usage_count": 0,
+      "font_offset": 495000,
+      "font_offset_hex": "0x78D98"
+    },
+    {
+      "sequence": 29,
+      "character": "화",
+      "glyph_index": 716,
+      "message_bytes": "F2 CC",
+      "original_text_usage_count": 0,
+      "font_offset": 495032,
+      "font_offset_hex": "0x78DB8"
+    },
+    {
+      "sequence": 30,
+      "character": "성",
+      "glyph_index": 722,
+      "message_bytes": "F2 D2",
+      "original_text_usage_count": 0,
+      "font_offset": 495224,
+      "font_offset_hex": "0x78E78"
+    },
+    {
+      "sequence": 31,
+      "character": "콜",
+      "glyph_index": 725,
+      "message_bytes": "F2 D5",
+      "original_text_usage_count": 0,
+      "font_offset": 495320,
+      "font_offset_hex": "0x78ED8"
+    },
+    {
+      "sequence": 32,
+      "character": "로",
+      "glyph_index": 732,
+      "message_bytes": "F2 DC",
+      "original_text_usage_count": 0,
+      "font_offset": 495544,
+      "font_offset_hex": "0x78FB8"
+    },
+    {
+      "sequence": 33,
+      "character": "폭",
+      "glyph_index": 745,
+      "message_bytes": "F2 E9",
+      "original_text_usage_count": 0,
+      "font_offset": 495960,
+      "font_offset_hex": "0x79158"
+    },
+    {
+      "sequence": 34,
+      "character": "말",
+      "glyph_index": 746,
+      "message_bytes": "F2 EA",
+      "original_text_usage_count": 0,
+      "font_offset": 495992,
+      "font_offset_hex": "0x79178"
+    },
+    {
+      "sequence": 35,
+      "character": "도",
+      "glyph_index": 750,
+      "message_bytes": "F2 EE",
+      "original_text_usage_count": 0,
+      "font_offset": 496120,
+      "font_offset_hex": "0x791F8"
+    },
+    {
+      "sequence": 36,
+      "character": "안",
+      "glyph_index": 751,
+      "message_bytes": "F2 EF",
+      "original_text_usage_count": 0,
+      "font_offset": 496152,
+      "font_offset_hex": "0x79218"
+    },
+    {
+      "sequence": 37,
+      "character": "돼",
+      "glyph_index": 755,
+      "message_bytes": "F2 F3",
+      "original_text_usage_count": 0,
+      "font_offset": 496280,
+      "font_offset_hex": "0x79298"
+    },
+    {
+      "sequence": 38,
+      "character": "가",
+      "glyph_index": 757,
+      "message_bytes": "F2 F5",
+      "original_text_usage_count": 0,
+      "font_offset": 496344,
+      "font_offset_hex": "0x792D8"
+    },
+    {
+      "sequence": 39,
+      "character": "해",
+      "glyph_index": 789,
+      "message_bytes": "F3 15",
+      "original_text_usage_count": 0,
+      "font_offset": 497368,
+      "font_offset_hex": "0x796D8"
+    },
+    {
+      "sequence": 40,
+      "character": "재",
+      "glyph_index": 791,
+      "message_bytes": "F3 17",
+      "original_text_usage_count": 0,
+      "font_offset": 497432,
+      "font_offset_hex": "0x79718"
+    },
+    {
+      "sequence": 41,
+      "character": "확",
+      "glyph_index": 795,
+      "message_bytes": "F3 1B",
+      "original_text_usage_count": 0,
+      "font_offset": 497560,
+      "font_offset_hex": "0x79798"
+    },
+    {
+      "sequence": 42,
+      "character": "틀",
+      "glyph_index": 800,
+      "message_bytes": "F3 20",
+      "original_text_usage_count": 0,
+      "font_offset": 497720,
+      "font_offset_hex": "0x79838"
+    },
+    {
+      "sequence": 43,
+      "character": "림",
+      "glyph_index": 801,
+      "message_bytes": "F3 21",
+      "original_text_usage_count": 0,
+      "font_offset": 497752,
+      "font_offset_hex": "0x79858"
+    },
+    {
+      "sequence": 44,
+      "character": "없",
+      "glyph_index": 805,
+      "message_bytes": "F3 25",
+      "original_text_usage_count": 0,
+      "font_offset": 497880,
+      "font_offset_hex": "0x798D8"
+    },
+    {
+      "sequence": 45,
+      "character": "습",
+      "glyph_index": 806,
+      "message_bytes": "F3 26",
+      "original_text_usage_count": 0,
+      "font_offset": 497912,
+      "font_offset_hex": "0x798F8"
+    },
+    {
+      "sequence": 46,
+      "character": "이",
+      "glyph_index": 810,
+      "message_bytes": "F3 2A",
+      "original_text_usage_count": 0,
+      "font_offset": 498040,
+      "font_offset_hex": "0x79978"
+    },
+    {
+      "sequence": 47,
+      "character": "건",
+      "glyph_index": 812,
+      "message_bytes": "F3 2C",
+      "original_text_usage_count": 0,
+      "font_offset": 498104,
+      "font_offset_hex": "0x799B8"
+    },
+    {
+      "sequence": 48,
+      "character": "공",
+      "glyph_index": 821,
+      "message_bytes": "F3 35",
+      "original_text_usage_count": 0,
+      "font_offset": 498392,
+      "font_offset_hex": "0x79AD8"
+    },
+    {
+      "sequence": 49,
+      "character": "격",
+      "glyph_index": 828,
+      "message_bytes": "F3 3C",
+      "original_text_usage_count": 0,
+      "font_offset": 498616,
+      "font_offset_hex": "0x79BB8"
+    },
+    {
+      "sequence": 50,
+      "character": "빔",
+      "glyph_index": 832,
+      "message_bytes": "F3 40",
+      "original_text_usage_count": 0,
+      "font_offset": 498744,
+      "font_offset_hex": "0x79C38"
+    },
+    {
+      "sequence": 51,
+      "character": "포",
+      "glyph_index": 833,
+      "message_bytes": "F3 41",
+      "original_text_usage_count": 0,
+      "font_offset": 498776,
+      "font_offset_hex": "0x79C58"
+    },
+    {
+      "sequence": 52,
+      "character": "차",
+      "glyph_index": 842,
+      "message_bytes": "F3 4A",
+      "original_text_usage_count": 0,
+      "font_offset": 499064,
+      "font_offset_hex": "0x79D78"
+    },
+    {
+      "sequence": 53,
+      "character": "례",
+      "glyph_index": 849,
+      "message_bytes": "F3 51",
+      "original_text_usage_count": 0,
+      "font_offset": 499288,
+      "font_offset_hex": "0x79E58"
+    },
+    {
+      "sequence": 54,
+      "character": "파",
+      "glyph_index": 861,
+      "message_bytes": "F3 5D",
+      "original_text_usage_count": 0,
+      "font_offset": 499672,
+      "font_offset_hex": "0x79FD8"
+    },
+    {
+      "sequence": 55,
+      "character": "괴",
+      "glyph_index": 866,
+      "message_bytes": "F3 62",
+      "original_text_usage_count": 0,
+      "font_offset": 499832,
+      "font_offset_hex": "0x7A078"
+    },
+    {
+      "sequence": 56,
+      "character": "하",
+      "glyph_index": 871,
+      "message_bytes": "F3 67",
+      "original_text_usage_count": 0,
+      "font_offset": 499992,
+      "font_offset_hex": "0x7A118"
+    },
+    {
+      "sequence": 57,
+      "character": "고",
+      "glyph_index": 874,
+      "message_bytes": "F3 6A",
+      "original_text_usage_count": 0,
+      "font_offset": 500088,
+      "font_offset_hex": "0x7A178"
+    },
+    {
+      "sequence": 58,
+      "character": "있",
+      "glyph_index": 875,
+      "message_bytes": "F3 6B",
+      "original_text_usage_count": 0,
+      "font_offset": 500120,
+      "font_offset_hex": "0x7A198"
+    },
+    {
+      "sequence": 59,
+      "character": "질",
+      "glyph_index": 880,
+      "message_bytes": "F3 70",
+      "original_text_usage_count": 0,
+      "font_offset": 500280,
+      "font_offset_hex": "0x7A238"
+    },
+    {
+      "sequence": 60,
+      "character": "량",
+      "glyph_index": 881,
+      "message_bytes": "F3 71",
+      "original_text_usage_count": 0,
+      "font_offset": 500312,
+      "font_offset_hex": "0x7A258"
+    },
+    {
+      "sequence": 61,
+      "character": "의",
+      "glyph_index": 892,
+      "message_bytes": "F3 7C",
+      "original_text_usage_count": 0,
+      "font_offset": 500664,
+      "font_offset_hex": "0x7A3B8"
+    },
+    {
+      "sequence": 62,
+      "character": "미",
+      "glyph_index": 893,
+      "message_bytes": "F3 7D",
+      "original_text_usage_count": 0,
+      "font_offset": 500696,
+      "font_offset_hex": "0x7A3D8"
+    },
+    {
+      "sequence": 63,
+      "character": "비",
+      "glyph_index": 900,
+      "message_bytes": "F3 84",
+      "original_text_usage_count": 0,
+      "font_offset": 500920,
+      "font_offset_hex": "0x7A4B8"
+    },
+    {
+      "sequence": 64,
+      "character": "행",
+      "glyph_index": 903,
+      "message_bytes": "F3 87",
+      "original_text_usage_count": 0,
+      "font_offset": 501016,
+      "font_offset_hex": "0x7A518"
+    },
+    {
+      "sequence": 65,
+      "character": "체",
+      "glyph_index": 904,
+      "message_bytes": "F3 88",
+      "original_text_usage_count": 0,
+      "font_offset": 501048,
+      "font_offset_hex": "0x7A538"
+    },
+    {
+      "sequence": 66,
+      "character": "에",
+      "glyph_index": 910,
+      "message_bytes": "F3 8E",
+      "original_text_usage_count": 0,
+      "font_offset": 501240,
+      "font_offset_hex": "0x7A5F8"
+    },
+    {
+      "sequence": 67,
+      "character": "나",
+      "glyph_index": 915,
+      "message_bytes": "F3 93",
+      "original_text_usage_count": 0,
+      "font_offset": 501400,
+      "font_offset_hex": "0x7A698"
+    },
+    {
+      "sequence": 68,
+      "character": "옵",
+      "glyph_index": 918,
+      "message_bytes": "F3 96",
+      "original_text_usage_count": 0,
+      "font_offset": 501496,
+      "font_offset_hex": "0x7A6F8"
+    },
+    {
+      "sequence": 69,
+      "character": "군",
+      "glyph_index": 920,
+      "message_bytes": "F3 98",
+      "original_text_usage_count": 0,
+      "font_offset": 501560,
+      "font_offset_hex": "0x7A738"
+    },
+    {
+      "sequence": 70,
+      "character": "소",
+      "glyph_index": 921,
+      "message_bytes": "F3 99",
+      "original_text_usage_count": 0,
+      "font_offset": 501592,
+      "font_offset_hex": "0x7A758"
+    },
+    {
+      "sequence": 71,
+      "character": "멸",
+      "glyph_index": 925,
+      "message_bytes": "F3 9D",
+      "original_text_usage_count": 0,
+      "font_offset": 501720,
+      "font_offset_hex": "0x7A7D8"
+    },
+    {
+      "sequence": 72,
+      "character": "보",
+      "glyph_index": 933,
+      "message_bytes": "F3 A5",
+      "original_text_usage_count": 0,
+      "font_offset": 501976,
+      "font_offset_hex": "0x7A8D8"
+    },
+    {
+      "sequence": 73,
+      "character": "간",
+      "glyph_index": 934,
+      "message_bytes": "F3 A6",
+      "original_text_usage_count": 0,
+      "font_offset": 502008,
+      "font_offset_hex": "0x7A8F8"
+    },
+    {
+      "sequence": 74,
+      "character": "계",
+      "glyph_index": 940,
+      "message_bytes": "F3 AC",
+      "original_text_usage_count": 0,
+      "font_offset": 502200,
+      "font_offset_hex": "0x7A9B8"
+    },
+    {
+      "sequence": 75,
+      "character": "속",
+      "glyph_index": 941,
+      "message_bytes": "F3 AD",
+      "original_text_usage_count": 0,
+      "font_offset": 502232,
+      "font_offset_hex": "0x7A9D8"
+    },
+    {
+      "sequence": 76,
+      "character": "감",
+      "glyph_index": 952,
+      "message_bytes": "F3 B8",
+      "original_text_usage_count": 0,
+      "font_offset": 502584,
+      "font_offset_hex": "0x7AB38"
+    },
+    {
+      "sequence": 77,
+      "character": "시",
+      "glyph_index": 961,
+      "message_bytes": "F3 C1",
+      "original_text_usage_count": 0,
+      "font_offset": 502872,
+      "font_offset_hex": "0x7AC58"
+    },
+    {
+      "sequence": 78,
+      "character": "네",
+      "glyph_index": 965,
+      "message_bytes": "F3 C5",
+      "original_text_usage_count": 0,
+      "font_offset": 503000,
+      "font_offset_hex": "0x7ACD8"
+    },
+    {
+      "sequence": 79,
+      "character": "늦",
+      "glyph_index": 972,
+      "message_bytes": "F3 CC",
+      "original_text_usage_count": 0,
+      "font_offset": 503224,
+      "font_offset_hex": "0x7ADB8"
+    },
+    {
+      "sequence": 80,
+      "character": "었",
+      "glyph_index": 974,
+      "message_bytes": "F3 CE",
+      "original_text_usage_count": 0,
+      "font_offset": 503288,
+      "font_offset_hex": "0x7ADF8"
+    },
+    {
+      "sequence": 81,
+      "character": "만",
+      "glyph_index": 976,
+      "message_bytes": "F3 D0",
+      "original_text_usage_count": 0,
+      "font_offset": 503352,
+      "font_offset_hex": "0x7AE38"
+    },
+    {
+      "sequence": 82,
+      "character": "더",
+      "glyph_index": 978,
+      "message_bytes": "F3 D2",
+      "original_text_usage_count": 0,
+      "font_offset": 503416,
+      "font_offset_hex": "0x7AE78"
+    },
+    {
+      "sequence": 83,
+      "character": "면",
+      "glyph_index": 979,
+      "message_bytes": "F3 D3",
+      "original_text_usage_count": 0,
+      "font_offset": 503448,
+      "font_offset_hex": "0x7AE98"
+    },
+    {
+      "sequence": 84,
+      "character": "전",
+      "glyph_index": 985,
+      "message_bytes": "F3 D9",
+      "original_text_usage_count": 0,
+      "font_offset": 503640,
+      "font_offset_hex": "0x7AF58"
+    },
+    {
+      "sequence": 85,
+      "character": "력",
+      "glyph_index": 986,
+      "message_bytes": "F3 DA",
+      "original_text_usage_count": 0,
+      "font_offset": 503672,
+      "font_offset_hex": "0x7AF78"
+    },
+    {
+      "sequence": 86,
+      "character": "을",
+      "glyph_index": 994,
+      "message_bytes": "F3 E2",
+      "original_text_usage_count": 0,
+      "font_offset": 503928,
+      "font_offset_hex": "0x7B078"
+    },
+    {
+      "sequence": 87,
+      "character": "모",
+      "glyph_index": 995,
+      "message_bytes": "F3 E3",
+      "original_text_usage_count": 0,
+      "font_offset": 503960,
+      "font_offset_hex": "0x7B098"
+    },
+    {
+      "sequence": 88,
+      "character": "았",
+      "glyph_index": 996,
+      "message_bytes": "F3 E4",
+      "original_text_usage_count": 0,
+      "font_offset": 503992,
+      "font_offset_hex": "0x7B0B8"
+    },
+    {
+      "sequence": 89,
+      "character": "텐",
+      "glyph_index": 997,
+      "message_bytes": "F3 E5",
+      "original_text_usage_count": 0,
+      "font_offset": 504024,
+      "font_offset_hex": "0x7B0D8"
+    },
+    {
+      "sequence": 90,
+      "character": "예",
+      "glyph_index": 998,
+      "message_bytes": "F3 E6",
+      "original_text_usage_count": 0,
+      "font_offset": 504056,
+      "font_offset_hex": "0x7B0F8"
+    },
+    {
+      "sequence": 91,
+      "character": "상",
+      "glyph_index": 999,
+      "message_bytes": "F3 E7",
+      "original_text_usage_count": 0,
+      "font_offset": 504088,
+      "font_offset_hex": "0x7B118"
+    },
+    {
+      "sequence": 92,
+      "character": "했",
+      "glyph_index": 1001,
+      "message_bytes": "F3 E9",
+      "original_text_usage_count": 0,
+      "font_offset": 504152,
+      "font_offset_hex": "0x7B158"
+    },
+    {
+      "sequence": 93,
+      "character": "정",
+      "glyph_index": 1002,
+      "message_bytes": "F3 EA",
+      "original_text_usage_count": 0,
+      "font_offset": 504184,
+      "font_offset_hex": "0x7B178"
+    },
+    {
+      "sequence": 94,
+      "character": "힘",
+      "glyph_index": 1004,
+      "message_bytes": "F3 EC",
+      "original_text_usage_count": 0,
+      "font_offset": 504248,
+      "font_offset_hex": "0x7B1B8"
+    },
+    {
+      "sequence": 95,
+      "character": "라",
+      "glyph_index": 1015,
+      "message_bytes": "F3 F7",
+      "original_text_usage_count": 0,
+      "font_offset": 504600,
+      "font_offset_hex": "0x7B318"
+    },
+    {
+      "sequence": 96,
+      "character": "젠",
+      "glyph_index": 1018,
+      "message_bytes": "F3 FA",
+      "original_text_usage_count": 0,
+      "font_offset": 504696,
+      "font_offset_hex": "0x7B378"
+    },
+    {
+      "sequence": 97,
+      "character": "용",
+      "glyph_index": 1020,
+      "message_bytes": "F3 FC",
+      "original_text_usage_count": 0,
+      "font_offset": 504760,
+      "font_offset_hex": "0x7B3B8"
+    },
+    {
+      "sequence": 98,
+      "character": "항",
+      "glyph_index": 1022,
+      "message_bytes": "F3 FE",
+      "original_text_usage_count": 0,
+      "font_offset": 504824,
+      "font_offset_hex": "0x7B3F8"
+    },
+    {
+      "sequence": 99,
+      "character": "복",
+      "glyph_index": 1024,
+      "message_bytes": "F4 00",
+      "original_text_usage_count": 0,
+      "font_offset": 504888,
+      "font_offset_hex": "0x7B438"
+    },
+    {
+      "sequence": 100,
+      "character": "받",
+      "glyph_index": 1026,
+      "message_bytes": "F4 02",
+      "original_text_usage_count": 0,
+      "font_offset": 504952,
+      "font_offset_hex": "0x7B478"
+    },
+    {
+      "sequence": 101,
+      "character": "글",
+      "glyph_index": 1031,
+      "message_bytes": "F4 07",
+      "original_text_usage_count": 0,
+      "font_offset": 505112,
+      "font_offset_hex": "0x7B518"
+    },
+    {
+      "sequence": 102,
+      "character": "쎄",
+      "glyph_index": 1032,
+      "message_bytes": "F4 08",
+      "original_text_usage_count": 0,
+      "font_offset": 505144,
+      "font_offset_hex": "0x7B538"
+    },
+    {
+      "sequence": 103,
+      "character": "르",
+      "glyph_index": 1033,
+      "message_bytes": "F4 09",
+      "original_text_usage_count": 0,
+      "font_offset": 505176,
+      "font_offset_hex": "0x7B558"
+    },
+    {
+      "sequence": 104,
+      "character": "겠",
+      "glyph_index": 1044,
+      "message_bytes": "F4 14",
+      "original_text_usage_count": 0,
+      "font_offset": 505528,
+      "font_offset_hex": "0x7B6B8"
+    },
+    {
+      "sequence": 105,
+      "character": "른",
+      "glyph_index": 1046,
+      "message_bytes": "F4 16",
+      "original_text_usage_count": 0,
+      "font_offset": 505592,
+      "font_offset_hex": "0x7B6F8"
+    },
+    {
+      "sequence": 106,
+      "character": "선",
+      "glyph_index": 1050,
+      "message_bytes": "F4 1A",
+      "original_text_usage_count": 0,
+      "font_offset": 505720,
+      "font_offset_hex": "0x7B778"
+    },
+    {
+      "sequence": 107,
+      "character": "택",
+      "glyph_index": 1051,
+      "message_bytes": "F4 1B",
+      "original_text_usage_count": 0,
+      "font_offset": 505752,
+      "font_offset_hex": "0x7B798"
+    },
+    {
+      "sequence": 108,
+      "character": "작",
+      "glyph_index": 1052,
+      "message_bytes": "F4 1C",
+      "original_text_usage_count": 0,
+      "font_offset": 505784,
+      "font_offset_hex": "0x7B7B8"
+    },
+    {
+      "sequence": 109,
+      "character": "능",
+      "glyph_index": 1053,
+      "message_bytes": "F4 1D",
+      "original_text_usage_count": 0,
+      "font_offset": 505816,
+      "font_offset_hex": "0x7B7D8"
+    },
+    {
+      "sequence": 110,
+      "character": "거",
+      "glyph_index": 1054,
+      "message_bytes": "F4 1E",
+      "original_text_usage_count": 0,
+      "font_offset": 505848,
+      "font_offset_hex": "0x7B7F8"
+    },
+    {
+      "sequence": 111,
+      "character": "기",
+      "glyph_index": 1055,
+      "message_bytes": "F4 1F",
+      "original_text_usage_count": 0,
+      "font_offset": 505880,
+      "font_offset_hex": "0x7B818"
+    },
+    {
+      "sequence": 112,
+      "character": "걸",
+      "glyph_index": 1056,
+      "message_bytes": "F4 20",
+      "original_text_usage_count": 0,
+      "font_offset": 505912,
+      "font_offset_hex": "0x7B838"
+    },
+    {
+      "sequence": 113,
+      "character": "수",
+      "glyph_index": 1060,
+      "message_bytes": "F4 24",
+      "original_text_usage_count": 0,
+      "font_offset": 506040,
+      "font_offset_hex": "0x7B8B8"
+    },
+    {
+      "sequence": 114,
+      "character": "밖",
+      "glyph_index": 1062,
+      "message_bytes": "F4 26",
+      "original_text_usage_count": 0,
+      "font_offset": 506104,
+      "font_offset_hex": "0x7B8F8"
+    },
+    {
+      "sequence": 115,
+      "character": "열",
+      "glyph_index": 1063,
+      "message_bytes": "F4 27",
+      "original_text_usage_count": 0,
+      "font_offset": 506136,
+      "font_offset_hex": "0x7B918"
+    },
+    {
+      "sequence": 116,
+      "character": "한",
+      "glyph_index": 1064,
+      "message_bytes": "F4 28",
+      "original_text_usage_count": 0,
+      "font_offset": 506168,
+      "font_offset_hex": "0x7B938"
+    },
+    {
+      "sequence": 117,
+      "character": "대",
+      "glyph_index": 1065,
+      "message_bytes": "F4 29",
+      "original_text_usage_count": 0,
+      "font_offset": 506200,
+      "font_offset_hex": "0x7B958"
+    },
+    {
+      "sequence": 118,
+      "character": "우",
+      "glyph_index": 1066,
+      "message_bytes": "F4 2A",
+      "original_text_usage_count": 0,
+      "font_offset": 506232,
+      "font_offset_hex": "0x7B978"
+    },
+    {
+      "sequence": 119,
+      "character": "를",
+      "glyph_index": 1072,
+      "message_bytes": "F4 30",
+      "original_text_usage_count": 0,
+      "font_offset": 506424,
+      "font_offset_hex": "0x7BA38"
+    },
+    {
+      "sequence": 120,
+      "character": "벌",
+      "glyph_index": 1076,
+      "message_bytes": "F4 34",
+      "original_text_usage_count": 0,
+      "font_offset": 506552,
+      "font_offset_hex": "0x7BAB8"
+    },
+    {
+      "sequence": 121,
+      "character": "야",
+      "glyph_index": 1077,
+      "message_bytes": "F4 35",
+      "original_text_usage_count": 0,
+      "font_offset": 506584,
+      "font_offset_hex": "0x7BAD8"
+    },
+    {
+      "sequence": 122,
+      "character": "놈",
+      "glyph_index": 1079,
+      "message_bytes": "F4 37",
+      "original_text_usage_count": 0,
+      "font_offset": 506648,
+      "font_offset_hex": "0x7BB18"
+    },
+    {
+      "sequence": 123,
+      "character": "들",
+      "glyph_index": 1080,
+      "message_bytes": "F4 38",
+      "original_text_usage_count": 0,
+      "font_offset": 506680,
+      "font_offset_hex": "0x7BB38"
+    },
+    {
+      "sequence": 124,
+      "character": "술",
+      "glyph_index": 1085,
+      "message_bytes": "F4 3D",
+      "original_text_usage_count": 0,
+      "font_offset": 506840,
+      "font_offset_hex": "0x7BBD8"
+    },
+    {
+      "sequence": 125,
+      "character": "훔",
+      "glyph_index": 1089,
+      "message_bytes": "F4 41",
+      "original_text_usage_count": 0,
+      "font_offset": 506968,
+      "font_offset_hex": "0x7BC58"
+    },
+    {
+      "sequence": 126,
+      "character": "칠",
+      "glyph_index": 1091,
+      "message_bytes": "F4 43",
+      "original_text_usage_count": 0,
+      "font_offset": 507032,
+      "font_offset_hex": "0x7BC98"
+    },
+    {
+      "sequence": 127,
+      "character": "그",
+      "glyph_index": 1097,
+      "message_bytes": "F4 49",
+      "original_text_usage_count": 0,
+      "font_offset": 507224,
+      "font_offset_hex": "0x7BD58"
+    },
+    {
+      "sequence": 128,
+      "character": "것",
+      "glyph_index": 1101,
+      "message_bytes": "F4 4D",
+      "original_text_usage_count": 0,
+      "font_offset": 507352,
+      "font_offset_hex": "0x7BDD8"
+    },
+    {
+      "sequence": 129,
+      "character": "류",
+      "glyph_index": 1102,
+      "message_bytes": "F4 4E",
+      "original_text_usage_count": 0,
+      "font_offset": 507384,
+      "font_offset_hex": "0x7BDF8"
+    },
+    {
+      "sequence": 130,
+      "character": "유",
+      "glyph_index": 1103,
+      "message_bytes": "F4 4F",
+      "original_text_usage_count": 0,
+      "font_offset": 507416,
+      "font_offset_hex": "0x7BE18"
+    },
+    {
+      "sequence": 131,
+      "character": "일",
+      "glyph_index": 1106,
+      "message_bytes": "F4 52",
+      "original_text_usage_count": 0,
+      "font_offset": 507512,
+      "font_offset_hex": "0x7BE78"
+    },
+    {
+      "sequence": 132,
+      "character": "제",
+      "glyph_index": 1107,
+      "message_bytes": "F4 53",
+      "original_text_usage_count": 0,
+      "font_offset": 507544,
+      "font_offset_hex": "0x7BE98"
+    },
+    {
+      "sequence": 133,
+      "character": "방",
+      "glyph_index": 1110,
+      "message_bytes": "F4 56",
+      "original_text_usage_count": 0,
+      "font_offset": 507640,
+      "font_offset_hex": "0x7BEF8"
+    },
+    {
+      "sequence": 134,
+      "character": "게",
+      "glyph_index": 1112,
+      "message_bytes": "F4 58",
+      "original_text_usage_count": 0,
+      "font_offset": 507704,
+      "font_offset_hex": "0x7BF38"
+    },
+    {
+      "sequence": 135,
+      "character": "될",
+      "glyph_index": 1114,
+      "message_bytes": "F4 5A",
+      "original_text_usage_count": 0,
+      "font_offset": 507768,
+      "font_offset_hex": "0x7BF78"
+    },
+    {
+      "sequence": 136,
+      "character": "뿐",
+      "glyph_index": 1115,
+      "message_bytes": "F4 5B",
+      "original_text_usage_count": 0,
+      "font_offset": 507800,
+      "font_offset_hex": "0x7BF98"
+    },
+    {
+      "sequence": 137,
+      "character": "구",
+      "glyph_index": 1125,
+      "message_bytes": "F4 65",
+      "original_text_usage_count": 0,
+      "font_offset": 508120,
+      "font_offset_hex": "0x7C0D8"
+    },
+    {
+      "sequence": 138,
+      "character": "래",
+      "glyph_index": 1126,
+      "message_bytes": "F4 66",
+      "original_text_usage_count": 0,
+      "font_offset": 508152,
+      "font_offset_hex": "0x7C0F8"
+    },
+    {
+      "sequence": 139,
+      "character": "싸",
+      "glyph_index": 1127,
+      "message_bytes": "F4 67",
+      "original_text_usage_count": 0,
+      "font_offset": 508184,
+      "font_offset_hex": "0x7C118"
+    },
+    {
+      "sequence": 140,
+      "character": "럼",
+      "glyph_index": 1129,
+      "message_bytes": "F4 69",
+      "original_text_usage_count": 0,
+      "font_offset": 508248,
+      "font_offset_hex": "0x7C158"
+    },
+    {
+      "sequence": 141,
+      "character": "망",
+      "glyph_index": 1131,
+      "message_bytes": "F4 6B",
+      "original_text_usage_count": 0,
+      "font_offset": 508312,
+      "font_offset_hex": "0x7C198"
+    },
+    {
+      "sequence": 142,
+      "character": "막",
+      "glyph_index": 1134,
+      "message_bytes": "F4 6E",
+      "original_text_usage_count": 0,
+      "font_offset": 508408,
+      "font_offset_hex": "0x7C1F8"
+    },
+    {
+      "sequence": 143,
+      "character": "아",
+      "glyph_index": 1136,
+      "message_bytes": "F4 70",
+      "original_text_usage_count": 0,
+      "font_offset": 508472,
+      "font_offset_hex": "0x7C238"
+    },
+    {
+      "sequence": 144,
+      "character": "불",
+      "glyph_index": 1141,
+      "message_bytes": "F4 75",
+      "original_text_usage_count": 0,
+      "font_offset": 508632,
+      "font_offset_hex": "0x7C2D8"
+    },
+    {
+      "sequence": 145,
+      "character": "잔",
+      "glyph_index": 1144,
+      "message_bytes": "F4 78",
+      "original_text_usage_count": 0,
+      "font_offset": 508728,
+      "font_offset_hex": "0x7C338"
+    },
+    {
+      "sequence": 146,
+      "character": "스",
+      "glyph_index": 1146,
+      "message_bytes": "F4 7A",
+      "original_text_usage_count": 0,
+      "font_offset": 508792,
+      "font_offset_hex": "0x7C378"
+    },
+    {
+      "sequence": 147,
+      "character": "칼",
+      "glyph_index": 1151,
+      "message_bytes": "F4 7F",
+      "original_text_usage_count": 0,
+      "font_offset": 508952,
+      "font_offset_hex": "0x7C418"
+    },
+    {
+      "sequence": 148,
+      "character": "려",
+      "glyph_index": 1153,
+      "message_bytes": "F4 81",
+      "original_text_usage_count": 0,
+      "font_offset": 509016,
+      "font_offset_hex": "0x7C458"
+    },
+    {
+      "sequence": 149,
+      "character": "자",
+      "glyph_index": 1154,
+      "message_bytes": "F4 82",
+      "original_text_usage_count": 0,
+      "font_offset": 509048,
+      "font_offset_hex": "0x7C478"
+    },
+    {
+      "sequence": 150,
+      "character": "마",
+      "glyph_index": 1155,
+      "message_bytes": "F4 83",
+      "original_text_usage_count": 0,
+      "font_offset": 509080,
+      "font_offset_hex": "0x7C498"
+    },
+    {
+      "sequence": 151,
+      "character": "음",
+      "glyph_index": 1156,
+      "message_bytes": "F4 84",
+      "original_text_usage_count": 0,
+      "font_offset": 509112,
+      "font_offset_hex": "0x7C4B8"
+    },
+    {
+      "sequence": 152,
+      "character": "위",
+      "glyph_index": 1159,
+      "message_bytes": "F4 87",
+      "original_text_usage_count": 0,
+      "font_offset": 509208,
+      "font_offset_hex": "0x7C518"
+    },
+    {
+      "sequence": 153,
+      "character": "내",
+      "glyph_index": 1161,
+      "message_bytes": "F4 89",
+      "original_text_usage_count": 0,
+      "font_offset": 509272,
+      "font_offset_hex": "0x7C558"
+    },
+    {
+      "sequence": 154,
+      "character": "주",
+      "glyph_index": 1162,
+      "message_bytes": "F4 8A",
+      "original_text_usage_count": 0,
+      "font_offset": 509304,
+      "font_offset_hex": "0x7C578"
+    },
+    {
+      "sequence": 155,
+      "character": "알",
+      "glyph_index": 1166,
+      "message_bytes": "F4 8E",
+      "original_text_usage_count": 0,
+      "font_offset": 509432,
+      "font_offset_hex": "0x7C5F8"
+    },
+    {
+      "sequence": 156,
+      "character": "접",
+      "glyph_index": 1171,
+      "message_bytes": "F4 93",
+      "original_text_usage_count": 0,
+      "font_offset": 509592,
+      "font_offset_hex": "0x7C698"
+    },
+    {
+      "sequence": 157,
+      "character": "근",
+      "glyph_index": 1172,
+      "message_bytes": "F4 94",
+      "original_text_usage_count": 0,
+      "font_offset": 509624,
+      "font_offset_hex": "0x7C6B8"
+    },
+    {
+      "sequence": 158,
+      "character": "런",
+      "glyph_index": 1177,
+      "message_bytes": "F4 99",
+      "original_text_usage_count": 0,
+      "font_offset": 509784,
+      "font_offset_hex": "0x7C758"
+    },
+    {
+      "sequence": 159,
+      "character": "극",
+      "glyph_index": 1182,
+      "message_bytes": "F4 9E",
+      "original_text_usage_count": 0,
+      "font_offset": 509944,
+      "font_offset_hex": "0x7C7F8"
+    },
+    {
+      "sequence": 160,
+      "character": "동",
+      "glyph_index": 1188,
+      "message_bytes": "F4 A4",
+      "original_text_usage_count": 0,
+      "font_offset": 510136,
+      "font_offset_hex": "0x7C8B8"
+    },
+    {
+      "sequence": 161,
+      "character": "부",
+      "glyph_index": 1190,
+      "message_bytes": "F4 A6",
+      "original_text_usage_count": 0,
+      "font_offset": 510200,
+      "font_offset_hex": "0x7C8F8"
+    },
+    {
+      "sequence": 162,
+      "character": "과",
+      "glyph_index": 1191,
+      "message_bytes": "F4 A7",
+      "original_text_usage_count": 0,
+      "font_offset": 510232,
+      "font_offset_hex": "0x7C918"
+    },
+    {
+      "sequence": 163,
+      "character": "목",
+      "glyph_index": 1196,
+      "message_bytes": "F4 AC",
+      "original_text_usage_count": 0,
+      "font_offset": 510392,
+      "font_offset_hex": "0x7C9B8"
+    },
+    {
+      "sequence": 164,
+      "character": "적",
+      "glyph_index": 1200,
+      "message_bytes": "F4 B0",
+      "original_text_usage_count": 0,
+      "font_offset": 510520,
+      "font_offset_hex": "0x7CA38"
+    },
+    {
+      "sequence": 165,
+      "character": "밝",
+      "glyph_index": 1202,
+      "message_bytes": "F4 B2",
+      "original_text_usage_count": 0,
+      "font_offset": 510584,
+      "font_offset_hex": "0x7CA78"
+    },
+    {
+      "sequence": 166,
+      "character": "혀",
+      "glyph_index": 1206,
+      "message_bytes": "F4 B6",
+      "original_text_usage_count": 0,
+      "font_offset": 510712,
+      "font_offset_hex": "0x7CAF8"
+    },
+    {
+      "sequence": 167,
+      "character": "답",
+      "glyph_index": 1207,
+      "message_bytes": "F4 B7",
+      "original_text_usage_count": 0,
+      "font_offset": 510744,
+      "font_offset_hex": "0x7CB18"
+    },
+    {
+      "sequence": 168,
+      "character": "현",
+      "glyph_index": 1211,
+      "message_bytes": "F4 BB",
+      "original_text_usage_count": 0,
+      "font_offset": 510872,
+      "font_offset_hex": "0x7CB98"
+    },
+    {
+      "sequence": 169,
+      "character": "치",
+      "glyph_index": 1212,
+      "message_bytes": "F4 BC",
+      "original_text_usage_count": 0,
+      "font_offset": 510904,
+      "font_offset_hex": "0x7CBB8"
+    },
+    {
+      "sequence": 170,
+      "character": "북",
+      "glyph_index": 1213,
+      "message_bytes": "F4 BD",
+      "original_text_usage_count": 0,
+      "font_offset": 510936,
+      "font_offset_hex": "0x7CBD8"
+    },
+    {
+      "sequence": 171,
+      "character": "경",
+      "glyph_index": 1214,
+      "message_bytes": "F4 BE",
+      "original_text_usage_count": 0,
+      "font_offset": 510968,
+      "font_offset_hex": "0x7CBF8"
+    },
+    {
+      "sequence": 172,
+      "character": "곧",
+      "glyph_index": 1217,
+      "message_bytes": "F4 C1",
+      "original_text_usage_count": 0,
+      "font_offset": 511064,
+      "font_offset_hex": "0x7CC58"
+    },
+    {
+      "sequence": 173,
+      "character": "오",
+      "glyph_index": 1218,
+      "message_bytes": "F4 C2",
+      "original_text_usage_count": 0,
+      "font_offset": 511096,
+      "font_offset_hex": "0x7CC78"
+    },
+    {
+      "sequence": 174,
+      "character": "와",
+      "glyph_index": 1220,
+      "message_bytes": "F4 C4",
+      "original_text_usage_count": 0,
+      "font_offset": 511160,
+      "font_offset_hex": "0x7CCB8"
+    },
+    {
+      "sequence": 175,
+      "character": "토",
+      "glyph_index": 1222,
+      "message_bytes": "F4 C6",
+      "original_text_usage_count": 0,
+      "font_offset": 511224,
+      "font_offset_hex": "0x7CCF8"
+    },
+    {
+      "sequence": 176,
+      "character": "리",
+      "glyph_index": 1224,
+      "message_bytes": "F4 C8",
+      "original_text_usage_count": 0,
+      "font_offset": 511288,
+      "font_offset_hex": "0x7CD38"
+    },
+    {
+      "sequence": 177,
+      "character": "섬",
+      "glyph_index": 1227,
+      "message_bytes": "F4 CB",
+      "original_text_usage_count": 0,
+      "font_offset": 511384,
+      "font_offset_hex": "0x7CD98"
+    },
+    {
+      "sequence": 178,
+      "character": "륙",
+      "glyph_index": 1228,
+      "message_bytes": "F4 CC",
+      "original_text_usage_count": 0,
+      "font_offset": 511416,
+      "font_offset_hex": "0x7CDB8"
+    },
+    {
+      "sequence": 179,
+      "character": "관",
+      "glyph_index": 1229,
+      "message_bytes": "F4 CD",
+      "original_text_usage_count": 0,
+      "font_offset": 511448,
+      "font_offset_hex": "0x7CDD8"
+    },
+    {
+      "sequence": 180,
+      "character": "께",
+      "glyph_index": 1230,
+      "message_bytes": "F4 CE",
+      "original_text_usage_count": 0,
+      "font_offset": 511480,
+      "font_offset_hex": "0x7CDF8"
+    },
+    {
+      "sequence": 181,
+      "character": "람",
+      "glyph_index": 1231,
+      "message_bytes": "F4 CF",
+      "original_text_usage_count": 0,
+      "font_offset": 511512,
+      "font_offset_hex": "0x7CE18"
+    },
+    {
+      "sequence": 182,
+      "character": "투",
+      "glyph_index": 1232,
+      "message_bytes": "F4 D0",
+      "original_text_usage_count": 0,
+      "font_offset": 511544,
+      "font_offset_hex": "0x7CE38"
+    },
+    {
+      "sequence": 183,
+      "character": "누",
+      "glyph_index": 1233,
+      "message_bytes": "F4 D1",
+      "original_text_usage_count": 0,
+      "font_offset": 511576,
+      "font_offset_hex": "0x7CE58"
+    },
+    {
+      "sequence": 184,
+      "character": "굴",
+      "glyph_index": 1234,
+      "message_bytes": "F4 D2",
+      "original_text_usage_count": 0,
+      "font_offset": 511608,
+      "font_offset_hex": "0x7CE78"
+    },
+    {
+      "sequence": 185,
+      "character": "히",
+      "glyph_index": 1235,
+      "message_bytes": "F4 D3",
+      "original_text_usage_count": 0,
+      "font_offset": 511640,
+      "font_offset_hex": "0x7CE98"
+    },
+    {
+      "sequence": 186,
+      "character": "윽",
+      "glyph_index": 1236,
+      "message_bytes": "F4 D4",
+      "original_text_usage_count": 0,
+      "font_offset": 511672,
+      "font_offset_hex": "0x7CEB8"
+    },
+    {
+      "sequence": 187,
+      "character": "린",
+      "glyph_index": 1238,
+      "message_bytes": "F4 D6",
+      "original_text_usage_count": 0,
+      "font_offset": 511736,
+      "font_offset_hex": "0x7CEF8"
+    },
+    {
+      "sequence": 188,
+      "character": "애",
+      "glyph_index": 1239,
+      "message_bytes": "F4 D7",
+      "original_text_usage_count": 0,
+      "font_offset": 511768,
+      "font_offset_hex": "0x7CF18"
+    },
+    {
+      "sequence": 189,
+      "character": "잖",
+      "glyph_index": 1241,
+      "message_bytes": "F4 D9",
+      "original_text_usage_count": 0,
+      "font_offset": 511832,
+      "font_offset_hex": "0x7CF58"
+    },
+    {
+      "sequence": 190,
+      "character": "삐",
+      "glyph_index": 1242,
+      "message_bytes": "F4 DA",
+      "original_text_usage_count": 0,
+      "font_offset": 511864,
+      "font_offset_hex": "0x7CF78"
+    },
+    {
+      "sequence": 191,
+      "character": "뽀",
+      "glyph_index": 1243,
+      "message_bytes": "F4 DB",
+      "original_text_usage_count": 0,
+      "font_offset": 511896,
+      "font_offset_hex": "0x7CF98"
+    },
+    {
+      "sequence": 192,
+      "character": "급",
+      "glyph_index": 1244,
+      "message_bytes": "F4 DC",
+      "original_text_usage_count": 0,
+      "font_offset": 511928,
+      "font_offset_hex": "0x7CFB8"
+    },
+    {
+      "sequence": 193,
+      "character": "왔",
+      "glyph_index": 1245,
+      "message_bytes": "F4 DD",
+      "original_text_usage_count": 0,
+      "font_offset": 511960,
+      "font_offset_hex": "0x7CFD8"
+    },
+    {
+      "sequence": 194,
+      "character": "떡",
+      "glyph_index": 1246,
+      "message_bytes": "F4 DE",
+      "original_text_usage_count": 0,
+      "font_offset": 511992,
+      "font_offset_hex": "0x7CFF8"
+    },
+    {
+      "sequence": 195,
+      "character": "헉",
+      "glyph_index": 1247,
+      "message_bytes": "F4 DF",
+      "original_text_usage_count": 0,
+      "font_offset": 512024,
+      "font_offset_hex": "0x7D018"
+    },
+    {
+      "sequence": 196,
+      "character": "봤",
+      "glyph_index": 1248,
+      "message_bytes": "F4 E0",
+      "original_text_usage_count": 0,
+      "font_offset": 512056,
+      "font_offset_hex": "0x7D038"
+    },
+    {
+      "sequence": 197,
+      "character": "뭘",
+      "glyph_index": 1250,
+      "message_bytes": "F4 E2",
+      "original_text_usage_count": 0,
+      "font_offset": 512120,
+      "font_offset_hex": "0x7D078"
+    },
+    {
+      "sequence": 198,
+      "character": "널",
+      "glyph_index": 1251,
+      "message_bytes": "F4 E3",
+      "original_text_usage_count": 0,
+      "font_offset": 512152,
+      "font_offset_hex": "0x7D098"
+    },
+    {
+      "sequence": 199,
+      "character": "죽",
+      "glyph_index": 1253,
+      "message_bytes": "F4 E5",
+      "original_text_usage_count": 0,
+      "font_offset": 512216,
+      "font_offset_hex": "0x7D0D8"
+    },
+    {
+      "sequence": 200,
+      "character": "끼",
+      "glyph_index": 1254,
+      "message_bytes": "F4 E6",
+      "original_text_usage_count": 0,
+      "font_offset": 512248,
+      "font_offset_hex": "0x7D0F8"
+    },
+    {
+      "sequence": 201,
+      "character": "쾅",
+      "glyph_index": 1255,
+      "message_bytes": "F4 E7",
+      "original_text_usage_count": 0,
+      "font_offset": 512280,
+      "font_offset_hex": "0x7D118"
+    },
+    {
+      "sequence": 202,
+      "character": "앗",
+      "glyph_index": 1256,
+      "message_bytes": "F4 E8",
+      "original_text_usage_count": 0,
+      "font_offset": 512312,
+      "font_offset_hex": "0x7D138"
+    },
+    {
+      "sequence": 203,
+      "character": "무",
+      "glyph_index": 1257,
+      "message_bytes": "F4 E9",
+      "original_text_usage_count": 0,
+      "font_offset": 512344,
+      "font_offset_hex": "0x7D158"
+    },
+    {
+      "sequence": 204,
+      "character": "슨",
+      "glyph_index": 1258,
+      "message_bytes": "F4 EA",
+      "original_text_usage_count": 0,
+      "font_offset": 512376,
+      "font_offset_hex": "0x7D178"
+    },
+    {
+      "sequence": 205,
+      "character": "짓",
+      "glyph_index": 1259,
+      "message_bytes": "F4 EB",
+      "original_text_usage_count": 0,
+      "font_offset": 512408,
+      "font_offset_hex": "0x7D198"
+    },
+    {
+      "sequence": 206,
+      "character": "세",
+      "glyph_index": 1260,
+      "message_bytes": "F4 EC",
+      "original_text_usage_count": 0,
+      "font_offset": 512440,
+      "font_offset_hex": "0x7D1B8"
+    },
+    {
+      "sequence": 207,
+      "character": "워",
+      "glyph_index": 1261,
+      "message_bytes": "F4 ED",
+      "original_text_usage_count": 0,
+      "font_offset": 512472,
+      "font_offset_hex": "0x7D1D8"
+    },
+    {
+      "sequence": 208,
+      "character": "당",
+      "glyph_index": 1262,
+      "message_bytes": "F4 EE",
+      "original_text_usage_count": 0,
+      "font_offset": 512504,
+      "font_offset_hex": "0x7D1F8"
+    },
+    {
+      "sequence": 209,
+      "character": "신",
+      "glyph_index": 1263,
+      "message_bytes": "F4 EF",
+      "original_text_usage_count": 0,
+      "font_offset": 512536,
+      "font_offset_hex": "0x7D218"
+    },
+    {
+      "sequence": 210,
+      "character": "연",
+      "glyph_index": 1264,
+      "message_bytes": "F4 F0",
+      "original_text_usage_count": 0,
+      "font_offset": 512568,
+      "font_offset_hex": "0x7D238"
+    },
+    {
+      "sequence": 211,
+      "character": "원",
+      "glyph_index": 1265,
+      "message_bytes": "F4 F1",
+      "original_text_usage_count": 0,
+      "font_offset": 512600,
+      "font_offset_hex": "0x7D258"
+    },
+    {
+      "sequence": 212,
+      "character": "바",
+      "glyph_index": 1266,
+      "message_bytes": "F4 F2",
+      "original_text_usage_count": 0,
+      "font_offset": 512632,
+      "font_offset_hex": "0x7D278"
+    },
+    {
+      "sequence": 213,
+      "character": "박",
+      "glyph_index": 1267,
+      "message_bytes": "F4 F3",
+      "original_text_usage_count": 0,
+      "font_offset": 512664,
+      "font_offset_hex": "0x7D298"
+    },
+    {
+      "sequence": 214,
+      "character": "즉",
+      "glyph_index": 1268,
+      "message_bytes": "F4 F4",
+      "original_text_usage_count": 0,
+      "font_offset": 512696,
+      "font_offset_hex": "0x7D2B8"
+    },
+    {
+      "sequence": 215,
+      "character": "배",
+      "glyph_index": 1269,
+      "message_bytes": "F4 F5",
+      "original_text_usage_count": 0,
+      "font_offset": 512728,
+      "font_offset_hex": "0x7D2D8"
+    },
+    {
+      "sequence": 216,
+      "character": "펼",
+      "glyph_index": 1270,
+      "message_bytes": "F4 F6",
+      "original_text_usage_count": 0,
+      "font_offset": 512760,
+      "font_offset_hex": "0x7D2F8"
+    },
+    {
+      "sequence": 217,
+      "character": "쳐",
+      "glyph_index": 1271,
+      "message_bytes": "F4 F7",
+      "original_text_usage_count": 0,
+      "font_offset": 512792,
+      "font_offset_hex": "0x7D318"
+    },
+    {
+      "sequence": 218,
+      "character": "볼",
+      "glyph_index": 1272,
+      "message_bytes": "F4 F8",
+      "original_text_usage_count": 0,
+      "font_offset": 512824,
+      "font_offset_hex": "0x7D338"
+    },
+    {
+      "sequence": 219,
+      "character": "테",
+      "glyph_index": 1273,
+      "message_bytes": "F4 F9",
+      "original_text_usage_count": 0,
+      "font_offset": 512856,
+      "font_offset_hex": "0x7D358"
+    },
+    {
+      "sequence": 220,
+      "character": "팀",
+      "glyph_index": 1274,
+      "message_bytes": "F4 FA",
+      "original_text_usage_count": 0,
+      "font_offset": 512888,
+      "font_offset_hex": "0x7D378"
+    },
+    {
+      "sequence": 221,
+      "character": "맞",
+      "glyph_index": 1275,
+      "message_bytes": "F4 FB",
+      "original_text_usage_count": 0,
+      "font_offset": 512920,
+      "font_offset_hex": "0x7D398"
+    },
+    {
+      "sequence": 222,
+      "character": "드",
+      "glyph_index": 1276,
+      "message_bytes": "F4 FC",
+      "original_text_usage_count": 0,
+      "font_offset": 512952,
+      "font_offset_hex": "0x7D3B8"
+    },
+    {
+      "sequence": 223,
+      "character": "패",
+      "glyph_index": 1277,
+      "message_bytes": "F4 FD",
+      "original_text_usage_count": 0,
+      "font_offset": 512984,
+      "font_offset_hex": "0x7D3D8"
+    },
+    {
+      "sequence": 224,
+      "character": "켄",
+      "glyph_index": 1278,
+      "message_bytes": "F4 FE",
+      "original_text_usage_count": 0,
+      "font_offset": 513016,
+      "font_offset_hex": "0x7D3F8"
+    },
+    {
+      "sequence": 225,
+      "character": "트",
+      "glyph_index": 1279,
+      "message_bytes": "F4 FF",
+      "original_text_usage_count": 0,
+      "font_offset": 513048,
+      "font_offset_hex": "0x7D418"
+    },
+    {
+      "sequence": 226,
+      "character": "긴",
+      "glyph_index": 1280,
+      "message_bytes": "F5 00",
+      "original_text_usage_count": 0,
+      "font_offset": 513080,
+      "font_offset_hex": "0x7D438"
+    },
+    {
+      "sequence": 227,
+      "character": "츠",
+      "glyph_index": 1281,
+      "message_bytes": "F5 01",
+      "original_text_usage_count": 0,
+      "font_offset": 513112,
+      "font_offset_hex": "0x7D458"
+    },
+    {
+      "sequence": 228,
+      "character": "호",
+      "glyph_index": 1282,
+      "message_bytes": "F5 02",
+      "original_text_usage_count": 0,
+      "font_offset": 513144,
+      "font_offset_hex": "0x7D478"
+    },
+    {
+      "sequence": 229,
+      "character": "심",
+      "glyph_index": 1283,
+      "message_bytes": "F5 03",
+      "original_text_usage_count": 0,
+      "font_offset": 513176,
+      "font_offset_hex": "0x7D498"
+    },
+    {
+      "sequence": 230,
+      "character": "형",
+      "glyph_index": 1285,
+      "message_bytes": "F5 05",
+      "original_text_usage_count": 0,
+      "font_offset": 513240,
+      "font_offset_hex": "0x7D4D8"
+    },
+    {
+      "sequence": 231,
+      "character": "브",
+      "glyph_index": 1286,
+      "message_bytes": "F5 06",
+      "original_text_usage_count": 0,
+      "font_offset": 513272,
+      "font_offset_hex": "0x7D4F8"
+    },
+    {
+      "sequence": 232,
+      "character": "빨",
+      "glyph_index": 1287,
+      "message_bytes": "F5 07",
+      "original_text_usage_count": 0,
+      "font_offset": 513304,
+      "font_offset_hex": "0x7D518"
+    },
+    {
+      "sequence": 233,
+      "character": "버",
+      "glyph_index": 1289,
+      "message_bytes": "F5 09",
+      "original_text_usage_count": 0,
+      "font_offset": 513368,
+      "font_offset_hex": "0x7D558"
+    },
+    {
+      "sequence": 234,
+      "character": "튼",
+      "glyph_index": 1291,
+      "message_bytes": "F5 0B",
+      "original_text_usage_count": 0,
+      "font_offset": 513432,
+      "font_offset_hex": "0x7D598"
+    },
+    {
+      "sequence": 235,
+      "character": "눌",
+      "glyph_index": 1293,
+      "message_bytes": "F5 0D",
+      "original_text_usage_count": 0,
+      "font_offset": 513496,
+      "font_offset_hex": "0x7D5D8"
+    },
+    {
+      "sequence": 236,
+      "character": "레",
+      "glyph_index": 1294,
+      "message_bytes": "F5 0E",
+      "original_text_usage_count": 0,
+      "font_offset": 513528,
+      "font_offset_hex": "0x7D5F8"
+    },
+    {
+      "sequence": 237,
+      "character": "실",
+      "glyph_index": 1295,
+      "message_bytes": "F5 0F",
+      "original_text_usage_count": 0,
+      "font_offset": 513560,
+      "font_offset_hex": "0x7D618"
+    },
+    {
+      "sequence": 238,
+      "character": "처",
+      "glyph_index": 1296,
+      "message_bytes": "F5 10",
+      "original_text_usage_count": 0,
+      "font_offset": 513592,
+      "font_offset_hex": "0x7D638"
+    },
+    {
+      "sequence": 239,
+      "character": "터",
+      "glyph_index": 1297,
+      "message_bytes": "F5 11",
+      "original_text_usage_count": 0,
+      "font_offset": 513624,
+      "font_offset_hex": "0x7D658"
+    },
+    {
+      "sequence": 240,
+      "character": "요",
+      "glyph_index": 1298,
+      "message_bytes": "F5 12",
+      "original_text_usage_count": 0,
+      "font_offset": 513656,
+      "font_offset_hex": "0x7D678"
+    },
+    {
+      "sequence": 241,
+      "character": "머",
+      "glyph_index": 1300,
+      "message_bytes": "F5 14",
+      "original_text_usage_count": 0,
+      "font_offset": 513720,
+      "font_offset_hex": "0x7D6B8"
+    },
+    {
+      "sequence": 242,
+      "character": "돌",
+      "glyph_index": 1301,
+      "message_bytes": "F5 15",
+      "original_text_usage_count": 0,
+      "font_offset": 513752,
+      "font_offset_hex": "0x7D6D8"
+    },
+    {
+      "sequence": 243,
+      "character": "여",
+      "glyph_index": 1308,
+      "message_bytes": "F5 1C",
+      "original_text_usage_count": 0,
+      "font_offset": 513976,
+      "font_offset_hex": "0x7D7B8"
+    },
+    {
+      "sequence": 244,
+      "character": "으",
+      "glyph_index": 1312,
+      "message_bytes": "F5 20",
+      "original_text_usage_count": 0,
+      "font_offset": 514104,
+      "font_offset_hex": "0x7D838"
+    },
+    {
+      "sequence": 245,
+      "character": "메",
+      "glyph_index": 1314,
+      "message_bytes": "F5 22",
+      "original_text_usage_count": 0,
+      "font_offset": 514168,
+      "font_offset_hex": "0x7D878"
+    },
+    {
+      "sequence": 246,
+      "character": "두",
+      "glyph_index": 1316,
+      "message_bytes": "F5 24",
+      "original_text_usage_count": 0,
+      "font_offset": 514232,
+      "font_offset_hex": "0x7D8B8"
+    },
+    {
+      "sequence": 247,
+      "character": "합",
+      "glyph_index": 1318,
+      "message_bytes": "F5 26",
+      "original_text_usage_count": 0,
+      "font_offset": 514296,
+      "font_offset_hex": "0x7D8F8"
+    },
+    {
+      "sequence": 248,
+      "character": "잇",
+      "glyph_index": 1319,
+      "message_bytes": "F5 27",
+      "original_text_usage_count": 0,
+      "font_offset": 514328,
+      "font_offset_hex": "0x7D918"
+    },
+    {
+      "sequence": 249,
+      "character": "페",
+      "glyph_index": 1320,
+      "message_bytes": "F5 28",
+      "original_text_usage_count": 0,
+      "font_offset": 514360,
+      "font_offset_hex": "0x7D938"
+    },
+    {
+      "sequence": 250,
+      "character": "올",
+      "glyph_index": 1321,
+      "message_bytes": "F5 29",
+      "original_text_usage_count": 0,
+      "font_offset": 514392,
+      "font_offset_hex": "0x7D958"
+    },
+    {
+      "sequence": 251,
+      "character": "노",
+      "glyph_index": 1322,
+      "message_bytes": "F5 2A",
+      "original_text_usage_count": 0,
+      "font_offset": 514424,
+      "font_offset_hex": "0x7D978"
+    },
+    {
+      "sequence": 252,
+      "character": "분",
+      "glyph_index": 1332,
+      "message_bytes": "F5 34",
+      "original_text_usage_count": 0,
+      "font_offset": 514744,
+      "font_offset_hex": "0x7DAB8"
+    },
+    {
+      "sequence": 253,
+      "character": "설",
+      "glyph_index": 1334,
+      "message_bytes": "F5 36",
+      "original_text_usage_count": 0,
+      "font_offset": 514808,
+      "font_offset_hex": "0x7DAF8"
+    },
+    {
+      "sequence": 254,
+      "character": "명",
+      "glyph_index": 1335,
+      "message_bytes": "F5 37",
+      "original_text_usage_count": 0,
+      "font_offset": 514840,
+      "font_offset_hex": "0x7DB18"
+    },
+    {
+      "sequence": 255,
+      "character": "률",
+      "glyph_index": 1337,
+      "message_bytes": "F5 39",
+      "original_text_usage_count": 0,
+      "font_offset": 514904,
+      "font_offset_hex": "0x7DB58"
+    },
+    {
+      "sequence": 256,
+      "character": "맵",
+      "glyph_index": 1339,
+      "message_bytes": "F5 3B",
+      "original_text_usage_count": 0,
+      "font_offset": 514968,
+      "font_offset_hex": "0x7DB98"
+    },
+    {
+      "sequence": 257,
+      "character": "검",
+      "glyph_index": 1340,
+      "message_bytes": "F5 3C",
+      "original_text_usage_count": 0,
+      "font_offset": 515000,
+      "font_offset_hex": "0x7DBB8"
+    },
+    {
+      "sequence": 258,
+      "character": "색",
+      "glyph_index": 1341,
+      "message_bytes": "F5 3D",
+      "original_text_usage_count": 0,
+      "font_offset": 515032,
+      "font_offset_hex": "0x7DBD8"
+    },
+    {
+      "sequence": 259,
+      "character": "령",
+      "glyph_index": 1342,
+      "message_bytes": "F5 3E",
+      "original_text_usage_count": 0,
+      "font_offset": 515064,
+      "font_offset_hex": "0x7DBF8"
+    },
+    {
+      "sequence": 260,
+      "character": "악",
+      "glyph_index": 1343,
+      "message_bytes": "F5 3F",
+      "original_text_usage_count": 0,
+      "font_offset": 515096,
+      "font_offset_hex": "0x7DC18"
+    },
+    {
+      "sequence": 261,
+      "character": "식",
+      "glyph_index": 1345,
+      "message_bytes": "F5 41",
+      "original_text_usage_count": 0,
+      "font_offset": 515160,
+      "font_offset_hex": "0x7DC58"
+    },
+    {
+      "sequence": 262,
+      "character": "끝",
+      "glyph_index": 1346,
+      "message_bytes": "F5 42",
+      "original_text_usage_count": 0,
+      "font_offset": 515192,
+      "font_offset_hex": "0x7DC78"
+    },
+    {
+      "sequence": 263,
+      "character": "닛",
+      "glyph_index": 1348,
+      "message_bytes": "F5 44",
+      "original_text_usage_count": 0,
+      "font_offset": 515256,
+      "font_offset_hex": "0x7DCB8"
+    },
+    {
+      "sequence": 264,
+      "character": "종",
+      "glyph_index": 1349,
+      "message_bytes": "F5 45",
+      "original_text_usage_count": 0,
+      "font_offset": 515288,
+      "font_offset_hex": "0x7DCD8"
+    },
+    {
+      "sequence": 265,
+      "character": "환",
+      "glyph_index": 1351,
+      "message_bytes": "F5 47",
+      "original_text_usage_count": 0,
+      "font_offset": 515352,
+      "font_offset_hex": "0x7DD18"
+    },
+    {
+      "sequence": 266,
+      "character": "향",
+      "glyph_index": 1352,
+      "message_bytes": "F5 48",
+      "original_text_usage_count": 0,
+      "font_offset": 515384,
+      "font_offset_hex": "0x7DD38"
+    },
+    {
+      "sequence": 267,
+      "character": "특",
+      "glyph_index": 1363,
+      "message_bytes": "F5 53",
+      "original_text_usage_count": 0,
+      "font_offset": 515736,
+      "font_offset_hex": "0x7DE98"
+    },
+    {
+      "sequence": 268,
+      "character": "키",
+      "glyph_index": 1364,
+      "message_bytes": "F5 54",
+      "original_text_usage_count": 0,
+      "font_offset": 515768,
+      "font_offset_hex": "0x7DEB8"
+    },
+    {
+      "sequence": 269,
+      "character": "승",
+      "glyph_index": 1365,
+      "message_bytes": "F5 55",
+      "original_text_usage_count": 0,
+      "font_offset": 515800,
+      "font_offset_hex": "0x7DED8"
+    },
+    {
+      "sequence": 270,
+      "character": "크",
+      "glyph_index": 1366,
+      "message_bytes": "F5 56",
+      "original_text_usage_count": 0,
+      "font_offset": 515832,
+      "font_offset_hex": "0x7DEF8"
+    },
+    {
+      "sequence": 271,
+      "character": "커",
+      "glyph_index": 1369,
+      "message_bytes": "F5 59",
+      "original_text_usage_count": 0,
+      "font_offset": 515928,
+      "font_offset_hex": "0x7DF58"
+    },
+    {
+      "sequence": 272,
+      "character": "져",
+      "glyph_index": 1386,
+      "message_bytes": "F5 6A",
+      "original_text_usage_count": 0,
+      "font_offset": 516472,
+      "font_offset_hex": "0x7E178"
+    },
+    {
+      "sequence": 273,
+      "character": "압",
+      "glyph_index": 1442,
+      "message_bytes": "F5 A2",
+      "original_text_usage_count": 0,
+      "font_offset": 518264,
+      "font_offset_hex": "0x7E878"
+    },
+    {
+      "sequence": 274,
+      "character": "축",
+      "glyph_index": 1443,
+      "message_bytes": "F5 A3",
+      "original_text_usage_count": 0,
+      "font_offset": 518296,
+      "font_offset_hex": "0x7E898"
+    },
+    {
+      "sequence": 275,
+      "character": "문",
+      "glyph_index": 1447,
+      "message_bytes": "F5 A7",
+      "original_text_usage_count": 0,
+      "font_offset": 518424,
+      "font_offset_hex": "0x7E918"
+    },
+    {
+      "sequence": 276,
+      "character": "변",
+      "glyph_index": 1450,
+      "message_bytes": "F5 AA",
+      "original_text_usage_count": 0,
+      "font_offset": 518520,
+      "font_offset_hex": "0x7E978"
+    },
+    {
+      "sequence": 277,
+      "character": "캐",
+      "glyph_index": 1485,
+      "message_bytes": "F5 CD",
+      "original_text_usage_count": 0,
+      "font_offset": 519640,
+      "font_offset_hex": "0x7EDD8"
+    },
+    {
+      "sequence": 278,
+      "character": "릭",
+      "glyph_index": 1489,
+      "message_bytes": "F5 D1",
+      "original_text_usage_count": 0,
+      "font_offset": 519768,
+      "font_offset_hex": "0x7EE58"
+    },
+    {
+      "sequence": 279,
+      "character": "름",
+      "glyph_index": 1501,
+      "message_bytes": "F5 DD",
+      "original_text_usage_count": 0,
+      "font_offset": 520152,
+      "font_offset_hex": "0x7EFD8"
+    },
+    {
+      "sequence": 280,
+      "character": "함",
+      "glyph_index": 1527,
+      "message_bytes": "F5 F7",
+      "original_text_usage_count": 0,
+      "font_offset": 520984,
+      "font_offset_hex": "0x7F318"
+    },
+    {
+      "sequence": 281,
+      "character": "본",
+      "glyph_index": 1531,
+      "message_bytes": "F5 FB",
+      "original_text_usage_count": 0,
+      "font_offset": 521112,
+      "font_offset_hex": "0x7F398"
+    },
+    {
+      "sequence": 282,
+      "character": "넘",
+      "glyph_index": 1532,
+      "message_bytes": "F5 FC",
+      "original_text_usage_count": 0,
+      "font_offset": 521144,
+      "font_offset_hex": "0x7F3B8"
+    },
+    {
+      "sequence": 283,
+      "character": "늘",
+      "glyph_index": 1535,
+      "message_bytes": "F5 FF",
+      "original_text_usage_count": 0,
+      "font_offset": 521240,
+      "font_offset_hex": "0x7F418"
+    }
+  ]
+}

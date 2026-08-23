@@ -1,0 +1,2 @@
+# Glyph rendering for the font pass.
+Pillow>=10.0

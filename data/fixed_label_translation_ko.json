@@ -1,0 +1,3797 @@
+{
+ "lane": "fixed-labels",
+ "entries": {
+  "EXE-SYSMSG-0000": {
+   "offset": "0x452B1",
+   "budget": 20,
+   "japanese": " ここまでのデ-タをセ-ブしますか? ",
+   "korean": " 여기까지 세이브?  ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0001": {
+   "offset": "0x452C5",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0002": {
+   "offset": "0x452C6",
+   "budget": 22,
+   "japanese": "このデ-タはゲ-ムを終了していますので",
+   "korean": "이 데이터는 게임을   ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0003": {
+   "offset": "0x452DC",
+   "budget": 39,
+   "japanese": "続きはできません                             ",
+   "korean": "종료했으므로 계속할 수 없습니다       ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0004": {
+   "offset": "0x45303",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0005": {
+   "offset": "0x45304",
+   "budget": 23,
+   "japanese": "地上編 「ファイナルバトル」までクリア",
+   "korean": "지상편「파이널배틀」까지",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0006": {
+   "offset": "0x4531B",
+   "budget": 14,
+   "japanese": " したデ-タがありますか?",
+   "korean": "클리어데이터?",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0007": {
+   "offset": "0x45329",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0008": {
+   "offset": "0x4532A",
+   "budget": 3,
+   "japanese": "はい",
+   "korean": "예",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0009": {
+   "offset": "0x4532D",
+   "budget": 4,
+   "japanese": "いいえ",
+   "korean": "NO ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0010": {
+   "offset": "0x45331",
+   "budget": 9,
+   "japanese": "地上編とは",
+   "korean": "지상편? ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0011": {
+   "offset": "0x4533A",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0012": {
+   "offset": "0x4533B",
+   "budget": 12,
+   "japanese": "地上編とは...",
+   "korean": "지상편이란 ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0013": {
+   "offset": "0x45347",
+   "budget": 23,
+   "japanese": " 第7話「クロノクルの反撃」のマップ",
+   "korean": "제7화「크로노클의반격」 ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0014": {
+   "offset": "0x4535E",
+   "budget": 21,
+   "japanese": " 開始時に発生するイベントで,",
+   "korean": " 맵 개시 이벤트에서 ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0015": {
+   "offset": "0x45373",
+   "budget": 25,
+   "japanese": " 「1・大空魔竜と戻る」を選択した",
+   "korean": "「1・대공마룡과 돌아간다」 ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0016": {
+   "offset": "0x4538C",
+   "budget": 20,
+   "japanese": " 場合に進行するシナリオです。",
+   "korean": "선택 시 진행됩니다.",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0017": {
+   "offset": "0x453A0",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0018": {
+   "offset": "0x453A1",
+   "budget": 24,
+   "japanese": " 地上編 「ファイナルバトル」までクリア",
+   "korean": "  지상편「파이널배틀」   ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0019": {
+   "offset": "0x453B9",
+   "budget": 16,
+   "japanese": "  したデ-タをロ-ドします。",
+   "korean": " 까지 데이터를 ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0020": {
+   "offset": "0x453C9",
+   "budget": 26,
+   "japanese": " (準備ができたらボタンを押してください) ",
+   "korean": " 로드합니다.(버튼 입력)  ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0021": {
+   "offset": "0x453E3",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0022": {
+   "offset": "0x453E4",
+   "budget": 8,
+   "japanese": " このデ-タは",
+   "korean": "이것은 ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0023": {
+   "offset": "0x453EC",
+   "budget": 25,
+   "japanese": " 地上編 「ファイナルバトル」までクリア ",
+   "korean": "   지상편「파이널배틀」   ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0024": {
+   "offset": "0x45405",
+   "budget": 14,
+   "japanese": " したデ-タではありません",
+   "korean": " 클리어 아님 ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0025": {
+   "offset": "0x45413",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0026": {
+   "offset": "0x45414",
+   "budget": 25,
+   "japanese": "宇宙編 「決戦!ヘルモ-ズ」までクリア",
+   "korean": "우주편「결전!헤르모즈」   ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0027": {
+   "offset": "0x4542D",
+   "budget": 14,
+   "japanese": " したデ-タがありますか?",
+   "korean": "클리어데이터?",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0028": {
+   "offset": "0x4543B",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0029": {
+   "offset": "0x4543C",
+   "budget": 3,
+   "japanese": "はい",
+   "korean": "예",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0030": {
+   "offset": "0x4543F",
+   "budget": 4,
+   "japanese": "いいえ",
+   "korean": "NO ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0031": {
+   "offset": "0x45443",
+   "budget": 9,
+   "japanese": "宇宙編とは",
+   "korean": "우주편? ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0032": {
+   "offset": "0x4544C",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0033": {
+   "offset": "0x4544D",
+   "budget": 12,
+   "japanese": "宇宙編とは...",
+   "korean": "우주편이란 ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0034": {
+   "offset": "0x45459",
+   "budget": 23,
+   "japanese": " 第7話「クロノクルの反撃」のマップ",
+   "korean": "제7화「크로노클의반격」 ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0035": {
+   "offset": "0x45470",
+   "budget": 21,
+   "japanese": " 開始時に発生するイベントで,",
+   "korean": " 맵 개시 이벤트에서 ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0036": {
+   "offset": "0x45485",
+   "budget": 24,
+   "japanese": " 「2・このままヨ-ロッパに残る」を選択",
+   "korean": "   「2・유럽에 남는다」   ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0037": {
+   "offset": "0x4549D",
+   "budget": 22,
+   "japanese": " した場合に進行するシナリオです。",
+   "korean": " 선택 시 진행됩니다. ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0038": {
+   "offset": "0x454B3",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0039": {
+   "offset": "0x454B4",
+   "budget": 26,
+   "japanese": " 宇宙編 「決戦!ヘルモ-ズ」までクリア",
+   "korean": "  우주편「결전!헤르모즈」  ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0040": {
+   "offset": "0x454CE",
+   "budget": 16,
+   "japanese": "  したデ-タをロ-ドします。",
+   "korean": " 까지 데이터를 ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0041": {
+   "offset": "0x454DE",
+   "budget": 26,
+   "japanese": " (準備ができたらボタンを押してください) ",
+   "korean": " 로드합니다.(버튼 입력)  ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0042": {
+   "offset": "0x454F8",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0043": {
+   "offset": "0x454F9",
+   "budget": 8,
+   "japanese": " このデ-タは",
+   "korean": "이것은 ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0044": {
+   "offset": "0x45501",
+   "budget": 27,
+   "japanese": " 宇宙編 「決戦!ヘルモ-ズ」までクリア ",
+   "korean": "  우주편「결전!헤르모즈」   ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0045": {
+   "offset": "0x4551C",
+   "budget": 14,
+   "japanese": " したデ-タではありません",
+   "korean": " 클리어 아님 ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0046": {
+   "offset": "0x4552A",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0047": {
+   "offset": "0x4552B",
+   "budget": 11,
+   "japanese": " ゲ-ム オ-バ- ",
+   "korean": "게임 오버 ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0048": {
+   "offset": "0x45536",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0049": {
+   "offset": "0x45537",
+   "budget": 5,
+   "japanese": "モノラル",
+   "korean": "모노",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0050": {
+   "offset": "0x4553C",
+   "budget": 5,
+   "japanese": "ステレオ",
+   "korean": "입체",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0051": {
+   "offset": "0x45541",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0052": {
+   "offset": "0x45542",
+   "budget": 4,
+   "japanese": "BGM",
+   "korean": "BGM",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0053": {
+   "offset": "0x45546",
+   "budget": 3,
+   "japanese": "SE",
+   "korean": "SE",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0054": {
+   "offset": "0x45549",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0055": {
+   "offset": "0x4554A",
+   "budget": 27,
+   "japanese": " 現在見ることのできるロボットは有りません ",
+   "korean": " 현재 볼 로봇이 없습니다  ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0056": {
+   "offset": "0x45565",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0057": {
+   "offset": "0x45566",
+   "budget": 27,
+   "japanese": "  現在見ることのできるデモは有りません  ",
+   "korean": " 현재 볼 데모가 없습니다  ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0058": {
+   "offset": "0x45581",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0059": {
+   "offset": "0x45582",
+   "budget": 20,
+   "japanese": " どのユニットにのりかえさせますか? ",
+   "korean": " 어느 유닛에 교체? ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0060": {
+   "offset": "0x45596",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0061": {
+   "offset": "0x45597",
+   "budget": 5,
+   "japanese": "合体",
+   "korean": "합체",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0062": {
+   "offset": "0x4559C",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0063": {
+   "offset": "0x4559D",
+   "budget": 5,
+   "japanese": "分離",
+   "korean": "분리",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0064": {
+   "offset": "0x455A2",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0065": {
+   "offset": "0x455A3",
+   "budget": 5,
+   "japanese": "変形",
+   "korean": "변형",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0066": {
+   "offset": "0x455A8",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0067": {
+   "offset": "0x455A9",
+   "budget": 10,
+   "japanese": "合体.変形",
+   "korean": "합체.변형",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0068": {
+   "offset": "0x455B3",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0069": {
+   "offset": "0x455B4",
+   "budget": 24,
+   "japanese": "      資金が足りません      ",
+   "korean": "   자금이 부족합니다   ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0070": {
+   "offset": "0x455CC",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0071": {
+   "offset": "0x455CD",
+   "budget": 25,
+   "japanese": "    これ以上の改造できません    ",
+   "korean": " 더 이상 개조할 수 없음 ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0072": {
+   "offset": "0x455E6",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0073": {
+   "offset": "0x455E7",
+   "budget": 25,
+   "japanese": "    この武器は改造できません    ",
+   "korean": "이 무기는 개조할 수 없음",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0074": {
+   "offset": "0x45600",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0075": {
+   "offset": "0x45601",
+   "budget": 22,
+   "japanese": "      装備できません      ",
+   "korean": " 장비할 수 없습니다  ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0076": {
+   "offset": "0x45617",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0077": {
+   "offset": "0x45618",
+   "budget": 5,
+   "japanese": "ユニット",
+   "korean": "유닛",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0078": {
+   "offset": "0x4561D",
+   "budget": 6,
+   "japanese": "パイロット",
+   "korean": "인물",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0079": {
+   "offset": "0x45623",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0080": {
+   "offset": "0x45624",
+   "budget": 3,
+   "japanese": "はい",
+   "korean": "예",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0081": {
+   "offset": "0x45627",
+   "budget": 4,
+   "japanese": "いいえ",
+   "korean": "NO ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0082": {
+   "offset": "0x4562B",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0083": {
+   "offset": "0x4562C",
+   "budget": 7,
+   "japanese": "セ-ブします",
+   "korean": "세이브",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0084": {
+   "offset": "0x45633",
+   "budget": 9,
+   "japanese": "よろしいですか?",
+   "korean": "할까요? ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0085": {
+   "offset": "0x4563C",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0086": {
+   "offset": "0x4563D",
+   "budget": 23,
+   "japanese": " メモリ-カ-ドをチェックしています... ",
+   "korean": "메모리카드 확인 중... ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0087": {
+   "offset": "0x45654",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0088": {
+   "offset": "0x45655",
+   "budget": 25,
+   "japanese": " メモリ-カ-ドが差し込まれていません   ",
+   "korean": " 메모리카드가 없습니다  ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0089": {
+   "offset": "0x4566E",
+   "budget": 23,
+   "japanese": " (スロット1にカ-ドをセットしてください)",
+   "korean": " (슬롯1에 카드 삽입)  ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0090": {
+   "offset": "0x45685",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0091": {
+   "offset": "0x45686",
+   "budget": 34,
+   "japanese": " メモリカ-ドが初期化されてません。初期化しますか? ",
+   "korean": "메모리카드 미초기화.초기화할까요?",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0092": {
+   "offset": "0x456A8",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0093": {
+   "offset": "0x456A9",
+   "budget": 25,
+   "japanese": " メモリ-カ-ドを初期化しています... ",
+   "korean": "메모리카드 초기화 중... ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0094": {
+   "offset": "0x456C2",
+   "budget": 23,
+   "japanese": "  (カ-ドを抜き差ししないでください)",
+   "korean": " (카드를 빼지 마세요) ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0095": {
+   "offset": "0x456D9",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0096": {
+   "offset": "0x456DA",
+   "budget": 26,
+   "japanese": " メモリ-カ-ドの初期化に失敗しました。",
+   "korean": " 메모리카드 초기화 실패. ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0097": {
+   "offset": "0x456F4",
+   "budget": 20,
+   "japanese": " もう一度,初期化しますか?",
+   "korean": "다시 초기화할까요? ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0098": {
+   "offset": "0x45708",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0099": {
+   "offset": "0x45709",
+   "budget": 29,
+   "japanese": " システムデ-タが見つかりません。作成しますか? ",
+   "korean": "시스템데이터 없음. 만들까요?",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0100": {
+   "offset": "0x45726",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0101": {
+   "offset": "0x45727",
+   "budget": 24,
+   "japanese": " メモリ-カ-ドが壊れています       ",
+   "korean": "  메모리카드가 손상됨  ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0102": {
+   "offset": "0x4573F",
+   "budget": 21,
+   "japanese": "  (別のカ-ドをセットしてください)",
+   "korean": "  (다른 카드 삽입)  ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0103": {
+   "offset": "0x45754",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0104": {
+   "offset": "0x45755",
+   "budget": 26,
+   "japanese": " デ-タの書き込みに失敗しました。    ",
+   "korean": "    데이터 기록 실패.    ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0105": {
+   "offset": "0x4576F",
+   "budget": 19,
+   "japanese": " もう一度,書き込みますか?",
+   "korean": " 다시 기록할까요? ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0106": {
+   "offset": "0x45782",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0107": {
+   "offset": "0x45783",
+   "budget": 26,
+   "japanese": " デ-タの読み込みに失敗しました。    ",
+   "korean": "    데이터 읽기 실패.    ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0108": {
+   "offset": "0x4579D",
+   "budget": 19,
+   "japanese": " もう一度,読み込みますか?",
+   "korean": "  다시 읽을까요?  ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0109": {
+   "offset": "0x457B0",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0110": {
+   "offset": "0x457B1",
+   "budget": 25,
+   "japanese": " デ-タを書き込んでいます...      ",
+   "korean": "   데이터 기록 중...    ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0111": {
+   "offset": "0x457CA",
+   "budget": 23,
+   "japanese": "  (カ-ドを抜き差ししないでください)",
+   "korean": " (카드를 빼지 마세요) ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0112": {
+   "offset": "0x457E1",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0113": {
+   "offset": "0x457E2",
+   "budget": 25,
+   "japanese": " デ-タを読み込んでいます...      ",
+   "korean": "   데이터 읽는 중...    ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0114": {
+   "offset": "0x457FB",
+   "budget": 23,
+   "japanese": "  (カ-ドを抜き差ししないでください)",
+   "korean": " (카드를 빼지 마세요) ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0115": {
+   "offset": "0x45812",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0116": {
+   "offset": "0x45813",
+   "budget": 25,
+   "japanese": " 空きブロックが足りません。別のカ-ドを ",
+   "korean": "빈 블록 부족.다른 카드를",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0117": {
+   "offset": "0x4582C",
+   "budget": 25,
+   "japanese": " セットするか,メモリ-カ-ド管理画面で",
+   "korean": "넣거나 메모리카드 관리로",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0118": {
+   "offset": "0x45845",
+   "budget": 20,
+   "japanese": " 不要なデ-タを消してください。",
+   "korean": "불필요 데이터 삭제.",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0119": {
+   "offset": "0x45859",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0120": {
+   "offset": "0x4585A",
+   "budget": 32,
+   "japanese": " システムデ-タが壊れています。新しく作成しますか? ",
+   "korean": "시스템데이터 손상.새로만들까요?",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0121": {
+   "offset": "0x4587A",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0122": {
+   "offset": "0x4587B",
+   "budget": 25,
+   "japanese": " マップ上で一度もセ-ブしていないので  ",
+   "korean": "맵에서 세이브를 안 해서 ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0123": {
+   "offset": "0x45894",
+   "budget": 15,
+   "japanese": " コンティニュ-できません。",
+   "korean": " 컨티뉴 불가. ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0124": {
+   "offset": "0x458A3",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0125": {
+   "offset": "0x458A4",
+   "budget": 37,
+   "japanese": " システムデ-タの内容が違います。上書きしてよろしいですか? ",
+   "korean": "시스템데이터 내용이 다름.덮어쓸까요?",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0126": {
+   "offset": "0x458C9",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0127": {
+   "offset": "0x458CA",
+   "budget": 25,
+   "japanese": " メモリ-カ-ドの空きブロックが足りません。",
+   "korean": "메모리카드 빈 블록 부족.",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0128": {
+   "offset": "0x458E3",
+   "budget": 24,
+   "japanese": " このゲ-ムをセ-ブするには,メモリ-カ-ドの",
+   "korean": "이 게임을 세이브하려면 ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0129": {
+   "offset": "0x458FB",
+   "budget": 27,
+   "japanese": " 空きブロックが最低3ブロック必要です。 ",
+   "korean": " 빈 블록이 최소 3개 필요. ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0130": {
+   "offset": "0x45916",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0131": {
+   "offset": "0x45917",
+   "budget": 18,
+   "japanese": " メモリ-カ-ドが壊れています。",
+   "korean": "메모리카드 손상. ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0132": {
+   "offset": "0x45929",
+   "budget": 24,
+   "japanese": " このゲ-ムをセ-ブするには,メモリ-カ-ドの",
+   "korean": "이 게임을 세이브하려면 ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0133": {
+   "offset": "0x45941",
+   "budget": 27,
+   "japanese": " 空きブロックが最低3ブロック必要です。 ",
+   "korean": " 빈 블록이 최소 3개 필요. ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0134": {
+   "offset": "0x4595C",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0135": {
+   "offset": "0x4595D",
+   "budget": 23,
+   "japanese": " メモリ-カ-ドが差し込まれていません。",
+   "korean": "메모리카드가 없습니다.",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0136": {
+   "offset": "0x45974",
+   "budget": 24,
+   "japanese": " このゲ-ムをセ-ブするには,メモリ-カ-ドの",
+   "korean": "이 게임을 세이브하려면 ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0137": {
+   "offset": "0x4598C",
+   "budget": 27,
+   "japanese": " 空きブロックが最低3ブロック必要です。 ",
+   "korean": " 빈 블록이 최소 3개 필요. ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0138": {
+   "offset": "0x459A7",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0139": {
+   "offset": "0x459A8",
+   "budget": 22,
+   "japanese": " メモリカ-ドが初期化されてません。",
+   "korean": "메모리카드 미초기화. ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0140": {
+   "offset": "0x459BE",
+   "budget": 24,
+   "japanese": " このゲ-ムをセ-ブするには,メモリ-カ-ドの",
+   "korean": "이 게임을 세이브하려면 ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0141": {
+   "offset": "0x459D6",
+   "budget": 27,
+   "japanese": " 空きブロックが最低3ブロック必要です。 ",
+   "korean": " 빈 블록이 최소 3개 필요. ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0142": {
+   "offset": "0x459F1",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0143": {
+   "offset": "0x459F2",
+   "budget": 29,
+   "japanese": " 以前のデ-タはきえてしまいます。よろしいですか? ",
+   "korean": "  이전 데이터 삭제.할까요?  ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0144": {
+   "offset": "0x45A0F",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0145": {
+   "offset": "0x45A10",
+   "budget": 17,
+   "japanese": " このデ-タはロ-ドできません。",
+   "korean": "데이터 로드 불가",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0146": {
+   "offset": "0x45A21",
+   "budget": 23,
+   "japanese": " (デ-タの読み込みに失敗しました)",
+   "korean": "  (데이터 읽기 실패)  ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0147": {
+   "offset": "0x45A38",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0148": {
+   "offset": "0x45A39",
+   "budget": 14,
+   "japanese": " デ-タが壊れています。",
+   "korean": "데이터 손상. ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0149": {
+   "offset": "0x45A47",
+   "budget": 23,
+   "japanese": " (デ-タの読み込みに失敗しました)",
+   "korean": "  (데이터 읽기 실패)  ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0150": {
+   "offset": "0x45A5E",
+   "budget": 1,
+   "japanese": "",
+   "korean": "",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0151": {
+   "offset": "0x45A5F",
+   "budget": 15,
+   "japanese": " デ-タが見つかりません。",
+   "korean": " 데이터 없음. ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0152": {
+   "offset": "0x45A6E",
+   "budget": 23,
+   "japanese": " (デ-タの読み込みに失敗しました)",
+   "korean": "  (데이터 읽기 실패)  ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-SYSMSG-0153": {
+   "offset": "0x45A85",
+   "budget": 4,
+   "japanese": "   ",
+   "korean": "   ",
+   "terminated": true,
+   "pool": "SYSMSG"
+  },
+  "EXE-WIN-0828B8@23": {
+   "offset": "0x828CF",
+   "budget": 5,
+   "japanese": "タ-ン数",
+   "korean": "턴수",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-0828B8@37": {
+   "offset": "0x828DD",
+   "budget": 4,
+   "japanese": "資金",
+   "korean": "자금",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-0828F0@23": {
+   "offset": "0x82907",
+   "budget": 18,
+   "japanese": "行動終了していないユニットが",
+   "korean": "미행동 유닛이",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-0828F0@47": {
+   "offset": "0x8291F",
+   "budget": 6,
+   "japanese": "体あります",
+   "korean": "대",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-0828F0@57": {
+   "offset": "0x82929",
+   "budget": 19,
+   "japanese": "タ-ンを終了してもよろしいですか?",
+   "korean": "턴을 종료할까요?",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082B18@29": {
+   "offset": "0x82B35",
+   "budget": 8,
+   "japanese": "武器能力",
+   "korean": "무기능력",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082B18@41": {
+   "offset": "0x82B41",
+   "budget": 6,
+   "japanese": "武器名",
+   "korean": "무기명",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082B18@51": {
+   "offset": "0x82B4B",
+   "budget": 6,
+   "japanese": "攻撃力",
+   "korean": "공격력",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082B18@61": {
+   "offset": "0x82B55",
+   "budget": 4,
+   "japanese": "射程",
+   "korean": "사정",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082B18@69": {
+   "offset": "0x82B5D",
+   "budget": 4,
+   "japanese": "命中",
+   "korean": "명중",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082B18@77": {
+   "offset": "0x82B65",
+   "budget": 4,
+   "japanese": "残弾",
+   "korean": "잔탄",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082B18@85": {
+   "offset": "0x82B6D",
+   "budget": 4,
+   "japanese": "地形",
+   "korean": "지형",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082B18@93": {
+   "offset": "0x82B75",
+   "budget": 2,
+   "japanese": "空",
+   "korean": "공",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082B18@99": {
+   "offset": "0x82B7B",
+   "budget": 2,
+   "japanese": "陸",
+   "korean": "육",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082B18@105": {
+   "offset": "0x82B81",
+   "budget": 2,
+   "japanese": "海",
+   "korean": "해",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082B18@111": {
+   "offset": "0x82B87",
+   "budget": 2,
+   "japanese": "宇",
+   "korean": "우",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082B18@117": {
+   "offset": "0x82B8D",
+   "budget": 8,
+   "japanese": "必要戦意",
+   "korean": "필요전의",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082B18@126": {
+   "offset": "0x82B96",
+   "budget": 6,
+   "japanese": "消費EN",
+   "korean": "소비EN",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082B18@150": {
+   "offset": "0x82BAE",
+   "budget": 8,
+   "japanese": "必要技能",
+   "korean": "필요기능",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082B18@162": {
+   "offset": "0x82BBA",
+   "budget": 9,
+   "japanese": "HP ビ-ム兵器",
+   "korean": "HP 빔병기",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082B18@172": {
+   "offset": "0x82BC4",
+   "budget": 14,
+   "japanese": "⊕ 移動後攻撃可",
+   "korean": "⊕ 이동후공격",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082E04@110": {
+   "offset": "0x82E72",
+   "budget": 8,
+   "japanese": "ユニット能力",
+   "korean": "유닛능력",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082E04@122": {
+   "offset": "0x82E7E",
+   "budget": 9,
+   "japanese": "パイロット能力",
+   "korean": "조종능력",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082E04@135": {
+   "offset": "0x82E8B",
+   "budget": 8,
+   "japanese": "武器性能",
+   "korean": "무기성능",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082E04@153": {
+   "offset": "0x82E9D",
+   "budget": 8,
+   "japanese": "次のレベルまで",
+   "korean": "다음LV",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082E04@165": {
+   "offset": "0x82EA9",
+   "budget": 4,
+   "japanese": "戦意",
+   "korean": "전의",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082E04@178": {
+   "offset": "0x82EB6",
+   "budget": 3,
+   "japanese": "タイプ",
+   "korean": "형",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082E04@182": {
+   "offset": "0x82EBA",
+   "budget": 6,
+   "japanese": "移動力",
+   "korean": "이동력",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082E04@189": {
+   "offset": "0x82EC1",
+   "budget": 6,
+   "japanese": "運動性",
+   "korean": "운동성",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082E04@196": {
+   "offset": "0x82EC8",
+   "budget": 4,
+   "japanese": "装甲",
+   "korean": "장갑",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082E04@201": {
+   "offset": "0x82ECD",
+   "budget": 4,
+   "japanese": "限界",
+   "korean": "한계",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082E04@209": {
+   "offset": "0x82ED5",
+   "budget": 4,
+   "japanese": "シ-ルド",
+   "korean": "실드",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082E04@217": {
+   "offset": "0x82EDD",
+   "budget": 4,
+   "japanese": "地形",
+   "korean": "지형",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082E04@225": {
+   "offset": "0x82EE5",
+   "budget": 2,
+   "japanese": "空",
+   "korean": "공",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082E04@231": {
+   "offset": "0x82EEB",
+   "budget": 2,
+   "japanese": "陸",
+   "korean": "육",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082E04@237": {
+   "offset": "0x82EF1",
+   "budget": 2,
+   "japanese": "海",
+   "korean": "해",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082E04@243": {
+   "offset": "0x82EF7",
+   "budget": 2,
+   "japanese": "宇",
+   "korean": "우",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083100@63": {
+   "offset": "0x8313F",
+   "budget": 8,
+   "japanese": "ユニット能力",
+   "korean": "유닛능력",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083100@75": {
+   "offset": "0x8314B",
+   "budget": 3,
+   "japanese": "タイプ",
+   "korean": "형",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083100@79": {
+   "offset": "0x8314F",
+   "budget": 6,
+   "japanese": "移動力",
+   "korean": "이동력",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083100@86": {
+   "offset": "0x83156",
+   "budget": 6,
+   "japanese": "運動性",
+   "korean": "운동성",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083100@93": {
+   "offset": "0x8315D",
+   "budget": 4,
+   "japanese": "装甲",
+   "korean": "장갑",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083100@98": {
+   "offset": "0x83162",
+   "budget": 4,
+   "japanese": "限界",
+   "korean": "한계",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083100@106": {
+   "offset": "0x8316A",
+   "budget": 4,
+   "japanese": "シ-ルド",
+   "korean": "실드",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083100@114": {
+   "offset": "0x83172",
+   "budget": 8,
+   "japanese": "特殊能力",
+   "korean": "특수능력",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083100@126": {
+   "offset": "0x8317E",
+   "budget": 7,
+   "japanese": "強化パ-ツ",
+   "korean": "강화품",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083100@137": {
+   "offset": "0x83189",
+   "budget": 4,
+   "japanese": "地形",
+   "korean": "지형",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083100@145": {
+   "offset": "0x83191",
+   "budget": 2,
+   "japanese": "空",
+   "korean": "공",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083100@151": {
+   "offset": "0x83197",
+   "budget": 2,
+   "japanese": "陸",
+   "korean": "육",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083100@157": {
+   "offset": "0x8319D",
+   "budget": 2,
+   "japanese": "海",
+   "korean": "해",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083100@163": {
+   "offset": "0x831A3",
+   "budget": 2,
+   "japanese": "宇",
+   "korean": "우",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08340C@74": {
+   "offset": "0x83456",
+   "budget": 9,
+   "japanese": "パイロット能力",
+   "korean": "조종능력",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08340C@87": {
+   "offset": "0x83463",
+   "budget": 3,
+   "japanese": "レベル",
+   "korean": "LV",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08340C@91": {
+   "offset": "0x83467",
+   "budget": 4,
+   "japanese": "戦意",
+   "korean": "전의",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08340C@99": {
+   "offset": "0x8346F",
+   "budget": 7,
+   "japanese": "操縦タイプ",
+   "korean": "조종형",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08340C@107": {
+   "offset": "0x83477",
+   "budget": 8,
+   "japanese": "搭乗ユニット",
+   "korean": "탑승유닛",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08340C@119": {
+   "offset": "0x83483",
+   "budget": 6,
+   "japanese": "近攻撃",
+   "korean": "근접",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08340C@126": {
+   "offset": "0x8348A",
+   "budget": 6,
+   "japanese": "遠攻撃",
+   "korean": "원거리",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08340C@136": {
+   "offset": "0x83494",
+   "budget": 4,
+   "japanese": "回避",
+   "korean": "회피",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08340C@141": {
+   "offset": "0x83499",
+   "budget": 4,
+   "japanese": "命中",
+   "korean": "명중",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08340C@160": {
+   "offset": "0x834AC",
+   "budget": 8,
+   "japanese": "精神コマンド",
+   "korean": "정신명령",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08340C@172": {
+   "offset": "0x834B8",
+   "budget": 6,
+   "japanese": "撃墜数",
+   "korean": "격추수",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08340C@182": {
+   "offset": "0x834C2",
+   "budget": 2,
+   "japanese": "空",
+   "korean": "공",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08340C@188": {
+   "offset": "0x834C8",
+   "budget": 2,
+   "japanese": "陸",
+   "korean": "육",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08340C@194": {
+   "offset": "0x834CE",
+   "budget": 2,
+   "japanese": "海",
+   "korean": "해",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08340C@200": {
+   "offset": "0x834D4",
+   "budget": 2,
+   "japanese": "宇",
+   "korean": "우",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08340C@206": {
+   "offset": "0x834DA",
+   "budget": 10,
+   "japanese": "次のレベルまで後",
+   "korean": "다음LV까지",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08340C@220": {
+   "offset": "0x834E8",
+   "budget": 8,
+   "japanese": "特殊技能",
+   "korean": "특수기능",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083688@36": {
+   "offset": "0x836AC",
+   "budget": 10,
+   "japanese": "ユニット出撃表",
+   "korean": "유닛출격표",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083688@50": {
+   "offset": "0x836BA",
+   "budget": 2,
+   "japanese": "あと",
+   "korean": "잔",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083688@58": {
+   "offset": "0x836C2",
+   "budget": 2,
+   "japanese": "機",
+   "korean": "기",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083688@66": {
+   "offset": "0x836CA",
+   "budget": 2,
+   "japanese": "順",
+   "korean": "순",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083778@113": {
+   "offset": "0x837E9",
+   "budget": 3,
+   "japanese": "レベル",
+   "korean": "LV",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083778@117": {
+   "offset": "0x837ED",
+   "budget": 4,
+   "japanese": "戦意",
+   "korean": "전의",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083778@125": {
+   "offset": "0x837F5",
+   "budget": 4,
+   "japanese": "精神",
+   "korean": "정신",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083980@69": {
+   "offset": "0x839C5",
+   "budget": 3,
+   "japanese": "レベル",
+   "korean": "LV",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083980@76": {
+   "offset": "0x839CC",
+   "budget": 4,
+   "japanese": "戦意",
+   "korean": "전의",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083980@84": {
+   "offset": "0x839D4",
+   "budget": 6,
+   "japanese": "命中率",
+   "korean": "명중률",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083B00@36": {
+   "offset": "0x83B24",
+   "budget": 6,
+   "japanese": "命令表",
+   "korean": "명령표",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083B00@48": {
+   "offset": "0x83B30",
+   "budget": 2,
+   "japanese": "順",
+   "korean": "순",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083B00@54": {
+   "offset": "0x83B36",
+   "budget": 18,
+   "japanese": "全員の命令を一斉変更",
+   "korean": "전원 명령 일괄변경",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083C38@122": {
+   "offset": "0x83CB2",
+   "budget": 8,
+   "japanese": "精神ポイント",
+   "korean": "정신치",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083D54@110": {
+   "offset": "0x83DC2",
+   "budget": 8,
+   "japanese": "精神ポイント",
+   "korean": "정신치",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084018@24": {
+   "offset": "0x84030",
+   "budget": 6,
+   "japanese": "移動力",
+   "korean": "이동력",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084018@31": {
+   "offset": "0x84037",
+   "budget": 6,
+   "japanese": "運動性",
+   "korean": "운동성",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084018@41": {
+   "offset": "0x84041",
+   "budget": 4,
+   "japanese": "装甲",
+   "korean": "장갑",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084018@46": {
+   "offset": "0x84046",
+   "budget": 4,
+   "japanese": "限界",
+   "korean": "한계",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084018@54": {
+   "offset": "0x8404E",
+   "budget": 2,
+   "japanese": "空",
+   "korean": "공",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084018@57": {
+   "offset": "0x84051",
+   "budget": 6,
+   "japanese": "経験値",
+   "korean": "경험치",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084018@67": {
+   "offset": "0x8405B",
+   "budget": 2,
+   "japanese": "陸",
+   "korean": "육",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084018@73": {
+   "offset": "0x84061",
+   "budget": 2,
+   "japanese": "海",
+   "korean": "해",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084018@76": {
+   "offset": "0x84064",
+   "budget": 2,
+   "japanese": "あと",
+   "korean": "잔",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084018@82": {
+   "offset": "0x8406A",
+   "budget": 2,
+   "japanese": "宇",
+   "korean": "우",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-0841BC@40": {
+   "offset": "0x841E4",
+   "budget": 8,
+   "japanese": "ポイント消費",
+   "korean": "SP소비",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084284@24": {
+   "offset": "0x8429C",
+   "budget": 4,
+   "japanese": "戦意",
+   "korean": "전의",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08438C@24": {
+   "offset": "0x843A4",
+   "budget": 8,
+   "japanese": "システム設定",
+   "korean": "시스템",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08438C@36": {
+   "offset": "0x843B0",
+   "budget": 4,
+   "japanese": "サウンド",
+   "korean": "음향",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08438C@41": {
+   "offset": "0x843B5",
+   "budget": 4,
+   "japanese": "スクエア",
+   "korean": "사각",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08438C@49": {
+   "offset": "0x843BD",
+   "budget": 12,
+   "japanese": "初期設定に戻す",
+   "korean": "초기설정복귀",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08438C@65": {
+   "offset": "0x843CD",
+   "budget": 8,
+   "japanese": "特殊操作",
+   "korean": "특수조작",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08438C@89": {
+   "offset": "0x843E5",
+   "budget": 17,
+   "japanese": "  +セレクト+スタ-トでリセット",
+   "korean": " +셀렉트+스타트",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08438C@107": {
+   "offset": "0x843F7",
+   "budget": 15,
+   "japanese": "セレクトを押し続けていれば",
+   "korean": "셀렉트를 누르면",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08438C@123": {
+   "offset": "0x84407",
+   "budget": 14,
+   "japanese": "   クイックコンティニュ-",
+   "korean": "   퀵컨티뉴",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08438C@141": {
+   "offset": "0x84419",
+   "budget": 7,
+   "japanese": "ボタン設定",
+   "korean": "버튼",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08438C@152": {
+   "offset": "0x84424",
+   "budget": 4,
+   "japanese": "決定",
+   "korean": "결정",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08438C@157": {
+   "offset": "0x84429",
+   "budget": 5,
+   "japanese": "キャンセル",
+   "korean": "취소",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08438C@163": {
+   "offset": "0x8442F",
+   "budget": 7,
+   "japanese": "スピ-ドアップ",
+   "korean": "속도업",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08438C@171": {
+   "offset": "0x84437",
+   "budget": 7,
+   "japanese": "全体マップ",
+   "korean": "전체맵",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08438C@179": {
+   "offset": "0x8443F",
+   "budget": 6,
+   "japanese": "部隊表",
+   "korean": "부대표",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08438C@186": {
+   "offset": "0x84446",
+   "budget": 11,
+   "japanese": "自軍ユニット送り",
+   "korean": "아군다음",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08438C@198": {
+   "offset": "0x84452",
+   "budget": 11,
+   "japanese": "自軍ユニット戻し",
+   "korean": "아군이전",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08438C@210": {
+   "offset": "0x8445E",
+   "budget": 11,
+   "japanese": "敵軍ユニット送り",
+   "korean": "적군다음",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08438C@222": {
+   "offset": "0x8446A",
+   "budget": 11,
+   "japanese": "敵軍ユニット戻し",
+   "korean": "적군이전",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084584@24": {
+   "offset": "0x8459C",
+   "budget": 8,
+   "japanese": "作戦目的",
+   "korean": "작전목적",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084584@36": {
+   "offset": "0x845A8",
+   "budget": 8,
+   "japanese": "勝利条件",
+   "korean": "승리조건",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084584@48": {
+   "offset": "0x845B4",
+   "budget": 8,
+   "japanese": "敗北条件",
+   "korean": "패배조건",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084628@26": {
+   "offset": "0x84642",
+   "budget": 4,
+   "japanese": "防御",
+   "korean": "방어",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084628@31": {
+   "offset": "0x84647",
+   "budget": 4,
+   "japanese": "命中",
+   "korean": "명중",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084708@24": {
+   "offset": "0x84720",
+   "budget": 9,
+   "japanese": "経験値プラス",
+   "korean": "경험치+",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084708@37": {
+   "offset": "0x8472D",
+   "budget": 7,
+   "japanese": "資金プラス",
+   "korean": "자금+",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084748@24": {
+   "offset": "0x84760",
+   "budget": 8,
+   "japanese": "レベルアップ!!",
+   "korean": "레벨업!!",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08497C@29": {
+   "offset": "0x84999",
+   "budget": 8,
+   "japanese": "武器改造",
+   "korean": "무기개조",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08497C@41": {
+   "offset": "0x849A5",
+   "budget": 6,
+   "japanese": "武器名",
+   "korean": "무기명",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08497C@56": {
+   "offset": "0x849B4",
+   "budget": 6,
+   "japanese": "攻撃力",
+   "korean": "공격력",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08497C@66": {
+   "offset": "0x849BE",
+   "budget": 4,
+   "japanese": "射程",
+   "korean": "사정",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08497C@74": {
+   "offset": "0x849C6",
+   "budget": 4,
+   "japanese": "命中",
+   "korean": "명중",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08497C@82": {
+   "offset": "0x849CE",
+   "budget": 4,
+   "japanese": "残弾",
+   "korean": "잔탄",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08497C@90": {
+   "offset": "0x849D6",
+   "budget": 4,
+   "japanese": "地形",
+   "korean": "지형",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08497C@98": {
+   "offset": "0x849DE",
+   "budget": 2,
+   "japanese": "空",
+   "korean": "공",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08497C@104": {
+   "offset": "0x849E4",
+   "budget": 2,
+   "japanese": "陸",
+   "korean": "육",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08497C@110": {
+   "offset": "0x849EA",
+   "budget": 2,
+   "japanese": "海",
+   "korean": "해",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08497C@116": {
+   "offset": "0x849F0",
+   "budget": 2,
+   "japanese": "宇",
+   "korean": "우",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08497C@122": {
+   "offset": "0x849F6",
+   "budget": 8,
+   "japanese": "必要戦意",
+   "korean": "필요전의",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08497C@131": {
+   "offset": "0x849FF",
+   "budget": 6,
+   "japanese": "消費EN",
+   "korean": "소비EN",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08497C@155": {
+   "offset": "0x84A17",
+   "budget": 8,
+   "japanese": "必要技能",
+   "korean": "필요기능",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084A80@33": {
+   "offset": "0x84AA1",
+   "budget": 4,
+   "japanese": "費用",
+   "korean": "비용",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084A80@43": {
+   "offset": "0x84AAB",
+   "budget": 4,
+   "japanese": "資金",
+   "korean": "자금",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084B00@41": {
+   "offset": "0x84B29",
+   "budget": 7,
+   "japanese": "攻撃力 ",
+   "korean": "공격력 ",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084B00@54": {
+   "offset": "0x84B36",
+   "budget": 5,
+   "japanese": "になります",
+   "korean": "으로",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084B00@60": {
+   "offset": "0x84B3C",
+   "budget": 8,
+   "japanese": "よろしいですか?",
+   "korean": "할까요?",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084D38@24": {
+   "offset": "0x84D50",
+   "budget": 8,
+   "japanese": "ユニット改造",
+   "korean": "유닛개조",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084D38@36": {
+   "offset": "0x84D5C",
+   "budget": 4,
+   "japanese": "資金",
+   "korean": "자금",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084D38@52": {
+   "offset": "0x84D6C",
+   "budget": 4,
+   "japanese": "装甲",
+   "korean": "장갑",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084D38@57": {
+   "offset": "0x84D71",
+   "budget": 6,
+   "japanese": "運動性",
+   "korean": "운동성",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084D38@64": {
+   "offset": "0x84D78",
+   "budget": 4,
+   "japanese": "限界",
+   "korean": "한계",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084D38@72": {
+   "offset": "0x84D80",
+   "budget": 8,
+   "japanese": "特殊能力",
+   "korean": "특수능력",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084D38@84": {
+   "offset": "0x84D8C",
+   "budget": 7,
+   "japanese": "強化パ-ツ",
+   "korean": "강화품",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084D38@95": {
+   "offset": "0x84D97",
+   "budget": 4,
+   "japanese": "地形",
+   "korean": "지형",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084D38@103": {
+   "offset": "0x84D9F",
+   "budget": 2,
+   "japanese": "空",
+   "korean": "공",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084D38@109": {
+   "offset": "0x84DA5",
+   "budget": 2,
+   "japanese": "陸",
+   "korean": "육",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084D38@115": {
+   "offset": "0x84DAB",
+   "budget": 2,
+   "japanese": "海",
+   "korean": "해",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084D38@121": {
+   "offset": "0x84DB1",
+   "budget": 2,
+   "japanese": "宇",
+   "korean": "우",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084E30@24": {
+   "offset": "0x84E48",
+   "budget": 4,
+   "japanese": "費用",
+   "korean": "비용",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084EB0@36": {
+   "offset": "0x84ED4",
+   "budget": 5,
+   "japanese": "になります",
+   "korean": "으로",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084EB0@42": {
+   "offset": "0x84EDA",
+   "budget": 8,
+   "japanese": "よろしいですか?",
+   "korean": "할까요?",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084EFC@0": {
+   "offset": "0x84EFC",
+   "budget": 2,
+   "japanese": "HP",
+   "korean": "HP",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084F04@0": {
+   "offset": "0x84F04",
+   "budget": 2,
+   "japanese": "EN",
+   "korean": "EN",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084F0C@0": {
+   "offset": "0x84F0C",
+   "budget": 4,
+   "japanese": "装甲",
+   "korean": "장갑",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084F18@0": {
+   "offset": "0x84F18",
+   "budget": 6,
+   "japanese": "運動性",
+   "korean": "운동성",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-084F24@0": {
+   "offset": "0x84F24",
+   "budget": 8,
+   "japanese": "限界反応",
+   "korean": "한계반응",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085090@74": {
+   "offset": "0x850DA",
+   "budget": 11,
+   "japanese": "組み合わせ能力",
+   "korean": "조합능력",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085090@97": {
+   "offset": "0x850F1",
+   "budget": 3,
+   "japanese": "レベル",
+   "korean": "LV",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085090@116": {
+   "offset": "0x85104",
+   "budget": 23,
+   "japanese": "制限をうける能力  本来の能力",
+   "korean": "제한받는능력  본래능력",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085090@143": {
+   "offset": "0x8511F",
+   "budget": 4,
+   "japanese": "限界",
+   "korean": "한계",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085090@148": {
+   "offset": "0x85124",
+   "budget": 4,
+   "japanese": "命中",
+   "korean": "명중",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085090@153": {
+   "offset": "0x85129",
+   "budget": 4,
+   "japanese": "回避",
+   "korean": "회피",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085090@265": {
+   "offset": "0x85199",
+   "budget": 4,
+   "japanese": "地形",
+   "korean": "지형",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085090@270": {
+   "offset": "0x8519E",
+   "budget": 2,
+   "japanese": "空",
+   "korean": "공",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085090@276": {
+   "offset": "0x851A4",
+   "budget": 2,
+   "japanese": "陸",
+   "korean": "육",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085090@282": {
+   "offset": "0x851AA",
+   "budget": 2,
+   "japanese": "海",
+   "korean": "해",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085090@288": {
+   "offset": "0x851B0",
+   "budget": 2,
+   "japanese": "宇",
+   "korean": "우",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085090@317": {
+   "offset": "0x851CD",
+   "budget": 10,
+   "japanese": "この組み合わせで",
+   "korean": "이 조합",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085090@328": {
+   "offset": "0x851D8",
+   "budget": 11,
+   "japanese": "     いいですか?",
+   "korean": "    할까요?",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085090@343": {
+   "offset": "0x851E7",
+   "budget": 2,
+   "japanese": "はい",
+   "korean": "예",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085090@346": {
+   "offset": "0x851EA",
+   "budget": 3,
+   "japanese": "いいえ",
+   "korean": "NO",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085248@79": {
+   "offset": "0x85297",
+   "budget": 3,
+   "japanese": "レベル",
+   "korean": "LV",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-0853E4@24": {
+   "offset": "0x853FC",
+   "budget": 4,
+   "japanese": "のりかえ",
+   "korean": "교체",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-0853E4@32": {
+   "offset": "0x85404",
+   "budget": 7,
+   "japanese": "パイロット  ",
+   "korean": "파일럿",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-0853E4@47": {
+   "offset": "0x85413",
+   "budget": 3,
+   "japanese": "レベル",
+   "korean": "LV",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085628@24": {
+   "offset": "0x85640",
+   "budget": 6,
+   "japanese": "移動力",
+   "korean": "이동력",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085628@31": {
+   "offset": "0x85647",
+   "budget": 6,
+   "japanese": "運動性",
+   "korean": "운동성",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085628@41": {
+   "offset": "0x85651",
+   "budget": 4,
+   "japanese": "装甲",
+   "korean": "장갑",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085628@46": {
+   "offset": "0x85656",
+   "budget": 4,
+   "japanese": "限界",
+   "korean": "한계",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085628@54": {
+   "offset": "0x8565E",
+   "budget": 2,
+   "japanese": "空",
+   "korean": "공",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085628@57": {
+   "offset": "0x85661",
+   "budget": 6,
+   "japanese": "経験値",
+   "korean": "경험치",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085628@67": {
+   "offset": "0x8566B",
+   "budget": 2,
+   "japanese": "陸",
+   "korean": "육",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085628@73": {
+   "offset": "0x85671",
+   "budget": 2,
+   "japanese": "海",
+   "korean": "해",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085628@76": {
+   "offset": "0x85674",
+   "budget": 2,
+   "japanese": "あと",
+   "korean": "잔",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085628@82": {
+   "offset": "0x8567A",
+   "budget": 2,
+   "japanese": "宇",
+   "korean": "우",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-0856B4@24": {
+   "offset": "0x856CC",
+   "budget": 8,
+   "japanese": "ユニット改造",
+   "korean": "유닛개조",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-0856B4@36": {
+   "offset": "0x856D8",
+   "budget": 4,
+   "japanese": "資金",
+   "korean": "자금",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-0856E8@24": {
+   "offset": "0x85700",
+   "budget": 8,
+   "japanese": "武器改造",
+   "korean": "무기개조",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-0856E8@36": {
+   "offset": "0x8570C",
+   "budget": 4,
+   "japanese": "資金",
+   "korean": "자금",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08571C@24": {
+   "offset": "0x85734",
+   "budget": 7,
+   "japanese": "強化パ-ツ",
+   "korean": "강화품",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085744@24": {
+   "offset": "0x8575C",
+   "budget": 9,
+   "japanese": "ユニットステ-タス",
+   "korean": "유닛상태",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085770@24": {
+   "offset": "0x85788",
+   "budget": 10,
+   "japanese": "パイロットステ-タス",
+   "korean": "파일럿상태",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08579C@24": {
+   "offset": "0x857B4",
+   "budget": 4,
+   "japanese": "のりかえ",
+   "korean": "교체",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085A94@24": {
+   "offset": "0x85AAC",
+   "budget": 6,
+   "japanese": "デ-タセ-ブ",
+   "korean": "세이브",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085A94@31": {
+   "offset": "0x85AB3",
+   "budget": 6,
+   "japanese": "デ-タロ-ド",
+   "korean": "로드",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085A94@38": {
+   "offset": "0x85ABA",
+   "budget": 9,
+   "japanese": "合体.変形",
+   "korean": "합체.변형",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085A94@48": {
+   "offset": "0x85AC4",
+   "budget": 8,
+   "japanese": "ユニット改造",
+   "korean": "유닛개조",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085A94@57": {
+   "offset": "0x85ACD",
+   "budget": 8,
+   "japanese": "武器改造",
+   "korean": "무기개조",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085A94@66": {
+   "offset": "0x85AD6",
+   "budget": 7,
+   "japanese": "強化パ-ツ",
+   "korean": "강화품",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085A94@74": {
+   "offset": "0x85ADE",
+   "budget": 5,
+   "japanese": "ステ-タス",
+   "korean": "상태",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085A94@80": {
+   "offset": "0x85AE4",
+   "budget": 4,
+   "japanese": "のりかえ",
+   "korean": "교체",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085A94@85": {
+   "offset": "0x85AE9",
+   "budget": 7,
+   "japanese": "次のマップへ",
+   "korean": "다음 맵",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085A94@96": {
+   "offset": "0x85AF4",
+   "budget": 9,
+   "japanese": "インタ-ミッション",
+   "korean": "인터미션",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085A94@109": {
+   "offset": "0x85B01",
+   "budget": 9,
+   "japanese": "現在の状況",
+   "korean": "현재상황",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085A94@122": {
+   "offset": "0x85B0E",
+   "budget": 7,
+   "japanese": "総タ-ン数",
+   "korean": "총턴수",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085A94@138": {
+   "offset": "0x85B1E",
+   "budget": 2,
+   "japanese": "第",
+   "korean": "제",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085A94@142": {
+   "offset": "0x85B22",
+   "budget": 2,
+   "japanese": "話",
+   "korean": "화",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085A94@148": {
+   "offset": "0x85B28",
+   "budget": 5,
+   "japanese": "までクリア",
+   "korean": "까지",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085A94@157": {
+   "offset": "0x85B31",
+   "budget": 4,
+   "japanese": "資金",
+   "korean": "자금",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085A94@162": {
+   "offset": "0x85B36",
+   "budget": 8,
+   "japanese": "全ユニット数",
+   "korean": "총유닛수",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085A94@174": {
+   "offset": "0x85B42",
+   "budget": 7,
+   "japanese": "平均レベル",
+   "korean": "평균LV",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085A94@185": {
+   "offset": "0x85B4D",
+   "budget": 9,
+   "japanese": "全パイロット数",
+   "korean": "파일럿수",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085B84@0": {
+   "offset": "0x85B84",
+   "budget": 18,
+   "japanese": "それまでクリアした面をセ-ブする。",
+   "korean": "클리어 면 저장.",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085B9C@0": {
+   "offset": "0x85B9C",
+   "budget": 18,
+   "japanese": "それまでクリアした面をロ-ドする。",
+   "korean": "저장한 면 로드.",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085BB4@0": {
+   "offset": "0x85BB4",
+   "budget": 18,
+   "japanese": "ユニットを合体.変形させる。",
+   "korean": "유닛을 합체.변형.",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085BCC@0": {
+   "offset": "0x85BCC",
+   "budget": 21,
+   "japanese": "ユニット本体の能力をアップさせる。",
+   "korean": "유닛 본체 능력 상승.",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085BE8@0": {
+   "offset": "0x85BE8",
+   "budget": 22,
+   "japanese": "ユニットの武器の能力をアップさせる。",
+   "korean": "유닛 무기 능력 상승.",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085C04@0": {
+   "offset": "0x85C04",
+   "budget": 21,
+   "japanese": "ユニットに強化パ-ツを取り付ける。",
+   "korean": "유닛에 강화파츠 장착.",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085C20@0": {
+   "offset": "0x85C20",
+   "budget": 15,
+   "japanese": "ステ-タス画面の表示。",
+   "korean": "상태 화면 표시.",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085C34@0": {
+   "offset": "0x85C34",
+   "budget": 18,
+   "japanese": "パイロットの乗り換えに使用。",
+   "korean": "파일럿 교체용.",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085C4C@0": {
+   "offset": "0x85C4C",
+   "budget": 11,
+   "japanese": "次のマップへ進む。",
+   "korean": "다음맵진행.",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085D34@3": {
+   "offset": "0x85D37",
+   "budget": 4,
+   "japanese": "ファイル",
+   "korean": "파일",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085D34@10": {
+   "offset": "0x85D3E",
+   "budget": 2,
+   "japanese": "第",
+   "korean": "제",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085D34@14": {
+   "offset": "0x85D42",
+   "budget": 3,
+   "japanese": "話「",
+   "korean": "화「",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085D34@20": {
+   "offset": "0x85D48",
+   "budget": 6,
+   "japanese": "」までクリア",
+   "korean": "」까지",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085D34@27": {
+   "offset": "0x85D4F",
+   "budget": 7,
+   "japanese": "総タ-ン数",
+   "korean": "총턴수",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085D34@36": {
+   "offset": "0x85D58",
+   "budget": 3,
+   "japanese": "タ-ン",
+   "korean": "턴",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085D34@42": {
+   "offset": "0x85D5E",
+   "budget": 4,
+   "japanese": "資金",
+   "korean": "자금",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085D6C@3": {
+   "offset": "0x85D6F",
+   "budget": 4,
+   "japanese": "ファイル",
+   "korean": "파일",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085D6C@13": {
+   "offset": "0x85D79",
+   "budget": 10,
+   "japanese": "ファイルがありません",
+   "korean": "파일 없음",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085D8C@3": {
+   "offset": "0x85D8F",
+   "budget": 4,
+   "japanese": "ファイル",
+   "korean": "파일",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085D8C@13": {
+   "offset": "0x85D99",
+   "budget": 12,
+   "japanese": "ファイルが壊れています",
+   "korean": "파일 손상됨",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085DBC@33": {
+   "offset": "0x85DDD",
+   "budget": 7,
+   "japanese": "ロ-ド画面",
+   "korean": "로드",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085DBC@44": {
+   "offset": "0x85DE8",
+   "budget": 19,
+   "japanese": "ロ-ドするデ-タを選択してください",
+   "korean": "데이터 선택하세요",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085E18@33": {
+   "offset": "0x85E39",
+   "budget": 7,
+   "japanese": "セ-ブ画面",
+   "korean": "세이브",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085E18@44": {
+   "offset": "0x85E44",
+   "budget": 19,
+   "japanese": "セ-ブするデ-タを選択してください",
+   "korean": "데이터 선택하세요",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-085EFC@36": {
+   "offset": "0x85F20",
+   "budget": 14,
+   "japanese": "合体.変形.分離",
+   "korean": "합체.변형.분리",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08610C@24": {
+   "offset": "0x86124",
+   "budget": 6,
+   "japanese": "パイロット(",
+   "korean": "조종(",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08610C@41": {
+   "offset": "0x86135",
+   "budget": 6,
+   "japanese": "ロボット (",
+   "korean": "로봇 (",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08610C@58": {
+   "offset": "0x86146",
+   "budget": 7,
+   "japanese": "武器  (",
+   "korean": "무기 (",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08610C@78": {
+   "offset": "0x8615A",
+   "budget": 4,
+   "japanese": "地形",
+   "korean": "지형",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08610C@98": {
+   "offset": "0x8616E",
+   "budget": 5,
+   "japanese": "結果:",
+   "korean": "결과:",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08610C@110": {
+   "offset": "0x8617A",
+   "budget": 5,
+   "japanese": "ダメ-ジ:",
+   "korean": "피해:",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08610C@122": {
+   "offset": "0x86186",
+   "budget": 6,
+   "japanese": "パイロット(",
+   "korean": "조종(",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08610C@139": {
+   "offset": "0x86197",
+   "budget": 6,
+   "japanese": "ロボット (",
+   "korean": "로봇 (",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08610C@156": {
+   "offset": "0x861A8",
+   "budget": 7,
+   "japanese": "武器  (",
+   "korean": "무기 (",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08610C@176": {
+   "offset": "0x861BC",
+   "budget": 4,
+   "japanese": "地形",
+   "korean": "지형",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08610C@196": {
+   "offset": "0x861D0",
+   "budget": 5,
+   "japanese": "結果:",
+   "korean": "결과:",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08610C@208": {
+   "offset": "0x861DC",
+   "budget": 5,
+   "japanese": "ダメ-ジ:",
+   "korean": "피해:",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08610C@220": {
+   "offset": "0x861E8",
+   "budget": 5,
+   "japanese": "反撃:",
+   "korean": "반격:",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08610C@232": {
+   "offset": "0x861F4",
+   "budget": 3,
+   "japanese": "むき:",
+   "korean": "향:",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086234@0": {
+   "offset": "0x86234",
+   "budget": 6,
+   "japanese": "反撃する",
+   "korean": "반격",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086240@0": {
+   "offset": "0x86240",
+   "budget": 12,
+   "japanese": "停止-メッセ-ジなし",
+   "korean": "정지-메시지",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086254@0": {
+   "offset": "0x86254",
+   "budget": 11,
+   "japanese": "停止-残弾なし",
+   "korean": "정지-탄없음",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086264@0": {
+   "offset": "0x86264",
+   "budget": 12,
+   "japanese": "停止-エネルギ-なし",
+   "korean": "정지-EN없음",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086278@0": {
+   "offset": "0x86278",
+   "budget": 15,
+   "japanese": "停止-距離が足りない",
+   "korean": "정지-거리부족",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08628C@0": {
+   "offset": "0x8628C",
+   "budget": 5,
+   "japanese": "左向き",
+   "korean": "왼쪽",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086298@0": {
+   "offset": "0x86298",
+   "budget": 5,
+   "japanese": "右向き",
+   "korean": "우향",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-0862A4@0": {
+   "offset": "0x862A4",
+   "budget": 4,
+   "japanese": "命中",
+   "korean": "명중",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-0862B0@0": {
+   "offset": "0x862B0",
+   "budget": 11,
+   "japanese": "命中-クリティカル",
+   "korean": "명중-치명타",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-0862C0@0": {
+   "offset": "0x862C0",
+   "budget": 9,
+   "japanese": "命中-破壊",
+   "korean": "명중-파괴",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-0862D0@0": {
+   "offset": "0x862D0",
+   "budget": 16,
+   "japanese": "命中-破壊-クリティカル",
+   "korean": "명중-파괴-치명타",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-0862E8@0": {
+   "offset": "0x862E8",
+   "budget": 8,
+   "japanese": "防御/ガ-ド",
+   "korean": "방어",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-0862F8@0": {
+   "offset": "0x862F8",
+   "budget": 11,
+   "japanese": "盾防御-正常",
+   "korean": "방패-정상",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086308@0": {
+   "offset": "0x86308",
+   "budget": 12,
+   "japanese": "ビ-ム防御-正常",
+   "korean": "빔방어-정상",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08631C@0": {
+   "offset": "0x8631C",
+   "budget": 12,
+   "japanese": "ビ-ム防御-破壊",
+   "korean": "빔방어-파괴",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086330@0": {
+   "offset": "0x86330",
+   "budget": 5,
+   "japanese": "カウンタ-",
+   "korean": "반격",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08633C@0": {
+   "offset": "0x8633C",
+   "budget": 6,
+   "japanese": "変わり身",
+   "korean": "몸바꿈",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086348@0": {
+   "offset": "0x86348",
+   "budget": 8,
+   "japanese": "サ-ベル回避",
+   "korean": "사벨회피",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086358@0": {
+   "offset": "0x86358",
+   "budget": 4,
+   "japanese": "分身",
+   "korean": "분신",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086364@0": {
+   "offset": "0x86364",
+   "budget": 4,
+   "japanese": "回避",
+   "korean": "회피",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08644C@37": {
+   "offset": "0x86471",
+   "budget": 19,
+   "japanese": "強化パ-ツ装備ユニット一覧",
+   "korean": "파츠장착유닛",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08644C@60": {
+   "offset": "0x86488",
+   "budget": 7,
+   "japanese": "強化パ-ツ",
+   "korean": "강화품",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-08644C@71": {
+   "offset": "0x86493",
+   "budget": 12,
+   "japanese": "装備ユニット一覧",
+   "korean": "장비유닛일람",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086668@63": {
+   "offset": "0x866A7",
+   "budget": 3,
+   "japanese": "タイプ",
+   "korean": "형",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086668@67": {
+   "offset": "0x866AB",
+   "budget": 6,
+   "japanese": "移動力",
+   "korean": "이동력",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086668@74": {
+   "offset": "0x866B2",
+   "budget": 6,
+   "japanese": "運動性",
+   "korean": "운동성",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086668@81": {
+   "offset": "0x866B9",
+   "budget": 4,
+   "japanese": "装甲",
+   "korean": "장갑",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086668@86": {
+   "offset": "0x866BE",
+   "budget": 4,
+   "japanese": "限界",
+   "korean": "한계",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086668@94": {
+   "offset": "0x866C6",
+   "budget": 4,
+   "japanese": "シ-ルド",
+   "korean": "실드",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086668@102": {
+   "offset": "0x866CE",
+   "budget": 7,
+   "japanese": "強化パ-ツ",
+   "korean": "강화품",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086668@113": {
+   "offset": "0x866D9",
+   "budget": 4,
+   "japanese": "地形",
+   "korean": "지형",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086668@121": {
+   "offset": "0x866E1",
+   "budget": 2,
+   "japanese": "空",
+   "korean": "공",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086668@127": {
+   "offset": "0x866E7",
+   "budget": 2,
+   "japanese": "陸",
+   "korean": "육",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086668@133": {
+   "offset": "0x866ED",
+   "budget": 2,
+   "japanese": "海",
+   "korean": "해",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086668@139": {
+   "offset": "0x866F3",
+   "budget": 2,
+   "japanese": "宇",
+   "korean": "우",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086668@300": {
+   "offset": "0x86794",
+   "budget": 7,
+   "japanese": "強化パ-ツ",
+   "korean": "강화품",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086668@319": {
+   "offset": "0x867A7",
+   "budget": 4,
+   "japanese": "装備",
+   "korean": "장비",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086668@327": {
+   "offset": "0x867AF",
+   "budget": 3,
+   "japanese": "はずす",
+   "korean": "뺌",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086668@334": {
+   "offset": "0x867B6",
+   "budget": 8,
+   "japanese": "ユニット一覧",
+   "korean": "유닛일람",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086810@24": {
+   "offset": "0x86828",
+   "budget": 8,
+   "japanese": "特殊能力",
+   "korean": "특수능력",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-0868DC@29": {
+   "offset": "0x868F9",
+   "budget": 8,
+   "japanese": "登場作品",
+   "korean": "등장작품",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-0868DC@49": {
+   "offset": "0x8690D",
+   "budget": 4,
+   "japanese": "全長",
+   "korean": "전장",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-0868DC@54": {
+   "offset": "0x86912",
+   "budget": 4,
+   "japanese": "重量",
+   "korean": "중량",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-0869D4@74": {
+   "offset": "0x86A1E",
+   "budget": 5,
+   "japanese": "フルネ-ム",
+   "korean": "본명",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-0869D4@80": {
+   "offset": "0x86A24",
+   "budget": 4,
+   "japanese": "愛称",
+   "korean": "애칭",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-0869D4@85": {
+   "offset": "0x86A29",
+   "budget": 8,
+   "japanese": "登場作品",
+   "korean": "등장작품",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086AD8@36": {
+   "offset": "0x86AFC",
+   "budget": 10,
+   "japanese": "キャラクタ-目録",
+   "korean": "캐릭터도감",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086B24@36": {
+   "offset": "0x86B48",
+   "budget": 8,
+   "japanese": "ロボット目録",
+   "korean": "로봇도감",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086BD8@24": {
+   "offset": "0x86BF0",
+   "budget": 8,
+   "japanese": "ユニット修理",
+   "korean": "유닛수리",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086BD8@36": {
+   "offset": "0x86BFC",
+   "budget": 4,
+   "japanese": "資金",
+   "korean": "자금",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086C20@24": {
+   "offset": "0x86C38",
+   "budget": 8,
+   "japanese": "ユニット修理",
+   "korean": "유닛수리",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086C20@36": {
+   "offset": "0x86C44",
+   "budget": 4,
+   "japanese": "資金",
+   "korean": "자금",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086D04@24": {
+   "offset": "0x86D1C",
+   "budget": 5,
+   "japanese": "オプション",
+   "korean": "옵션",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086D04@40": {
+   "offset": "0x86D2C",
+   "budget": 4,
+   "japanese": "モノラル",
+   "korean": "모노",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086D04@48": {
+   "offset": "0x86D34",
+   "budget": 7,
+   "japanese": "サウンドテスト",
+   "korean": "사운드",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086D04@56": {
+   "offset": "0x86D3C",
+   "budget": 6,
+   "japanese": "デモセレクト",
+   "korean": "데모",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086D04@63": {
+   "offset": "0x86D43",
+   "budget": 9,
+   "japanese": "キャラクタ-デ-タ",
+   "korean": "캐릭터",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086D04@73": {
+   "offset": "0x86D4D",
+   "budget": 7,
+   "japanese": "ロボットデ-タ",
+   "korean": "로봇",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086D5C@24": {
+   "offset": "0x86D74",
+   "budget": 5,
+   "japanese": "オプション",
+   "korean": "옵션",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086D5C@40": {
+   "offset": "0x86D84",
+   "budget": 4,
+   "japanese": "ステレオ",
+   "korean": "입체",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086D5C@48": {
+   "offset": "0x86D8C",
+   "budget": 7,
+   "japanese": "サウンドテスト",
+   "korean": "사운드",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086D5C@56": {
+   "offset": "0x86D94",
+   "budget": 6,
+   "japanese": "デモセレクト",
+   "korean": "데모",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086D5C@63": {
+   "offset": "0x86D9B",
+   "budget": 9,
+   "japanese": "キャラクタ-デ-タ",
+   "korean": "캐릭터",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-086D5C@73": {
+   "offset": "0x86DA5",
+   "budget": 7,
+   "japanese": "ロボットデ-タ",
+   "korean": "로봇",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-082B18@189": {
+   "offset": "0x82BD5",
+   "budget": 7,
+   "japanese": "マップ兵器",
+   "korean": "맵병기",
+   "terminated": false,
+   "pool": "WIN"
+  }
+ }
+}

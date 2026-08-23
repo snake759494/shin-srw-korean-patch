@@ -1,0 +1,79 @@
+# ── Disc images and firmware ────────────────────────────────────────────
+*.bin
+*.iso
+*.img
+*.cue
+*.chd
+*.pbp
+*.mdf
+*.mds
+*.ccd
+*.sub
+*.toc
+*.nrg
+*.cso
+*.ecm
+*.rom
+
+# ── Executables, emulator modules, saves and states ─────────────────────
+*.exe
+*.dll
+*.so
+*.dylib
+*.mcr
+*.srm
+*.state*
+scph*.bin
+
+# ── Archives can carry game data by accident ────────────────────────────
+*.zip
+*.7z
+*.rar
+*.tar
+*.gz
+
+# ── Extracted PS1 assets ────────────────────────────────────────────────
+SLPS_*
+*.WAR
+*.XA
+*.STR
+*.VAB
+*.LZB
+
+# ── The build workspace: game data and build products, never committed ──
+work/
+extracted/
+text_extracted/
+korean_translation_full/
+korean_translation_full_fixed/
+
+# ── Translation pipeline intermediates (carry the Japanese script) ──────
+retrans/
+retranslation_ko.json
+tighten_ko.json
+full_translation_ko_v2.json
+full_translation_google_cache_ko*.json
+full_translation_speaker_cache_ko.json
+opening_translation_ko.json
+*.bak
+*.prepagecap
+*.prerewrap
+*.presys
+
+# ── Local working environment ───────────────────────────────────────────
+diag/
+diag2/
+screenshots/
+savestates/
+bios/
+
+# ── Caches and platform files ───────────────────────────────────────────
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db
+
+# ── Release assets go to GitHub Releases, not into the tree ─────────────
+release/*.xdelta
+release/*.zip
+!release/SHA256SUMS*.txt
