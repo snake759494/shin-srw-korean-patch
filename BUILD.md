@@ -45,7 +45,8 @@ verifying the result ...
 ### `setup_workspace.py`
 
 1. **원본 검증** — 크기와 SHA-256 을 대조합니다. 다르면 중단합니다.
-2. **디스크 추출** — 빌드가 실제로 읽는 **5개 파일만** `work/extracted/` 로 꺼냅니다.
+2. **디스크 추출** — 빌드가 실제로 읽는 **15개 파일만** `work/extracted/` 로 꺼냅니다.
+   (텍스트용 5개 + 타이틀 메뉴 그래픽 `SBDATA.BIN` + 시나리오 제목 그래픽 `MAP/SBTI0~8.DAT`)
    `SLPS_005.50`, `SCEDATA.BIN`, `BTT/BTTMES.BIN`, `PILOTDIC.BIN`, `ROBOTDIC.BIN`.
    각각 `data/extracted_manifest.tsv` 의 SHA-256 과 대조합니다. (`--all` 을 주면 69개 전부 남깁니다.)
 3. **번역 데이터 배치** — `data/` 의 JSON 을 빌드가 기대하는 위치로 복사합니다.
@@ -66,6 +67,7 @@ verifying the result ...
 - Galmuri14 를 12×12 글리프로 변환해 EXE 폰트 테이블에 삽입
 - 시나리오 아카이브(`SCEDATA.BIN`)와 전투 대사(`BTTMES.BIN`)를 번역문으로 다시 채우고 재압축
 - EXE 안의 문자열 풀 9종(이름·무기·시스템 메시지·시나리오 제목 등)을 재배치
+- 타이틀 화면 메뉴와 시나리오 제목 화면의 타일 그래픽을 한글로 다시 그림
 - 백과사전 2종 재구성
 - ISO9660 디렉터리와 Mode2/Form1 섹터(EDC/ECC)를 다시 계산해 이미지 재조립
 

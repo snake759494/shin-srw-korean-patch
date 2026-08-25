@@ -9,8 +9,6 @@ import hashlib
 import json
 import math
 from pathlib import Path
-
-_REPO = Path(__file__).resolve().parent.parent  # repo root: the build runs with CWD=work/
 import re
 import shutil
 import struct
@@ -48,6 +46,10 @@ from extract_ssrw_japanese_text import (
 )
 from build_ssrw_expansion_test import load_encoder
 
+import build_ssrw_title_graphics as title_graphics
+
+
+_REPO = Path(__file__).resolve().parent.parent  # repo root: the build runs with CWD=work/
 
 SCENARIO_INDEX_COUNT = 128
 PVD_LBA = 16
@@ -955,6 +957,8 @@ def rebuild_fixed_scenario_member(
             "fixed_size_fallback": fallback_used,
         })
 
+    unreached = patch_unreached_strings(rebuilt, codec, mapping, member_index)
+    applied.extend(unreached)
     if len(rebuilt) > SCEDATA_MEMBER_BUFFER_BYTES:
         raise ValueError(
             f"member {member_index} decompresses to {len(rebuilt)} bytes, past the "
@@ -1189,6 +1193,8 @@ def rebuild_scenario_member(
             if stub + 1 + struct.unpack_from("<h", rebuilt, stub + 1)[0] != new_target:
                 raise ValueError(f"member {member_index} handler-13 stub retarget failed")
             relocated_event_references += 1
+    unreached = patch_unreached_strings(rebuilt, codec, mapping, member_index)
+    applied.extend(unreached)
     if rebuilt.find(SCENARIO_TEXT_TAIL_SIGNATURE, pool_start) != new_signature:
         raise ValueError(f"scenario tail shift failed at member {member_index}")
     if len(rebuilt) > SCEDATA_MEMBER_BUFFER_BYTES:
@@ -1284,7 +1290,28 @@ def rebuild_scedata(
             translated_member_count += 1
             applied.extend(member_applied)
         else:
+            # No records, so nothing relocates - but member 96 keeps the seven
+            # defeat messages here, and leaving the chunk alone shipped them as
+            # garbled Japanese once the font pass reassigned their kanji slots.
             new_chunk = old_chunk
+            member_applied = []
+            try:
+                decompressed_pass, _consumed = srw_lz_decompress(old_chunk)
+            except Exception:
+                decompressed_pass = None
+            if decompressed_pass is not None:
+                buffer = bytearray(decompressed_pass)
+                member_applied = patch_unreached_strings(buffer, codec, mapping, member_index)
+                if member_applied:
+                    encoder = load_encoder()
+                    compressed = encoder.compress(bytes(buffer), level=8)
+                    round_trip, consumed = srw_lz_decompress(compressed)
+                    if round_trip != bytes(buffer) or consumed != len(compressed):
+                        raise ValueError(
+                            f"pass-through LZ round trip failed at member {member_index}"
+                        )
+                    new_chunk = compressed + bytes(align(len(compressed), 4) - len(compressed))
+                    applied.extend(member_applied)
             report = {
                 "member_index": member_index,
                 "representative_scenario": representative,
@@ -1831,6 +1858,69 @@ def read_encoded_string(image: bytes, offset: int) -> bytes | None:
     return None
 
 
+# Strings inside a scenario member that the record scanner never reaches: the
+# mission objectives shown in the objective window.  They sit at the end of a
+# structured record rather than being addressed as dialogue, so no table entry
+# points at them and the pool rebuild cannot move them.  They are replaced where
+# they lie, byte length preserved, which is safe precisely because nothing has to
+# be re-pointed - and it is also the constraint: the Korean has to fit the
+# Japanese byte count, and a Hangul syllable costs two bytes where kana costs one.
+#
+# The seven defeat messages in member 96 are the case that needs this.  Nothing
+# addresses them, so the build left them alone - and because the Korean font pass
+# reassigns the glyph slots their kanji used, they did not merely stay Japanese,
+# they came out garbled.  In-place is the only option here, so the Korean is
+# written to the byte budget: a Hangul syllable costs two bytes where kana costs
+# one, which is why these read tighter than the originals.
+#
+# The mission objectives are NOT here.  They looked untranslated in the retail
+# archive but the rebuilt members already carry 적 전멸, 데빌건담 파괴 and the rest.
+UNREACHED_STRINGS = {
+    "リュウセイ「なんだ,負けちまったのか?\n しょうがないな,まったく。\n 今度は,ガンバレよ」":
+        "류세이「졌나?\n 어쩔 수 없지.\n 다음엔 힘내」",
+    "ライ「残念だったね.....ん?\n まさか,もう止める気じゃないだろうね\n さあ,気を取りなおして」":
+        "라이「아쉽군...응?\n 설마 그만둘 생각은 아니겠지\n 기운 내」",
+    "アヤ「ガッカリしないで。こういうことも\n あるから,うまくいった時は\n うれしいのよ。さあ,ファイト!」":
+        "아야「실망 마.\n 잘될 때도 있으니\n 자, 파이팅!」",
+    "甲児「なんだ,辛気くさい顔をして。\n こんなことぐらい,どうってことないぜ\n ガッツ出して行こうぜ!」":
+        "코우지「그런 얼굴 마.\n 이 정도 아무것도 아냐\n 힘내서 가자!」",
+    "ジュンコ「負けた? しょうがないね。\n 嫌なことは早く忘れて,\n 次はガンバルんだよ。いいね」":
+        "준코「졌어? 할 수 없지.\n 빨리 잊고\n 다음엔 힘내」",
+    "ウッソ「えっ,負けてしまったんですか?\n 僕達は,ガンバッているんですよ。\n それなのに....」":
+        "웃소「엣, 졌나요?\n 저흰 힘내는데요.\n 그런데도....」",
+    "忍「なに,負けた?\n 誰のせいなんだよ!\n やってられねえぜ,まったく」":
+        "시노부「뭐, 졌어?\n 누구 탓이야!\n 참 나」",
+}
+
+
+def patch_unreached_strings(
+    member: bytearray, codec: Codec, mapping: dict[str, int], member_index: int
+) -> list[dict[str, Any]]:
+    """Replace the out-of-table strings in place, keeping every byte offset."""
+    applied: list[dict[str, Any]] = []
+    for japanese, korean in UNREACHED_STRINGS.items():
+        source = encode_text(japanese, codec, mapping)
+        target = encode_text(korean, codec, mapping)
+        if len(target) > len(source):
+            raise ValueError(
+                "%r needs %d bytes but only %d are available in place"
+                % (korean, len(target), len(source))
+            )
+        padded = target + bytes(len(source) - len(target))
+        start = member.find(source)
+        while start >= 0:
+            member[start:start + len(source)] = padded
+            applied.append({
+                "member": member_index,
+                "offset": start,
+                "japanese": japanese,
+                "korean": korean,
+                "bytes": len(source),
+            })
+            start = member.find(source, start + len(source))
+    return applied
+
+
 def patch_terrain_panel_lengths(
     patched_exe: bytes, source_exe: bytes
 ) -> tuple[bytes, dict[str, Any]]:
@@ -1998,6 +2088,28 @@ def load_fixed_exe_labels(path: Path) -> list[dict[str, Any]]:
 DICTIONARY_FILES = {
     "PILOTDIC.BIN": {"entries": 384, "data_base": 0x600, "lba": 486},
     "ROBOTDIC.BIN": {"entries": 304, "data_base": 0x4C0, "lba": 504},
+}
+
+# The scenario-title screen is graphics.  MAP/SBTI0..8.DAT hold it as 16x16
+# tiles plus a tilemap; build_ssrw_title_graphics redraws both in Korean and
+# folds the slack into the last record, so each file keeps its retail byte
+# count and can be written straight over its retail extent.
+#
+# The four words on the title screen itself are a separate texture: SBDATA.BIN
+# member 38 is a 128x96 4bpp TIM.  Only that member is re-encoded, so the file
+# keeps its retail size and its extent as well.
+TITLE_MENU_FILE = {"name": "SBDATA.BIN", "lba": 515}
+
+TITLE_GRAPHIC_FILES = {
+    "SBTI0.DAT": 30798,
+    "SBTI1.DAT": 30806,
+    "SBTI2.DAT": 30814,
+    "SBTI3.DAT": 30822,
+    "SBTI4.DAT": 30830,
+    "SBTI5.DAT": 30838,
+    "SBTI6.DAT": 30846,
+    "SBTI7.DAT": 30854,
+    "SBTI8.DAT": 30862,
 }
 
 
@@ -2727,6 +2839,8 @@ def patch_iso(
     source_bttmes: bytes,
     patched_bttmes: bytes,
     dictionaries: dict[str, tuple[bytes, bytes]] | None = None,
+    title_graphics: dict[str, tuple[bytes, bytes]] | None = None,
+    title_menu: tuple[bytes, bytes] | None = None,
 ) -> dict[str, Any]:
     old_track_sectors = source_track.stat().st_size // RAW_SECTOR_SIZE
     old_scedata_sectors = math.ceil(len(source_scedata) / USER_DATA_SIZE)
@@ -2751,6 +2865,18 @@ def patch_iso(
         for name, (retail, rebuilt) in (dictionaries or {}).items():
             changed_dictionaries[name] = patch_fixed_extent(
                 track, DICTIONARY_FILES[name]["lba"], retail, rebuilt
+            )
+
+        # Same story for the scenario-title graphics and the title-screen menu.
+        changed_titles: dict[str, int] = {}
+        for name, (retail, rebuilt) in (title_graphics or {}).items():
+            changed_titles[name] = patch_fixed_extent(
+                track, TITLE_GRAPHIC_FILES[name], retail, rebuilt
+            )
+        changed_title_menu = 0
+        if title_menu is not None:
+            changed_title_menu = patch_fixed_extent(
+                track, TITLE_MENU_FILE["lba"], title_menu[0], title_menu[1]
             )
 
         track.seek(PVD_LBA * RAW_SECTOR_SIZE)
@@ -2844,6 +2970,10 @@ def patch_iso(
             raise ValueError("BTTMES directory verification failed")
         for name, (_, rebuilt) in (dictionaries or {}).items():
             verify_fixed_extent(track, DICTIONARY_FILES[name]["lba"], rebuilt)
+        for name, (_, rebuilt) in (title_graphics or {}).items():
+            verify_fixed_extent(track, TITLE_GRAPHIC_FILES[name], rebuilt)
+        if title_menu is not None:
+            verify_fixed_extent(track, TITLE_MENU_FILE["lba"], title_menu[1])
         verify_fixed_extent(track, old_scedata_lba, stored_scedata)
         verify_appended_payload(track, new_bttmes_lba, patched_bttmes)
 
@@ -2873,6 +3003,8 @@ def patch_iso(
         "bttmes_readahead_guard_sectors": BTTMES_READAHEAD_GUARD_SECTORS,
         "patched_exe_sectors": changed_exe,
         "patched_dictionary_sectors": changed_dictionaries,
+        "patched_title_graphic_sectors": changed_titles,
+        "patched_title_menu_sectors": changed_title_menu,
         "patched_scedata_sectors": changed_scedata,
         "verified_appended_form1_sectors": added_sectors,
     }
@@ -2937,6 +3069,12 @@ def main() -> int:
         type=Path,
         default=OPENING_TRANSLATION,
         help="tested fixed-slot translations for the first opening sequence",
+    )
+    parser.add_argument(
+        "--scenario-title-translation",
+        type=Path,
+        default=Path("scenario_title_ko.json"),
+        help="Korean text for the scenario-title screen, which is graphics rather than text",
     )
     parser.add_argument("--bdf", type=Path, default=_REPO / "font" / "Galmuri14.bdf")
     parser.add_argument("--output-dir", type=Path, default=Path("korean_translation_full"))
@@ -3096,6 +3234,32 @@ def main() -> int:
         dictionary_images[name] = (retail, rebuilt)
         dictionary_reports.append(dictionary_report)
 
+    # The scenario-title screen never goes through the message encoder: it is a
+    # tile sheet, so the Korean has to be drawn rather than encoded.
+    title_images: dict[str, tuple[bytes, bytes]] = {}
+    title_menu_image: tuple[bytes, bytes] | None = None
+    title_report: dict[str, Any] = {}
+    if args.scenario_title_translation.is_file():
+        title_translation = title_graphics.load_translation(args.scenario_title_translation)
+        rebuilt_titles, title_report = title_graphics.build_files(
+            Path("extracted"),
+            title_translation,
+            load_encoder(),
+            args.scenario_title_translation.with_name("scenario_title_render_cache.json"),
+        )
+        for name, rebuilt in rebuilt_titles.items():
+            title_images[name] = ((Path("extracted") / "MAP" / name).read_bytes(), rebuilt)
+        if title_translation.get("title_menu"):
+            menu_retail = (Path("extracted") / TITLE_MENU_FILE["name"]).read_bytes()
+            menu_rebuilt, menu_report = title_graphics.rebuild_sbdata(
+                menu_retail,
+                title_translation["title_menu"],
+                parse_bdf(args.bdf),
+                load_encoder(),
+            )
+            title_menu_image = (menu_retail, menu_rebuilt)
+            title_report["title_menu"] = menu_report
+
     patched_scedata, scedata_report, scenario_applied = rebuild_scedata(
         source_scedata,
         scenario_doc,
@@ -3129,6 +3293,12 @@ def main() -> int:
     (extracted_dir / "BTT" / args.bttmes.name).write_bytes(patched_bttmes)
     for name, (_, rebuilt) in dictionary_images.items():
         (extracted_dir / name).write_bytes(rebuilt)
+    if title_images:
+        (extracted_dir / "MAP").mkdir(parents=True, exist_ok=True)
+        for name, (_, rebuilt) in title_images.items():
+            (extracted_dir / "MAP" / name).write_bytes(rebuilt)
+    if title_menu_image is not None:
+        (extracted_dir / TITLE_MENU_FILE["name"]).write_bytes(title_menu_image[1])
     (args.output_dir / "translation_applied.json").write_text(json.dumps({
         "reference": translation.get("reference"),
         "menu": menu_applied,
@@ -3144,6 +3314,8 @@ def main() -> int:
         source_scedata, patched_scedata,
         source_bttmes, patched_bttmes,
         dictionary_images,
+        title_images,
+        title_menu_image,
     )
     output_track2 = args.output_dir / f"{base} (Track 2).bin"
     shutil.copyfile(args.track2, output_track2)
@@ -3170,6 +3342,7 @@ def main() -> int:
         "exe_fixed_labels": fixed_label_report,
         "terrain_panel_ring_lengths": terrain_panel_report,
         "encyclopedias": dictionary_reports,
+        "scenario_title_graphics": title_report,
         "encoded_translation": encoded_report,
         "font_mapping": mapping_report,
         "scedata": scedata_report,

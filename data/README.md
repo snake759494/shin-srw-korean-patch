@@ -14,6 +14,7 @@
 | `screenshot_translation_ko.json` | 오프닝 고정 슬롯 |
 | `pilotdic_ko.json` / `robotdic_ko.json` | 파일럿·로봇 백과 |
 | `tighten_src.json` | 가장 빡빡한 시나리오 멤버용 축약 번역 |
+| `scenario_title_ko.json` | 타이틀 화면 메뉴 4개와 시나리오 제목 109개(접두어 40·부제 69). 텍스트가 아니라 타일 그래픽으로 그려집니다 |
 
 ## 번역 기준
 
@@ -27,6 +28,7 @@
 | 파일 | 왜 커밋하나 |
 |---|---|
 | `hangul_mapping.json` | 한글 글리프를 게임 폰트 슬롯에 배정한 시드 표. 빌드가 여기서 시작해 필요한 글자를 채웁니다 |
+| `scenario_title_render_cache.json` | 위 제목들을 그린 결과. 그리려면 한글 아웃라인 글꼴이 필요한데 모든 PC에 있지는 않으므로, 결과를 캐시해 두어 어디서 빌드해도 같은 이미지가 나옵니다 |
 | `ssrw_japanese_font_mapping.json` | 글리프 인덱스 → 문자 표(1바이트 256 / 2바이트 1536). 자매작 디스크와 미공개 OCR 도구로 만들어 재실행할 수 없습니다 |
 | `ssrw_japanese_font_mapping.tsv` | 위 표의 사람이 읽는 형태 |
 | `extracted_manifest.tsv` | 원본 디스크 75개 엔트리의 경로·LBA·크기·SHA-256. 추출 결과 검증에 씁니다 |

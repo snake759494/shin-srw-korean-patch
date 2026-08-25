@@ -1,5 +1,5 @@
 ﻿#requires -version 3
-# 신 슈퍼로봇대전 한글패치 v0.9.0 적용 엔진
+# 신 슈퍼로봇대전 한글패치 v1.0.0 적용 엔진
 # 이 스크립트는 "한글패치 적용하기.bat" 이 자동으로 실행합니다.
 # (직접 실행하려면 원본 Track 1 .bin 을 인자로 넘기거나 같은 폴더에 두세요.)
 
@@ -7,15 +7,15 @@ $ErrorActionPreference = 'Stop'
 
 $root   = $PSScriptRoot
 $xdelta = Join-Path $root 'xdelta.exe'
-$patch  = Join-Path $root 'shin-srw-korean-v0.9.0.xdelta'
+$patch  = Join-Path $root 'shin-srw-korean-v1.0.0.xdelta'
 
 $T1NAME  = 'Shin Super Robot Taisen (Track 1).bin'
-$OUTNAME = 'Shin Super Robot Taisen Korean v0.9.0 (Track 1).bin'
-$CUENAME = 'Shin Super Robot Taisen Korean v0.9.0.cue'
+$OUTNAME = 'Shin Super Robot Taisen Korean v1.0.0 (Track 1).bin'
+$CUENAME = 'Shin Super Robot Taisen Korean v1.0.0.cue'
 
 $EXP_SRC   = 'ef06dcf085fcccdc4617c2efed01f8b90d1dfd72f67e7cb325623eccb2514915'
-$EXP_OUT   = '2eabf6f98bb9e5e664a3a121945ce4c29c52df41531b5bef635c688110cfc988'
-$EXP_PATCH = '8f63a18ff41fbf2533f7f57d5a5e164fe043411cf0c2053d5c8246b768ffce97'
+$EXP_OUT   = '1e313d2c20a7b23100c90aa0fbc30961a96bb44bcd0b82f94861cd7246d8741b'
+$EXP_PATCH = '51336e22955b95d7e36fd801e76fbf4ca725a5bda9dde9fdd26aecb3fa339cf5'
 $EXP_TRK2  = '2fbf5a94ffc8b475741529c4a95d580c937ca37db31db227e0d6c7a917a1e95f'
 
 function Get-Sha256([string]$p) {
@@ -35,12 +35,12 @@ function Fail([string]$msg) {
 try {
     Write-Host ''
     Write-Host '============================================================'
-    Write-Host '   신 슈퍼로봇대전 한글패치 v0.9.0'
+    Write-Host '   신 슈퍼로봇대전 한글패치 v1.0.0'
     Write-Host '============================================================'
     Write-Host ''
 
     if (-not (Test-Path -LiteralPath $xdelta)) { Fail "xdelta.exe 가 없습니다. 압축을 푼 폴더의 파일을 모두 한곳에 두세요." }
-    if (-not (Test-Path -LiteralPath $patch))  { Fail "shin-srw-korean-v0.9.0.xdelta 가 없습니다." }
+    if (-not (Test-Path -LiteralPath $patch))  { Fail "shin-srw-korean-v1.0.0.xdelta 가 없습니다." }
 
     # --- 원본 Track 1 찾기: 드래그앤드롭 인자 > 스크립트 폴더 > 현재 폴더 ---
     $src = $null

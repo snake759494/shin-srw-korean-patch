@@ -46,21 +46,23 @@ RETAIL_TRACK2_MD5 = "65aea234c174ee35fb574d981fe3fc4f"
 
 # What a correct build produces.
 PATCHED_TRACK1_SIZE = 650_607_888
-PATCHED_TRACK1_SHA256 = "2eabf6f98bb9e5e664a3a121945ce4c29c52df41531b5bef635c688110cfc988"
-PATCHED_TRACK1_MD5 = "30c00911909d7b8f014192b8003fb2f4"
+PATCHED_TRACK1_SHA256 = "1e313d2c20a7b23100c90aa0fbc30961a96bb44bcd0b82f94861cd7246d8741b"
+PATCHED_TRACK1_MD5 = "464d5f172bab69f0c300570f50f993b4"
 
 BUILD_TRACK1_NAME = "Shin Super Robot Taisen Korean Full Translation (Track 1).bin"
 
-# The five disc files the build actually opens.  Everything else on the disc -
-# 540 MB of audio, movies and graphics - is copied through untouched, so there
-# is no reason to extract it.
+# The disc files the build actually opens.  Everything else - 540 MB of audio,
+# movies and graphics - is copied through untouched, so there is no reason to
+# extract it.  SBDATA.BIN holds the title-screen menu and MAP/SBTI*.DAT the
+# scenario-title screens; both are graphics, and both are redrawn in Korean.
 NEEDED_FROM_DISC = (
     "SLPS_005.50",
     "SCEDATA.BIN",
     "BTT/BTTMES.BIN",
     "PILOTDIC.BIN",
     "ROBOTDIC.BIN",
-)
+    "SBDATA.BIN",
+) + tuple("MAP/SBTI%d.DAT" % n for n in range(9))
 
 # Repository asset -> where the build expects to find it, relative to work/.
 WORKSPACE_LAYOUT = (
@@ -73,6 +75,11 @@ WORKSPACE_LAYOUT = (
     ("data/robotdic_ko.json", "robotdic_ko.json"),
     ("data/hangul_mapping.json", "korean_patch/hangul_mapping.json"),
     ("data/ssrw_japanese_font_mapping.json", "text_extracted/ssrw_japanese_font_mapping.json"),
+    ("data/scenario_title_ko.json", "scenario_title_ko.json"),
+    # Drawing the title graphics needs a Korean outline font, which not every
+    # machine has; the cache holds what that drawing produced, so the build is
+    # the same everywhere and needs no font beyond the bundled Galmuri.
+    ("data/scenario_title_render_cache.json", "scenario_title_render_cache.json"),
 )
 
 

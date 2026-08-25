@@ -19,8 +19,11 @@ PlayStation 게임 **신 슈퍼로봇대전**(新スーパーロボット大戦,
 | 시나리오 제목 | 전체 |
 | 정신기·지형·특수능력 설명 | 전체 |
 | 파일럿 백과 / 로봇 백과 | 347 / 242 레코드 |
+| 타이틀 화면 메뉴 *(그래픽)* | 4개 항목 |
+| 시나리오 제목 화면 *(그래픽)* | 접두어 40 · 부제 69 |
 
-폰트는 [Galmuri14](https://quiple.dev/font/galmuri)를 12×12 글리프로 변환해 게임의 폰트 테이블에 심었습니다.
+본문 폰트는 [Galmuri14](https://quiple.dev/font/galmuri)를 12×12 글리프로 변환해 게임의 폰트 테이블에 심었습니다.
+타이틀·시나리오 제목 화면은 텍스트가 아니라 타일 그래픽이라, 원본 서체를 실측해 한글로 다시 그렸습니다.
 게임 렌더러가 한 글자당 8px(1바이트)·12px(2바이트)로 폭을 계산하므로, 모든 대사는 한 줄 216px 제한에 맞춰 재배치했습니다.
 
 ---
@@ -71,7 +74,7 @@ md5sum "Shin Super Robot Taisen (Track 1).bin"
 
 ### 방법 1 — 간편 적용 (Windows, 권장)
 
-1. 릴리스에서 `shin-srw-korean-v0.9.0-easy-apply.zip` 을 받아 압축을 풉니다.
+1. 릴리스에서 `shin-srw-korean-v1.0.0-easy-apply.zip` 을 받아 압축을 풉니다.
 2. 원본 `.bin` 2개를 압축 푼 폴더에 복사합니다.
 3. **`한글패치 적용하기.bat`** 을 더블클릭합니다.
 4. 원본 검증 → 패치 → 결과 검증이 자동으로 진행됩니다(1~2분).
@@ -85,14 +88,14 @@ md5sum "Shin Super Robot Taisen (Track 1).bin"
 
 ```bash
 xdelta3 -d -s "Shin Super Robot Taisen (Track 1).bin" \
-        shin-srw-korean-v0.9.0.xdelta \
-        "Shin Super Robot Taisen Korean v0.9.0 (Track 1).bin"
+        shin-srw-korean-v1.0.0.xdelta \
+        "Shin Super Robot Taisen Korean v1.0.0 (Track 1).bin"
 ```
 
 그 다음 아래 내용으로 `.cue` 파일을 만듭니다. Track 2 파일명은 실제 파일명과 같아야 합니다.
 
 ```
-FILE "Shin Super Robot Taisen Korean v0.9.0 (Track 1).bin" BINARY
+FILE "Shin Super Robot Taisen Korean v1.0.0 (Track 1).bin" BINARY
   TRACK 01 MODE2/2352
     INDEX 01 00:00:00
 FILE "Shin Super Robot Taisen (Track 2).bin" BINARY
@@ -108,16 +111,16 @@ FILE "Shin Super Robot Taisen (Track 2).bin" BINARY
 
 | 알고리즘 | 값 |
 |---|---|
-| MD5 | `30c00911909d7b8f014192b8003fb2f4` |
-| SHA-1 | `d60c3f150fb50d6ca96b2aec569ca86b924e4e11` |
-| SHA-256 | `2eabf6f98bb9e5e664a3a121945ce4c29c52df41531b5bef635c688110cfc988` |
-| CRC32 | `EDB618DE` |
+| MD5 | `464d5f172bab69f0c300570f50f993b4` |
+| SHA-1 | `88d4c20c5cf8a995080f6cff9d40c80b322b6c7f` |
+| SHA-256 | `1e313d2c20a7b23100c90aa0fbc30961a96bb44bcd0b82f94861cd7246d8741b` |
+| CRC32 | `E6EE471A` |
 
-**패치 파일 `shin-srw-korean-v0.9.0.xdelta` — 538,429 바이트**
+**패치 파일 `shin-srw-korean-v1.0.0.xdelta` — 603,199 바이트**
 
 | 알고리즘 | 값 |
 |---|---|
-| SHA-256 | `8f63a18ff41fbf2533f7f57d5a5e164fe043411cf0c2053d5c8246b768ffce97` |
+| SHA-256 | `51336e22955b95d7e36fd801e76fbf4ca725a5bda9dde9fdd26aecb3fa339cf5` |
 
 ### 문제 해결
 
