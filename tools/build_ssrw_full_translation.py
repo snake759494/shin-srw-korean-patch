@@ -3326,7 +3326,11 @@ def main() -> int:
         "    INDEX 01 00:00:00\n"
         f'FILE "{output_track2.name}" BINARY\n'
         "  TRACK 02 AUDIO\n"
-        "    INDEX 01 00:00:00\n",
+        # The first 150 sectors in the retail audio file are the Track 2
+        # pregap.  NULL.DA points at data-track-end + 150, so make that
+        # boundary explicit for cores which do not infer it from the ISO.
+        "    INDEX 00 00:00:00\n"
+        "    INDEX 01 00:02:00\n",
         encoding="ascii",
     )
 
@@ -3350,6 +3354,7 @@ def main() -> int:
         "exe_index_mirrors": mirror_report,
         "scedata_runtime_verification": scedata_verification,
         "iso": iso_report,
+        "cue_track2_pregap_sectors": AUDIO_PREGAP_SECTORS,
         "sha256": {
             output_track.name: sha256(output_track.read_bytes()),
             output_track2.name: sha256(output_track2.read_bytes()),
@@ -3360,7 +3365,11 @@ def main() -> int:
         },
     }
     (args.output_dir / "build_report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps(report, ensure_ascii=False, indent=2))
+    # PowerShell commonly exposes a cp949 stdout on Korean Windows.  The
+    # report is already written as UTF-8 above; keep console output from
+    # turning a completed build into a non-zero exit when it contains Japanese.
+    report_text = json.dumps(report, ensure_ascii=False, indent=2)
+    print(report_text.encode("ascii", "backslashreplace").decode("ascii"))
     return 0
 
 

@@ -100,8 +100,14 @@ FILE "Shin Super Robot Taisen Korean v1.0.0 (Track 1).bin" BINARY
     INDEX 01 00:00:00
 FILE "Shin Super Robot Taisen (Track 2).bin" BINARY
   TRACK 02 AUDIO
-    INDEX 01 00:00:00
+    INDEX 00 00:00:00
+    INDEX 01 00:02:00
 ```
+
+Track 2 파일에는 정품 디스크와 같은 150섹터(2초) 프리갭이 이미 들어 있으므로
+`PREGAP`을 추가하지 말고 위처럼 `INDEX 00`과 `INDEX 01`을 사용해야 합니다.
+이렇게 해야 `NULL.DA`가 가리키는 데이터 트랙 끝+150섹터와 오디오 Track 2의
+실제 시작점이 SwanStation에서도 일치합니다.
 
 ### 결과 확인값
 

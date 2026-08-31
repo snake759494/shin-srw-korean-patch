@@ -123,7 +123,11 @@ try {
         '    INDEX 01 00:00:00',
         ('FILE "{0}" BINARY' -f $t2),
         '  TRACK 02 AUDIO',
-        '    INDEX 01 00:00:00'
+        # Track 2's first 150 sectors are the pregap already present in the
+        # retail audio file.  Declare it so SwanStation maps NULL.DA's LBA
+        # (data-track-end + 150) to Track 2 INDEX 01 consistently.
+        '    INDEX 00 00:00:00',
+        '    INDEX 01 00:02:00'
     )
     Set-Content -LiteralPath $cue -Value $cueLines -Encoding ascii
 

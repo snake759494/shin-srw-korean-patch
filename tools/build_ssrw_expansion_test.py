@@ -469,7 +469,8 @@ def main() -> int:
         "    INDEX 01 00:00:00\n"
         f'FILE "{output_track2.name}" BINARY\n'
         "  TRACK 02 AUDIO\n"
-        "    INDEX 01 00:00:00\n",
+        "    INDEX 00 00:00:00\n"
+        "    INDEX 01 00:02:00\n",
         encoding="ascii",
     )
 

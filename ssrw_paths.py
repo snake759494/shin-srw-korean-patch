@@ -97,7 +97,10 @@ def find_disc(explicit: str | None, name: str, *, search: list[Path] | None = No
     """Resolve a disc track: an explicit path wins, otherwise look around."""
     if explicit:
         candidate = Path(explicit).expanduser()
-        return candidate if candidate.is_file() else None
+        # The builders run with work/ as their CWD.  Resolve an explicit
+        # relative path here so it remains valid when passed to that child
+        # process instead of being interpreted relative to work/.
+        return candidate.resolve() if candidate.is_file() else None
     for directory in search or [Path.cwd(), REPO, REPO.parent]:
         candidate = directory / name
         if candidate.is_file():
