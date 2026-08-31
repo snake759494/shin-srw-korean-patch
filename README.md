@@ -6,6 +6,9 @@ PlayStation 게임 **신 슈퍼로봇대전**(新スーパーロボット大戦,
 > **게임 데이터는 이 저장소에 없습니다.** 배포물은 원본 디스크에 적용하는 xdelta 바이너리 패치뿐입니다.
 > 본인이 소유한 디스크에서 직접 추출한 이미지가 필요합니다.
 
+현재 최신 릴리스는 **v1.0.1**이며, SwanStation에서 전투 후 전환이 멈출 수 있는
+Track 2 CUE 프리갭 표기 문제를 수정했습니다.
+
 ---
 
 ## 무엇이 한글화되었나
@@ -74,7 +77,7 @@ md5sum "Shin Super Robot Taisen (Track 1).bin"
 
 ### 방법 1 — 간편 적용 (Windows, 권장)
 
-1. 릴리스에서 `shin-srw-korean-v1.0.0-easy-apply.zip` 을 받아 압축을 풉니다.
+1. 릴리스에서 `shin-srw-korean-v1.0.1-easy-apply.zip` 을 받아 압축을 풉니다.
 2. 원본 `.bin` 2개를 압축 푼 폴더에 복사합니다.
 3. **`한글패치 적용하기.bat`** 을 더블클릭합니다.
 4. 원본 검증 → 패치 → 결과 검증이 자동으로 진행됩니다(1~2분).
@@ -88,14 +91,14 @@ md5sum "Shin Super Robot Taisen (Track 1).bin"
 
 ```bash
 xdelta3 -d -s "Shin Super Robot Taisen (Track 1).bin" \
-        shin-srw-korean-v1.0.0.xdelta \
-        "Shin Super Robot Taisen Korean v1.0.0 (Track 1).bin"
+        shin-srw-korean-v1.0.1.xdelta \
+        "Shin Super Robot Taisen Korean v1.0.1 (Track 1).bin"
 ```
 
 그 다음 아래 내용으로 `.cue` 파일을 만듭니다. Track 2 파일명은 실제 파일명과 같아야 합니다.
 
 ```
-FILE "Shin Super Robot Taisen Korean v1.0.0 (Track 1).bin" BINARY
+FILE "Shin Super Robot Taisen Korean v1.0.1 (Track 1).bin" BINARY
   TRACK 01 MODE2/2352
     INDEX 01 00:00:00
 FILE "Shin Super Robot Taisen (Track 2).bin" BINARY
@@ -122,7 +125,7 @@ Track 2 파일에는 정품 디스크와 같은 150섹터(2초) 프리갭이 이
 | SHA-256 | `1e313d2c20a7b23100c90aa0fbc30961a96bb44bcd0b82f94861cd7246d8741b` |
 | CRC32 | `E6EE471A` |
 
-**패치 파일 `shin-srw-korean-v1.0.0.xdelta` — 603,199 바이트**
+**패치 파일 `shin-srw-korean-v1.0.1.xdelta` — 603,199 바이트**
 
 | 알고리즘 | 값 |
 |---|---|

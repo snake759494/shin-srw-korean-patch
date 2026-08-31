@@ -76,7 +76,7 @@ verifying the result ...
 ## 4. 릴리스 패치 만들기
 
 ```bash
-py -3.14 make_release.py --version v0.9.0 \
+py -3.14 make_release.py --version v1.0.1 \
     --disc "E:\dump\Shin Super Robot Taisen (Track 1).bin" \
     --xdelta "C:\tools\xdelta3.exe"
 ```
