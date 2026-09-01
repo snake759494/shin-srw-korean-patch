@@ -58,14 +58,14 @@ EXE_LBA = 24
 EXE_TEXT_BASE = 0x80030000
 AUDIO_PREGAP_SECTORS = 150
 
-# Keep BTTMES.BIN at its retail LBA.  v1.0.1 moved the expanded archive to the
-# end of the data track.  That is legal ISO9660, but it changes the seek
-# boundary seen by the game's CD loader and freezes in SwanStation when the
-# first translated battle message is requested.  The stable layout is to keep
-# BTTMES at its retail start, shift the contiguous tail (UNTDATA and everything
-# after it) by only the extra sectors, and update the directory extents.  Real
-# data remains immediately after BTTMES, so no read-ahead guard is needed.
-BTTMES_READAHEAD_GUARD_SECTORS = 0
+# BTTMES.BIN is appended at the end of the data track, so its last record ends
+# on the last data sector.  The battle-message loader streams with CdlReadN and
+# the drive prefetches lba+1; with nothing after BTTMES that prefetch lands in
+# the CD-DA track, which cannot be delivered in 2048-byte data mode.  The
+# request stepper at 0x80032E84 then sees CdReadSync == -1 and retries forever.
+# Keep a run of real data sectors behind the archive so read-ahead stays on
+# track 1.
+BTTMES_READAHEAD_GUARD_SECTORS = 16
 # The executable does not read the archive index tables out of the data files.
 # It carries verbatim copies of them inside itself, reached through the archive
 # directory struct at RAM 0x80072540 (file 0x42D40): slot +0x110 selects the
@@ -2829,61 +2829,6 @@ def write_directory(track, extent: int, original: bytes, updated: bytes) -> None
         track.write(sector)
 
 
-def verify_shifted_tail(
-    output_track: Path,
-    source_track: Path,
-    source_lba: int,
-    sectors: int,
-    shift: int,
-    patched_user_data: dict[int, bytes] | None = None,
-) -> None:
-    """Prove that the ISO tail was copied byte-for-byte to its new LBA.
-
-    Directory records are rewritten after this check, so the comparison is
-    intentionally performed before those records are updated.  All game data
-    in the moved range is otherwise untouched; checking raw Mode2 sectors here
-    catches an off-by-one LBA or an overlapping backward copy immediately.
-    """
-    if sectors <= 0:
-        return
-    block_sectors = 1024
-    with source_track.open("rb") as source, output_track.open("rb") as output:
-        remaining = sectors
-        lba = source_lba
-        while remaining:
-            count = min(block_sectors, remaining)
-            source.seek(lba * RAW_SECTOR_SIZE)
-            expected = source.read(count * RAW_SECTOR_SIZE)
-            output.seek((lba + shift) * RAW_SECTOR_SIZE)
-            actual = output.read(count * RAW_SECTOR_SIZE)
-            for index in range(count):
-                sector_lba = lba + index
-                start = index * RAW_SECTOR_SIZE
-                end = start + RAW_SECTOR_SIZE
-                expected_sector = expected[start:end]
-                actual_sector = actual[start:end]
-                replacement = (patched_user_data or {}).get(sector_lba)
-                if replacement is None:
-                    if actual_sector != expected_sector:
-                        raise ValueError(
-                            f"shifted ISO tail mismatch at source LBA {sector_lba} "
-                            f"(destination LBA {sector_lba + shift})"
-                        )
-                    continue
-                expected_user = bytearray(
-                    expected_sector[USER_DATA_OFFSET:USER_DATA_OFFSET + USER_DATA_SIZE]
-                )
-                expected_user[:len(replacement)] = replacement
-                if actual_sector[USER_DATA_OFFSET:USER_DATA_OFFSET + USER_DATA_SIZE] != expected_user:
-                    raise ValueError(
-                        f"patched sector data mismatch at source LBA {sector_lba} "
-                        f"(destination LBA {sector_lba + shift})"
-                    )
-                verify_mode2_form1(actual_sector)
-            lba += count
-            remaining -= count
-
-
 def patch_iso(
     output_track: Path,
     source_track: Path,
@@ -2906,6 +2851,9 @@ def patch_iso(
         )
     stored_scedata = patched_scedata + bytes(len(source_scedata) - len(patched_scedata))
     bttmes_sectors = math.ceil(len(patched_bttmes) / USER_DATA_SIZE)
+    new_bttmes_lba = old_track_sectors
+    added_sectors = bttmes_sectors + BTTMES_READAHEAD_GUARD_SECTORS
+    new_track_sectors = old_track_sectors + added_sectors
 
     with output_track.open("r+b") as track:
         # The executable size is unchanged, so it can be safely patched in place.
@@ -2937,6 +2885,11 @@ def patch_iso(
         if pvd[:7] != b"\x01CD001\x01":
             raise ValueError("primary volume descriptor signature mismatch")
         old_volume_sectors = struct.unpack_from("<I", pvd, 80)[0]
+        set_both_endian_u32(pvd, 80, old_volume_sectors + added_sectors)
+        pvd_sector[USER_DATA_OFFSET:USER_DATA_OFFSET + USER_DATA_SIZE] = pvd
+        rebuild_mode2_form1(pvd_sector)
+        track.seek(PVD_LBA * RAW_SECTOR_SIZE)
+        track.write(pvd_sector)
 
         track.seek(ROOT_DIRECTORY_LBA * RAW_SECTOR_SIZE)
         root_sector = bytearray(track.read(RAW_SECTOR_SIZE))
@@ -2958,6 +2911,18 @@ def patch_iso(
         old_null_lba = null_record["extent"]
         if old_scedata_lba + old_scedata_sectors > old_track_sectors:
             raise ValueError("retail SCEDATA extent lies outside track 1")
+        changed_scedata = patch_fixed_extent(
+            track, old_scedata_lba, source_scedata, stored_scedata
+        )
+        # Keep both the retail LBA and directory size.  The startup loader uses
+        # the retail SCEDATA placement while the archive's own pointer table
+        # determines the translated payload's true end.
+        set_both_endian_u32(root_data, null_record["offset"] + 2, new_track_sectors + AUDIO_PREGAP_SECTORS)
+        root_sector[USER_DATA_OFFSET:USER_DATA_OFFSET + USER_DATA_SIZE] = root_data
+        rebuild_mode2_form1(root_sector)
+        track.seek(ROOT_DIRECTORY_LBA * RAW_SECTOR_SIZE)
+        track.write(root_sector)
+
         btt_data, btt_records = read_directory(track, old_btt_dir_lba, old_btt_dir_size)
         btt_by_name = {row["name"]: row for row in btt_records}
         if "BTTMES.BIN;1" not in btt_by_name:
@@ -2965,148 +2930,22 @@ def patch_iso(
         bttmes_record = btt_by_name["BTTMES.BIN;1"]
         old_bttmes_lba = bttmes_record["extent"]
         old_bttmes_size = bttmes_record["size"]
-        old_bttmes_sectors = math.ceil(old_bttmes_size / USER_DATA_SIZE)
-        tail_start_lba = old_bttmes_lba + old_bttmes_sectors
-        if tail_start_lba > old_track_sectors:
-            raise ValueError("retail BTTMES extent lies outside track 1")
-        if bttmes_sectors < old_bttmes_sectors:
-            raise ValueError(
-                "translated BTTMES unexpectedly shrank; refusing to move the ISO tail"
-            )
-        added_sectors = bttmes_sectors - old_bttmes_sectors
-        new_bttmes_lba = old_bttmes_lba
-        new_track_sectors = old_track_sectors + added_sectors
+        updated_btt_data = bytearray(btt_data)
+        set_both_endian_u32(updated_btt_data, bttmes_record["offset"] + 2, new_bttmes_lba)
+        set_both_endian_u32(updated_btt_data, bttmes_record["offset"] + 10, len(patched_bttmes))
+        write_directory(track, old_btt_dir_lba, bytes(btt_data), bytes(updated_btt_data))
 
-        # Snapshot every directory that may be in the moved range before the
-        # copy.  Updating `.` entries as well as child files is necessary for
-        # CdSearchFile implementations that resolve a path one directory at a
-        # time instead of trusting the root record alone.
-        directory_names = {"BTT", "BTT;1", "MAP", "MAP;1", "MOV", "MOV;1", "MWA", "MWA;1", "VCE", "VCE;1"}
-        directory_snapshots: list[dict[str, Any]] = []
-        for directory in root_records:
-            if directory["name"] not in directory_names:
-                continue
-            directory_data, directory_records = read_directory(
-                track, directory["extent"], directory["size"]
-            )
-            directory_snapshots.append({
-                "name": directory["name"],
-                "extent": directory["extent"],
-                "size": directory["size"],
-                "data": bytes(directory_data),
-                "records": directory_records,
-            })
-
-        def relocated_extent(extent: int) -> int:
-            # NULL.DA is a pseudo-file in the Track 2 address space, but its
-            # extent is data-track-end+150 and therefore moves by the same
-            # delta as the physical data tail.
-            return extent + added_sectors if extent >= tail_start_lba else extent
-
-        changed_scedata = patch_fixed_extent(
-            track, old_scedata_lba, source_scedata, stored_scedata
-        )
-
-        # The translated BTTMES occupies its retail extent plus the newly
-        # required sectors.  Move the old tail backwards in chunks before
-        # writing the expanded archive, so the source bytes cannot be
-        # overwritten while the ranges overlap.
-        if added_sectors:
-            track.seek(0, 2)
-            track.truncate(new_track_sectors * RAW_SECTOR_SIZE)
-            block_sectors = 1024
-            source_end_lba = old_track_sectors
-            while source_end_lba > tail_start_lba:
-                source_start_lba = max(
-                    tail_start_lba, source_end_lba - block_sectors
-                )
-                count = source_end_lba - source_start_lba
-                track.seek(source_start_lba * RAW_SECTOR_SIZE)
-                block = track.read(count * RAW_SECTOR_SIZE)
-                if len(block) != count * RAW_SECTOR_SIZE:
-                    raise ValueError(
-                        f"short read while shifting ISO tail at LBA {source_start_lba}"
-                    )
-                track.seek((source_start_lba + added_sectors) * RAW_SECTOR_SIZE)
-                track.write(block)
-                source_end_lba = source_start_lba
-            shifted_tail_patches: dict[int, bytes] = {}
-            for name, (retail, rebuilt) in (title_graphics or {}).items():
-                title_lba = TITLE_GRAPHIC_FILES[name]
-                for index in range(math.ceil(len(rebuilt) / USER_DATA_SIZE)):
-                    start = index * USER_DATA_SIZE
-                    end = min(start + USER_DATA_SIZE, len(rebuilt))
-                    if title_lba + index >= tail_start_lba:
-                        shifted_tail_patches[title_lba + index] = rebuilt[start:end]
-            if title_menu is not None:
-                retail, rebuilt = title_menu
-                for index in range(math.ceil(len(rebuilt) / USER_DATA_SIZE)):
-                    start = index * USER_DATA_SIZE
-                    end = min(start + USER_DATA_SIZE, len(rebuilt))
-                    if TITLE_MENU_FILE["lba"] + index >= tail_start_lba:
-                        shifted_tail_patches[TITLE_MENU_FILE["lba"] + index] = rebuilt[start:end]
-            verify_shifted_tail(
-                output_track,
-                source_track,
-                tail_start_lba,
-                old_track_sectors - tail_start_lba,
-                added_sectors,
-                shifted_tail_patches,
-            )
-
-        # Keep BTTMES at its retail start and shift the root records for all
-        # downstream files, including the Track 2 pseudo-file.
-        for record in root_records:
-            new_extent = relocated_extent(record["extent"])
-            if new_extent != record["extent"]:
-                set_both_endian_u32(root_data, record["offset"] + 2, new_extent)
-        root_sector[USER_DATA_OFFSET:USER_DATA_OFFSET + USER_DATA_SIZE] = root_data
-        rebuild_mode2_form1(root_sector)
-        track.seek(ROOT_DIRECTORY_LBA * RAW_SECTOR_SIZE)
-        track.write(root_sector)
-
-        updated_directories: list[dict[str, Any]] = []
-        for snapshot in directory_snapshots:
-            updated = bytearray(snapshot["data"])
-            for record in snapshot["records"]:
-                new_extent = relocated_extent(record["extent"])
-                if (
-                    snapshot["name"] == btt_root_name
-                    and record["name"] == "BTTMES.BIN;1"
-                ):
-                    new_extent = old_bttmes_lba
-                    set_both_endian_u32(
-                        updated, record["offset"] + 10, len(patched_bttmes)
-                    )
-                if new_extent != record["extent"]:
-                    set_both_endian_u32(updated, record["offset"] + 2, new_extent)
-            new_directory_extent = relocated_extent(snapshot["extent"])
-            write_directory(
-                track,
-                new_directory_extent,
-                snapshot["data"],
-                bytes(updated),
-            )
-            snapshot["new_extent"] = new_directory_extent
-            snapshot["updated_data"] = bytes(updated)
-            updated_directories.append(snapshot)
-
-        # Write the expanded archive at the original location after the tail
-        # has moved out of the way.  The last sector is zero-filled by the
-        # Mode2 sector constructor just like the retail file extent.
+        track.seek(0, 2)
         for index in range(bttmes_sectors):
             start = index * USER_DATA_SIZE
             user_data = patched_bttmes[start:start + USER_DATA_SIZE]
-            track.seek((new_bttmes_lba + index) * RAW_SECTOR_SIZE)
             track.write(make_mode2_form1_sector(new_bttmes_lba + index, user_data))
-
-        # The PVD's volume size includes the Track 2 pseudo-file.  Moving the
-        # physical data tail therefore shifts its start by the same delta.
-        set_both_endian_u32(pvd, 80, old_volume_sectors + added_sectors)
-        pvd_sector[USER_DATA_OFFSET:USER_DATA_OFFSET + USER_DATA_SIZE] = pvd
-        rebuild_mode2_form1(pvd_sector)
-        track.seek(PVD_LBA * RAW_SECTOR_SIZE)
-        track.write(pvd_sector)
+        for index in range(BTTMES_READAHEAD_GUARD_SECTORS):
+            track.write(
+                make_mode2_form1_sector(
+                    new_bttmes_lba + bttmes_sectors + index, bytes(USER_DATA_SIZE)
+                )
+            )
 
     if output_track.stat().st_size != source_track.stat().st_size + added_sectors * RAW_SECTOR_SIZE:
         raise ValueError("full translation track growth mismatch")
@@ -3129,26 +2968,12 @@ def patch_iso(
         btt_record = {row["name"]: row for row in btt_records}["BTTMES.BIN;1"]
         if btt_record["extent"] != new_bttmes_lba or btt_record["size"] != len(patched_bttmes):
             raise ValueError("BTTMES directory verification failed")
-        for snapshot in updated_directories:
-            actual, _ = read_directory(
-                track, snapshot["new_extent"], snapshot["size"]
-            )
-            if actual != snapshot["updated_data"]:
-                raise ValueError(
-                    f"directory relocation verification failed: {snapshot['name']}"
-                )
         for name, (_, rebuilt) in (dictionaries or {}).items():
             verify_fixed_extent(track, DICTIONARY_FILES[name]["lba"], rebuilt)
         for name, (_, rebuilt) in (title_graphics or {}).items():
-            title_lba = TITLE_GRAPHIC_FILES[name]
-            if title_lba >= tail_start_lba:
-                title_lba += added_sectors
-            verify_fixed_extent(track, title_lba, rebuilt)
+            verify_fixed_extent(track, TITLE_GRAPHIC_FILES[name], rebuilt)
         if title_menu is not None:
-            title_menu_lba = TITLE_MENU_FILE["lba"]
-            if title_menu_lba >= tail_start_lba:
-                title_menu_lba += added_sectors
-            verify_fixed_extent(track, title_menu_lba, title_menu[1])
+            verify_fixed_extent(track, TITLE_MENU_FILE["lba"], title_menu[1])
         verify_fixed_extent(track, old_scedata_lba, stored_scedata)
         verify_appended_payload(track, new_bttmes_lba, patched_bttmes)
 
@@ -3171,21 +2996,17 @@ def patch_iso(
         "new_bttmes_lba": new_bttmes_lba,
         "old_bttmes_size": old_bttmes_size,
         "new_bttmes_size": len(patched_bttmes),
-        "bttmes_storage": "retail LBA; downstream ISO tail shifted",
-        "bttmes_tail_shift_start_lba": tail_start_lba,
-        "bttmes_tail_shift_sectors": added_sectors,
         "old_audio_pseudo_file_lba": old_null_lba,
         "new_audio_pseudo_file_lba": new_track_sectors + AUDIO_PREGAP_SECTORS,
         "appended_scedata_sectors": 0,
-        "appended_bttmes_sectors": 0,
+        "appended_bttmes_sectors": bttmes_sectors,
         "bttmes_readahead_guard_sectors": BTTMES_READAHEAD_GUARD_SECTORS,
-        "verified_shifted_tail_sectors": old_track_sectors - tail_start_lba,
         "patched_exe_sectors": changed_exe,
         "patched_dictionary_sectors": changed_dictionaries,
         "patched_title_graphic_sectors": changed_titles,
         "patched_title_menu_sectors": changed_title_menu,
         "patched_scedata_sectors": changed_scedata,
-        "verified_appended_form1_sectors": 0,
+        "verified_appended_form1_sectors": added_sectors,
     }
 
 
