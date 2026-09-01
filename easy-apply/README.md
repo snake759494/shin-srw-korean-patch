@@ -19,8 +19,8 @@ ANSI 로 읽어 한글 메시지가 전부 깨집니다.
 `make_release.py` 가 만든 zip 에 **공개 전에 직접 넣어야 합니다.**
 
 ```bash
-py -3.14 make_release.py --version v1.0.1 --disc "…(Track 1).bin"
-# 그 다음 release/shin-srw-korean-v1.0.1-easy-apply.zip 에 xdelta.exe 를 추가
+py -3.14 make_release.py --version v1.0.2 --disc "…(Track 1).bin"
+# 그 다음 release/shin-srw-korean-v1.0.2-easy-apply.zip 에 xdelta.exe 를 추가
 ```
 
 xdelta3 바이너리는 <https://github.com/jmacd/xdelta/releases> 에서 받을 수 있습니다.
