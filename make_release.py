@@ -34,6 +34,12 @@ EASY_APPLY_FILES = (
     "xdelta3-정보.txt",
 )
 
+# A 650 MB Track 1 does not need a source block anywhere near the full image.
+# Keeping the search block/window bounded makes release creation reliable on
+# ordinary Windows machines while retaining the same lossless round trip.
+XDELTA_SOURCE_BLOCK = "33554432"
+XDELTA_WINDOW = "4194304"
+
 
 def find_xdelta(explicit: str | None) -> str:
     if explicit:
@@ -71,7 +77,7 @@ def main() -> int:
 
     print("[1/4] encoding the patch (a few minutes) ...")
     encode = subprocess.run(
-        [xdelta, "-e", "-9", "-S", "lzma", "-B", "671088640", "-W", "16777216", "-f",
+        [xdelta, "-e", "-9", "-S", "lzma", "-B", XDELTA_SOURCE_BLOCK, "-W", XDELTA_WINDOW, "-f",
          "-s", str(source), str(built), str(patch)]
     )
     if encode.returncode != 0:

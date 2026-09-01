@@ -32,7 +32,7 @@ Track 2 가 Track 1 과 같은 폴더에 있으면 자동으로 찾습니다. �
 ```
 verifying the result ...
   size    650607888 ok
-  sha256  1e313d2c20a7b23100c90aa0fbc30961a96bb44bcd0b82f94861cd7246d8741b
+  sha256  57e234ba057ebb1581015762fa0b95146f7678eac51e0f9fc9635dfe018ef8c8
   matches the released build exactly.
 ```
 
@@ -76,7 +76,7 @@ verifying the result ...
 ## 4. 릴리스 패치 만들기
 
 ```bash
-py -3.14 make_release.py --version v1.0.1 \
+py -3.14 make_release.py --version v1.0.3 \
     --disc "E:\dump\Shin Super Robot Taisen (Track 1).bin" \
     --xdelta "C:\tools\xdelta3.exe"
 ```

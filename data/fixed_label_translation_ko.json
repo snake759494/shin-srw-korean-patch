@@ -69,7 +69,7 @@
    "offset": "0x4532A",
    "budget": 3,
    "japanese": "はい",
-   "korean": "예",
+   "korean": "네",
    "terminated": true,
    "pool": "SYSMSG"
   },
@@ -77,7 +77,7 @@
    "offset": "0x4532D",
    "budget": 4,
    "japanese": "いいえ",
-   "korean": "NO ",
+   "korean": "아뇨",
    "terminated": true,
    "pool": "SYSMSG"
   },
@@ -237,7 +237,7 @@
    "offset": "0x4543C",
    "budget": 3,
    "japanese": "はい",
-   "korean": "예",
+   "korean": "네",
    "terminated": true,
    "pool": "SYSMSG"
   },
@@ -245,7 +245,7 @@
    "offset": "0x4543F",
    "budget": 4,
    "japanese": "いいえ",
-   "korean": "NO ",
+   "korean": "아뇨",
    "terminated": true,
    "pool": "SYSMSG"
   },
@@ -645,7 +645,7 @@
    "offset": "0x45624",
    "budget": 3,
    "japanese": "はい",
-   "korean": "예",
+   "korean": "네",
    "terminated": true,
    "pool": "SYSMSG"
   },
@@ -653,7 +653,7 @@
    "offset": "0x45627",
    "budget": 4,
    "japanese": "いいえ",
-   "korean": "NO ",
+   "korean": "아뇨",
    "terminated": true,
    "pool": "SYSMSG"
   },
@@ -2621,7 +2621,7 @@
    "offset": "0x851E7",
    "budget": 2,
    "japanese": "はい",
-   "korean": "예",
+   "korean": "네",
    "terminated": false,
    "pool": "WIN"
   },
@@ -2629,7 +2629,7 @@
    "offset": "0x851EA",
    "budget": 3,
    "japanese": "いいえ",
-   "korean": "NO",
+   "korean": "아뇨",
    "terminated": false,
    "pool": "WIN"
   },

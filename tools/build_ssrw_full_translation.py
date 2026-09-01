@@ -58,6 +58,15 @@ EXE_LBA = 24
 EXE_TEXT_BASE = 0x80030000
 AUDIO_PREGAP_SECTORS = 150
 
+# 0xED is an unused entry in the executable's 8x16 half-width table.  The
+# confirmation labels "아뇨" need three message bytes when encoded as one
+# half-width glyph plus one wide glyph, which fits the retail three-byte
+# label field (four bytes including the SYSMSG terminator) without moving the
+# following SYSMSG record.
+SMALL_FONT_OFFSET = 0x72438
+SMALL_GLYPH_BYTES = 16
+SMALL_LABEL_AH_INDEX = 0xED
+
 # BTTMES.BIN is appended at the end of the data track, so its last record ends
 # on the last data sector.  The battle-message loader streams with CdlReadN and
 # the drive prefetches lba+1; with nothing after BTTMES that prefetch lands in
@@ -433,6 +442,30 @@ def patch_full_font(source: bytes, bdf_path: Path, mapping: dict[str, int]) -> b
         offset = FONT_OFFSET + index * FONT_BYTES_PER_GLYPH
         output[offset:offset + FONT_BYTES_PER_GLYPH] = stored
     return bytes(output)
+
+
+def patch_small_label_font(source: bytes, bdf_path: Path) -> tuple[bytes, dict[str, Any]]:
+    """Install the compact half-width glyph used by the ``아뇨`` labels."""
+    bdf = parse_bdf(bdf_path)
+    character = "아"
+    glyph = bdf.get(ord(character))
+    if glyph is None:
+        raise ValueError(f"BDF is missing {character!r}")
+    rendered = render_glyph(glyph, 8, 8, 16)
+    if len(rendered) != SMALL_GLYPH_BYTES:
+        raise ValueError("unexpected 8x16 small-glyph size")
+    offset = SMALL_FONT_OFFSET + SMALL_LABEL_AH_INDEX * SMALL_GLYPH_BYTES
+    if offset + SMALL_GLYPH_BYTES > len(source):
+        raise ValueError("small label glyph range does not fit in source EXE")
+    output = bytearray(source)
+    output[offset:offset + SMALL_GLYPH_BYTES] = rendered
+    return bytes(output), {
+        "character": character,
+        "message_byte": f"0x{SMALL_LABEL_AH_INDEX:02X}",
+        "font_offset_hex": f"0x{offset:X}",
+        "font_bytes": SMALL_GLYPH_BYTES,
+        "cell": "8x16",
+    }
 
 
 def encode_all(texts: list[str], codec: Codec, mapping: dict[str, int]) -> dict[str, int]:
@@ -2020,7 +2053,7 @@ def patch_fixed_exe_labels(
             continue
         if not korean or korean == japanese:
             continue
-        encoded = encode_text(korean, codec, mapping)
+        encoded = encode_fixed_label_text(korean, codec, mapping)
         if terminated:
             encoded += bytes((0xFF,))
         if len(encoded) > budget:
@@ -2057,6 +2090,96 @@ def patch_fixed_exe_labels(
         "skipped": skipped[:60],
         "unmapped": unmapped,
     }
+
+
+def encode_fixed_label_text(
+    korean: str, codec: Codec, mapping: dict[str, int]
+) -> bytes:
+    """Encode fixed labels while preserving the retail button-cell width.
+
+    ``아뇨`` is two Korean syllables (four wide-font bytes), but the retail
+    ``いいえ`` SYSMSG field has only three data bytes before its terminator.
+    The unused 0xED half-width cell supplies the first syllable, followed by
+    the normal wide glyph for ``뇨``.  Visually this is the same 8+16 pixel
+    advance as the original three half-width kana cells.
+    """
+    if korean == "아뇨":
+        return bytes((SMALL_LABEL_AH_INDEX,)) + encode_text("뇨", codec, mapping)
+    return encode_text(korean, codec, mapping)
+
+
+def patch_enhancement_prompt_literals(
+    patched_exe: bytes,
+    source_exe: bytes,
+    codec: Codec,
+    mapping: dict[str, int],
+) -> tuple[bytes, dict[str, Any]]:
+    """Replace the two inline ``が,`` fragments in enhancement dialogs.
+
+    These bytes sit between two numeric ``F8`` controls, so they are not part
+    of any fixed-label record.  Each dialog has a following padding/terminator
+    byte that lets the Korean connective grow in place without relocating the
+    executable or changing any table address.
+    """
+    specs = (
+        {
+            "id": "EXE-WIN-084B00-enhancement",
+            "offset": 0x84B29,
+            "old": bytes.fromhex(
+                "F0 18 F0 04 F0 42 00 F8 00 4B 3A F8 00 "
+                "6A 69 89 7D 58 F6 87 8C 56 43 66 58 4A 14 F6 FE 00"
+            ),
+            "prefix": "공격력 ",
+            "tail_after_old": bytes.fromhex("FF FF"),
+        },
+        {
+            "id": "EXE-WIN-084EB0-enhancement",
+            "offset": 0x84ECE,
+            "old": bytes.fromhex(
+                "F8 00 4B 3A F8 00 6A 69 89 7D 58 F6 "
+                "87 8C 56 43 66 58 4A 14 F6 FE 00"
+            ),
+            "prefix": "",
+            "tail_after_old": bytes.fromhex("FF 00"),
+        },
+    )
+    output = bytearray(patched_exe)
+    applied: list[dict[str, Any]] = []
+    for spec in specs:
+        offset = spec["offset"]
+        old = spec["old"]
+        if source_exe[offset:offset + len(old)] != old:
+            raise ValueError(f"enhancement prompt source mismatch at 0x{offset:X}")
+        old_tail_start = offset + len(old)
+        expected_tail = spec["tail_after_old"]
+        if source_exe[old_tail_start:old_tail_start + len(expected_tail)] != expected_tail:
+            raise ValueError(f"enhancement prompt tail mismatch at 0x{old_tail_start:X}")
+        replacement = (
+            encode_text(spec["prefix"], codec, mapping)
+            + bytes((0xF8, 0x00))
+            + encode_text("에서 ", codec, mapping)
+            + bytes((0xF8, 0x00))
+            + encode_text("으로", codec, mapping)
+            + bytes((0xF6,))
+            + encode_text("할까요?", codec, mapping)
+            + bytes((0xF6, 0xFE, 0x00))
+        )
+        if len(replacement) <= len(old):
+            raise ValueError(f"enhancement replacement did not grow at 0x{offset:X}")
+        terminator = offset + len(replacement)
+        if terminator >= len(output):
+            raise ValueError(f"enhancement replacement exceeds EXE at 0x{offset:X}")
+        output[offset:terminator] = replacement
+        output[terminator] = 0xFF
+        applied.append({
+            "id": spec["id"],
+            "offset": f"0x{offset:X}",
+            "old_bytes": len(old),
+            "new_bytes_before_terminator": len(replacement),
+            "terminator_offset": f"0x{terminator:X}",
+            "connective": "에서 ",
+        })
+    return bytes(output), {"prompts_considered": len(specs), "prompts_applied": applied}
 
 
 def load_fixed_exe_labels(path: Path) -> list[dict[str, Any]]:
@@ -3166,6 +3289,9 @@ def main() -> int:
     source_scedata = args.scedata.read_bytes()
     source_bttmes = args.bttmes.read_bytes()
     patched_exe = patch_full_font(source_exe, args.bdf, mapping)
+    patched_exe, small_label_font_report = patch_small_label_font(
+        patched_exe, args.bdf
+    )
     if len(patched_exe) != len(source_exe):
         raise ValueError("patched executable size changed")
 
@@ -3219,6 +3345,9 @@ def main() -> int:
     # only point at the Korean records once the pool has been rebuilt.
     patched_exe, terrain_panel_report = patch_terrain_panel_lengths(
         patched_exe, source_exe
+    )
+    patched_exe, enhancement_prompt_report = patch_enhancement_prompt_literals(
+        patched_exe, source_exe, codec, mapping
     )
 
     dictionary_images: dict[str, tuple[bytes, bytes]] = {}
@@ -3344,6 +3473,8 @@ def main() -> int:
         "scenario_speaker_fixes": len(speaker_fixes),
         "exe_string_pools": exe_pool_reports,
         "exe_fixed_labels": fixed_label_report,
+        "small_label_font": small_label_font_report,
+        "enhancement_prompt_literals": enhancement_prompt_report,
         "terrain_panel_ring_lengths": terrain_panel_report,
         "encyclopedias": dictionary_reports,
         "scenario_title_graphics": title_report,

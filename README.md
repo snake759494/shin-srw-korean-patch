@@ -6,8 +6,9 @@ PlayStation 게임 **신 슈퍼로봇대전**(新スーパーロボット大戦,
 > **게임 데이터는 이 저장소에 없습니다.** 배포물은 원본 디스크에 적용하는 xdelta 바이너리 패치뿐입니다.
 > 본인이 소유한 디스크에서 직접 추출한 이미지가 필요합니다.
 
-현재 최신 릴리스는 **v1.0.1**이며, SwanStation에서 전투 후 전환이 멈출 수 있는
-Track 2 CUE 프리갭 표기 문제를 수정했습니다.
+현재 최신 릴리스는 **v1.0.3**이며, 강화 확인창의 잔존 일본어와 `예/NO` 확인 라벨을
+`에서`·`네/아뇨`로 통일하고 크로노클의 대사를 다듬었습니다. v1.0.2는 부팅 검은 화면
+문제로 철회되었습니다.
 
 ---
 
@@ -77,7 +78,7 @@ md5sum "Shin Super Robot Taisen (Track 1).bin"
 
 ### 방법 1 — 간편 적용 (Windows, 권장)
 
-1. 릴리스에서 `shin-srw-korean-v1.0.1-easy-apply.zip` 을 받아 압축을 풉니다.
+1. 릴리스에서 `shin-srw-korean-v1.0.3-easy-apply.zip` 을 받아 압축을 풉니다.
 2. 원본 `.bin` 2개를 압축 푼 폴더에 복사합니다.
 3. **`한글패치 적용하기.bat`** 을 더블클릭합니다.
 4. 원본 검증 → 패치 → 결과 검증이 자동으로 진행됩니다(1~2분).
@@ -91,14 +92,14 @@ md5sum "Shin Super Robot Taisen (Track 1).bin"
 
 ```bash
 xdelta3 -d -s "Shin Super Robot Taisen (Track 1).bin" \
-        shin-srw-korean-v1.0.1.xdelta \
-        "Shin Super Robot Taisen Korean v1.0.1 (Track 1).bin"
+        shin-srw-korean-v1.0.3.xdelta \
+        "Shin Super Robot Taisen Korean v1.0.3 (Track 1).bin"
 ```
 
 그 다음 아래 내용으로 `.cue` 파일을 만듭니다. Track 2 파일명은 실제 파일명과 같아야 합니다.
 
 ```
-FILE "Shin Super Robot Taisen Korean v1.0.1 (Track 1).bin" BINARY
+FILE "Shin Super Robot Taisen Korean v1.0.3 (Track 1).bin" BINARY
   TRACK 01 MODE2/2352
     INDEX 01 00:00:00
 FILE "Shin Super Robot Taisen (Track 2).bin" BINARY
@@ -120,16 +121,16 @@ Track 2 파일에는 정품 디스크와 같은 150섹터(2초) 프리갭이 이
 
 | 알고리즘 | 값 |
 |---|---|
-| MD5 | `464d5f172bab69f0c300570f50f993b4` |
-| SHA-1 | `88d4c20c5cf8a995080f6cff9d40c80b322b6c7f` |
-| SHA-256 | `1e313d2c20a7b23100c90aa0fbc30961a96bb44bcd0b82f94861cd7246d8741b` |
-| CRC32 | `E6EE471A` |
+| MD5 | `0a99b678996ca7aed40359d833f912f1` |
+| SHA-1 | `ad7e0ba849518ca83abcf090e9751900d681b6f1` |
+| SHA-256 | `57e234ba057ebb1581015762fa0b95146f7678eac51e0f9fc9635dfe018ef8c8` |
+| CRC32 | `3448A585` |
 
-**패치 파일 `shin-srw-korean-v1.0.1.xdelta` — 603,199 바이트**
+**패치 파일 `shin-srw-korean-v1.0.3.xdelta` — 617,942 바이트**
 
 | 알고리즘 | 값 |
 |---|---|
-| SHA-256 | `51336e22955b95d7e36fd801e76fbf4ca725a5bda9dde9fdd26aecb3fa339cf5` |
+| SHA-256 | `87ca23b989cb6f679f00930b289dfbbe2b2386530bd261c36ba273d1ec9dbdb2` |
 
 ### 문제 해결
 
