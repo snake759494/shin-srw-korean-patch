@@ -67,6 +67,48 @@ SMALL_FONT_OFFSET = 0x72438
 SMALL_GLYPH_BYTES = 16
 SMALL_LABEL_AH_INDEX = 0xED
 
+# FC09 (the battle-dialogue speaker-name command) returns PILOTNAME, and the
+# original Japanese short names are rendered with the executable's 8x16
+# half-width cells.  Encoding every Korean syllable as an F0-F5 glyph makes a
+# three-syllable name 50% wider than its Japanese counterpart.  In the first
+# battle that places "아무로" over the portrait and, for longer names, lets the
+# name line reach the window limit before FC09's saved continuation is read.
+#
+# These compact cells are unused by every non-name text payload in the current
+# translation.  Keep the allocation explicit and stable: it is a separate
+# code page used only by PILOTNAME, while the same syllables remain available
+# in the normal wide table for dialogue and menus.  0xED is already the
+# compact cell used by the fixed "아뇨" label and is therefore shared by names.
+SMALL_BATTLE_NAME_GLYPHS = {
+    "무": 0x42,
+    "로": 0x49,
+    "이": 0x4B,
+    "스": 0x51,
+    "리": 0x53,
+    "사": 0x67,
+    "라": 0x72,
+    "카": 0x78,
+    "지": 0x7B,
+    "병": 0x85,
+    "마": 0x94,
+    "시": 0x95,
+    "미": 0x9D,
+    "나": 0xA0,
+    "하": 0xA2,
+    "장": 0xC4,
+    "레": 0xD5,
+    "트": 0xDB,
+    "오": 0xE0,
+    "드": 0xEC,
+    "아": SMALL_LABEL_AH_INDEX,
+}
+
+# The 0x6C..0x80 range is the compact speaker-name line in the retail battle
+# layout (the body line is reset separately by F6).  Keep this as a static
+# audit bound; it is not used to truncate or rewrite a name.
+BATTLE_NAME_LINE_START = 0x6C
+BATTLE_NAME_LINE_END = 0x80
+
 # BTTMES.BIN is appended at the end of the data track, so its last record ends
 # on the last data sector.  The battle-message loader streams with CdlReadN and
 # the drive prefetches lba+1; with nothing after BTTMES that prefetch lands in
@@ -453,27 +495,94 @@ def patch_full_font(source: bytes, bdf_path: Path, mapping: dict[str, int]) -> b
 
 
 def patch_small_label_font(source: bytes, bdf_path: Path) -> tuple[bytes, dict[str, Any]]:
-    """Install the compact half-width glyph used by the ``아뇨`` labels."""
+    """Install the compact half-width glyphs used by labels and pilot names."""
     bdf = parse_bdf(bdf_path)
-    character = "아"
-    glyph = bdf.get(ord(character))
-    if glyph is None:
-        raise ValueError(f"BDF is missing {character!r}")
-    rendered = render_glyph(glyph, 8, 8, 16)
-    if len(rendered) != SMALL_GLYPH_BYTES:
-        raise ValueError("unexpected 8x16 small-glyph size")
-    offset = SMALL_FONT_OFFSET + SMALL_LABEL_AH_INDEX * SMALL_GLYPH_BYTES
-    if offset + SMALL_GLYPH_BYTES > len(source):
-        raise ValueError("small label glyph range does not fit in source EXE")
     output = bytearray(source)
-    output[offset:offset + SMALL_GLYPH_BYTES] = rendered
+    glyphs = dict(SMALL_BATTLE_NAME_GLYPHS)
+    if len(set(glyphs.values())) != len(glyphs):
+        raise ValueError("compact label/name glyph slots overlap")
+    if any(not 0 <= index < 0xF0 for index in glyphs.values()):
+        raise ValueError("compact label/name glyph slot is not a half-width byte")
+
+    applied = []
+    for character, index in sorted(glyphs.items(), key=lambda item: item[1]):
+        glyph = bdf.get(ord(character))
+        if glyph is None:
+            raise ValueError(f"BDF is missing {character!r}")
+        rendered = render_glyph(glyph, 8, 8, 16)
+        if len(rendered) != SMALL_GLYPH_BYTES:
+            raise ValueError("unexpected 8x16 small-glyph size")
+        offset = SMALL_FONT_OFFSET + index * SMALL_GLYPH_BYTES
+        if offset + SMALL_GLYPH_BYTES > len(source):
+            raise ValueError("small label/name glyph range does not fit in source EXE")
+        output[offset:offset + SMALL_GLYPH_BYTES] = rendered
+        applied.append({
+            "character": character,
+            "message_byte": f"0x{index:02X}",
+            "font_offset_hex": f"0x{offset:X}",
+            "font_bytes": SMALL_GLYPH_BYTES,
+            "cell": "8x16",
+        })
     return bytes(output), {
-        "character": character,
-        "message_byte": f"0x{SMALL_LABEL_AH_INDEX:02X}",
-        "font_offset_hex": f"0x{offset:X}",
-        "font_bytes": SMALL_GLYPH_BYTES,
+        "glyph_count": len(applied),
+        "glyphs": applied,
+        "shared_label_character": "아",
         "cell": "8x16",
     }
+
+
+def encode_pilot_name_text(
+    korean: str, codec: Codec, mapping: dict[str, int]
+) -> tuple[bytes, int]:
+    """Encode a PILOTNAME value with the retail compact-name code page.
+
+    The normal encoder deliberately emits every Hangul syllable as a wide
+    F0-F5 pair.  FC09 names are the one exception: a syllable with an assigned
+    compact cell is emitted as one byte so the battle name line keeps the
+    Japanese advance.  Any syllable outside the 20-cell subset safely falls
+    back to the normal wide font; it is never silently replaced by another
+    character.
+    """
+    output = bytearray()
+    compact_glyphs = 0
+    position = 0
+    while position < len(korean):
+        character = korean[position]
+        if character == "<":
+            # PILOTNAME currently contains no control markup, but delegating a
+            # future tagged value to the canonical encoder prevents this
+            # compact loop from treating an opcode argument as text.
+            encoded = encode_text(korean[position:], codec, mapping)
+            output.extend(encoded)
+            break
+        if character in SMALL_BATTLE_NAME_GLYPHS:
+            output.append(SMALL_BATTLE_NAME_GLYPHS[character])
+            compact_glyphs += 1
+        else:
+            output.extend(encode_text(character, codec, mapping))
+        position += 1
+    return bytes(output), compact_glyphs
+
+
+def encoded_display_advance(raw: bytes) -> int:
+    """Return the renderer's x advance for one encoded string."""
+    advance = 0
+    position = 0
+    while position < len(raw):
+        byte = raw[position]
+        if byte == 0xFF:
+            break
+        if 0xF0 <= byte <= 0xF5:
+            if position + 1 >= len(raw):
+                raise ValueError("truncated wide glyph while measuring text")
+            advance += 3
+            position += 2
+        elif byte >= 0xF6:
+            position += 1 + CONTROL_ARGS.get(byte, 0)
+        else:
+            advance += 2
+            position += 1
+    return advance
 
 
 def encode_all(texts: list[str], codec: Codec, mapping: dict[str, int]) -> dict[str, int]:
@@ -1497,6 +1606,8 @@ def rebuild_bttmes(
     rebuilt_banks = 0
     rebuilt_bank_entries = 0
     degenerate_banks = 0
+    relocated_cross_bank_entries = 0
+    preserved_degenerate_entries = 0
     for position, old_bank in enumerate(banks):
         if old_bank + bank_index_bytes > len(source):
             raise ValueError(f"BTTMES bank at {old_bank:#x} has no room for its index")
@@ -1507,11 +1618,40 @@ def rebuild_bttmes(
             value + 2 * index >= old_span
             for index, value in enumerate(old_entries)
         ):
-            # Retail record 145 is a 7-byte bank whose whole index is already
-            # junk pointing outside itself.  Relocating junk only produces
-            # different junk, so copy it through untouched and count it.
+            # Retail record 145 is a 7-byte bank whose index contains pointers
+            # outside its own span.  It is not safe to treat that whole index
+            # as a local table, but it is also not safe to leave every value
+            # untouched: three of the values are cross-bank pointers into data
+            # that moves when earlier Korean messages grow.  Relocate only
+            # targets which are valid offsets in a different bank; preserve
+            # the in-bank dummy values and genuinely invalid values
+            # byte-for-byte.  In this bank the first three entries are the
+            # only real cross-bank references; the remaining ten values are
+            # an FF sentinel followed by zero-filled index space.
+            new_entries = []
+            for index, value in enumerate(old_entries):
+                old_target = old_bank + value + 2 * index
+                is_cross_bank = old_target < old_bank or old_target >= bank_bounds[position + 1]
+                if not is_cross_bank or not 0 <= old_target < len(source):
+                    new_entries.append(value)
+                    preserved_degenerate_entries += 1
+                    continue
+                new_target = relocate(old_target)
+                new_value = new_target - new_bank - 2 * index
+                if not 0 <= new_value <= 0xFFFF:
+                    new_entries.append(value)
+                    preserved_degenerate_entries += 1
+                    continue
+                new_entries.append(new_value)
+                if new_target != old_target:
+                    relocated_cross_bank_entries += 1
+            if new_entries != list(old_entries):
+                rebuilt_banks += 1
+                rebuilt_bank_entries += sum(
+                    a != b for a, b in zip(old_entries, new_entries)
+                )
             struct.pack_into(
-                f"<{bank_index_entries}H", output, new_bank, *old_entries
+                f"<{bank_index_entries}H", output, new_bank, *new_entries
             )
             degenerate_banks += 1
             continue
@@ -1713,7 +1853,9 @@ def rebuild_bttmes(
         "bank_count": len(banks),
         "banks_with_rebuilt_index": rebuilt_banks,
         "rebuilt_bank_index_entries": rebuilt_bank_entries,
-        "degenerate_banks_copied_verbatim": degenerate_banks,
+        "degenerate_banks_with_cross_bank_index": degenerate_banks,
+        "relocated_cross_bank_index_entries": relocated_cross_bank_entries,
+        "preserved_degenerate_index_entries": preserved_degenerate_entries,
         "script_jump_operands_inspected": inspected,
         "script_jump_operands_retargeted": retargeted,
         "script_jumps_landing_on_a_message": landed,
@@ -1881,10 +2023,23 @@ def verify_scedata_against_exe(patched_exe: bytes, patched_scedata: bytes) -> di
     }
 
 
-def read_encoded_string(image: bytes, offset: int) -> bytes | None:
-    """Return the raw bytes of one 0xFF-terminated record, or None if malformed."""
+def read_encoded_string(
+    image: bytes, offset: int, limit: int | None = None
+) -> bytes | None:
+    """Return one terminated record, refusing to cross a data-structure bound.
+
+    A number of executable tables reserve unused entries by pointing them at
+    the padding immediately before the next table.  Without ``limit`` those
+    entries look like a string and the parser consumes the next table, its
+    stub, and whatever follows until the first incidental ``FF``.  Repacking
+    that pseudo-record is a real executable corruption, not an empty label.
+    Callers that know the arena or file boundary must pass it explicitly.
+    """
+    bound = len(image) if limit is None else min(len(image), limit)
+    if not 0 <= offset < bound:
+        return None
     cursor = offset
-    while cursor < len(image):
+    while cursor < bound:
         byte = image[cursor]
         if byte == 0xFF:
             return image[offset:cursor + 1]
@@ -1977,7 +2132,7 @@ def patch_terrain_panel_lengths(
     def content_length(image: bytes, index: int) -> int:
         slot = TERRAIN_MOD_TABLE + 4 * index
         target = slot + struct.unpack_from("<I", image, slot)[0]
-        record = read_encoded_string(image, target)
+        record = read_encoded_string(image, target, EXE_SYS_POOL_ARENA[1])
         if record is None:
             raise ValueError(
                 "SYS entry %d of table %#x is not a readable record" % (index, TERRAIN_MOD_TABLE)
@@ -2301,7 +2456,7 @@ def rebuild_dictionary(
     for index in range(count):
         slot = 4 * index
         target = slot + struct.unpack_from("<I", source, slot)[0]
-        raw = read_encoded_string(source, target) if target >= data_base else None
+        raw = read_encoded_string(source, target, len(source)) if target >= data_base else None
         if raw is None or target + len(raw) > len(source):
             frozen.append(slot)
             continue
@@ -2424,7 +2579,7 @@ def reserved_glyph_slots(
             for index in range(count):
                 slot = table + 4 * index
                 target = slot + struct.unpack_from("<I", source_exe, slot)[0]
-                raw = read_encoded_string(source_exe, target)
+                raw = read_encoded_string(source_exe, target, arena_end)
                 if raw is None or not arena_start <= target < arena_end:
                     continue
                 japanese = Codec.rendered(codec.tokenize(raw, stop_at_terminator=True))
@@ -2461,7 +2616,7 @@ def reserved_glyph_slots(
             if target < spec["data_base"] or target in seen:
                 continue
             seen.add(target)
-            raw = read_encoded_string(blob, target)
+            raw = read_encoded_string(blob, target, len(blob))
             if raw is None:
                 continue
             japanese = Codec.rendered(codec.tokenize(raw, stop_at_terminator=True))
@@ -2628,11 +2783,37 @@ def repack_exe_string_pools(
         False,
     ))
 
-    def encode_for(raw: bytes, table_map: dict[str, str]) -> tuple[bytes, bool]:
+    pilot_name_stats = {
+        "translated_records": 0,
+        "compact_glyphs": 0,
+        "wide_fallback_hangul": 0,
+        "max_display_advance": 0,
+        "max_display_advance_entries": [],
+    }
+
+    def encode_for(
+        raw: bytes, table_map: dict[str, str], pool_label: str
+    ) -> tuple[bytes, bool]:
         japanese = Codec.rendered(codec.tokenize(raw, stop_at_terminator=True))
         korean = table_map.get(japanese)
         if korean is None or korean == japanese:
             return raw, False
+        if pool_label == "PILOTNAME":
+            encoded, compact_glyphs = encode_pilot_name_text(korean, codec, mapping)
+            pilot_name_stats["translated_records"] += 1
+            pilot_name_stats["compact_glyphs"] += compact_glyphs
+            pilot_name_stats["wide_fallback_hangul"] += sum(
+                1 for character in korean
+                if "가" <= character <= "힣"
+                and character not in SMALL_BATTLE_NAME_GLYPHS
+            )
+            advance = encoded_display_advance(encoded)
+            if advance > pilot_name_stats["max_display_advance"]:
+                pilot_name_stats["max_display_advance"] = advance
+                pilot_name_stats["max_display_advance_entries"] = [japanese]
+            elif advance == pilot_name_stats["max_display_advance"]:
+                pilot_name_stats["max_display_advance_entries"].append(japanese)
+            return encoded + bytes((0xFF,)), True
         return encode_text(korean, codec, mapping) + bytes((0xFF,)), True
 
     every_slot_target = {
@@ -2646,7 +2827,8 @@ def repack_exe_string_pools(
     }
 
     def build_adjacent_run(
-        table: int, count: int, arena: tuple[int, int], table_map: dict[str, str]
+        table: int, count: int, arena: tuple[int, int], table_map: dict[str, str],
+        pool_label: str,
     ) -> tuple[bytes, dict[int, int], dict[int, int], int]:
         """Lay one adjacency-critical table out as a single contiguous block.
 
@@ -2666,24 +2848,24 @@ def repack_exe_string_pools(
             target = slot + struct.unpack_from("<I", source_exe, slot)[0]
             if target in offsets:
                 continue
-            raw = read_encoded_string(source_exe, target)
+            raw = read_encoded_string(source_exe, target, arena_end)
             if raw is None or not arena_start <= target < arena_end:
                 raise ValueError(
                     f"table {table:#x} entry {index} targets {target:#x}, "
                     f"outside its own arena - adjacency cannot be rebuilt"
                 )
             offsets[target] = len(blob)
-            encoded, did = encode_for(raw, table_map)
+            encoded, did = encode_for(raw, table_map, pool_label)
             translated += did
             blob += encoded
             follow = target + len(raw)
             if follow in every_slot_target or not arena_start <= follow < arena_end:
                 continue
-            continuation = read_encoded_string(source_exe, follow)
+            continuation = read_encoded_string(source_exe, follow, arena_end)
             if continuation is None:
                 continue
             continuations[offsets[target]] = len(blob)
-            encoded, did = encode_for(continuation, table_map)
+            encoded, did = encode_for(continuation, table_map, pool_label)
             translated += did
             blob += encoded
         blob.append(0xFF)
@@ -2715,11 +2897,11 @@ def repack_exe_string_pools(
             payloads: dict[int, bytes] = {}
 
             def take(target: int) -> bytes | None:
-                raw = read_encoded_string(source_exe, target)
+                raw = read_encoded_string(source_exe, target, arena_end)
                 if raw is None:
                     return None
                 if target not in payloads:
-                    encoded, did = encode_for(raw, table_map)
+                    encoded, did = encode_for(raw, table_map, label)
                     payloads[target] = encoded
                     counters["translated"] += did
                 return raw
@@ -2740,7 +2922,7 @@ def repack_exe_string_pools(
             if label in CONTINUATION_POOLS:
                 probe = arena_start
                 while probe < arena_end:
-                    raw = read_encoded_string(source_exe, probe)
+                    raw = read_encoded_string(source_exe, probe, arena_end)
                     if raw is None:
                         break
                     walk.append(probe)
@@ -2813,7 +2995,7 @@ def repack_exe_string_pools(
             if table not in ADJACENT_TABLES:
                 continue
             blob, offsets, continuations, did = build_adjacent_run(
-                table, count, arena, table_map
+                table, count, arena, table_map, label
             )
             counters["translated"] += did
             runs[table] = (blob, offsets, continuations)
@@ -2821,13 +3003,21 @@ def repack_exe_string_pools(
         for table, slot, target in slots:
             if table in ADJACENT_TABLES:
                 continue
-            raw = read_encoded_string(source_exe, target)
+            raw = read_encoded_string(source_exe, target, arena_end)
             if raw is None or not arena_start <= target < arena_end:
-                encoded = bytes((0xFF,))
+                # Unused table entries point into the padding immediately before
+                # the next announcing stub.  That is not a terminated string;
+                # preserving the pointer would let an out-of-range lookup read
+                # the next table and its following data.  Route only this dead
+                # slot to the shared one-byte empty record.  Live entries keep
+                # their normal self-relative relocation and are never affected.
                 counters["empty"] += 1
-            else:
-                encoded, did = encode_for(raw, table_map)
-                counters["translated"] += did
+                empty = bytes((0xFF,))
+                free_payloads.setdefault(empty, None)
+                free_slot_payload[slot] = empty
+                continue
+            encoded, did = encode_for(raw, table_map, label)
+            counters["translated"] += did
             free_payloads.setdefault(encoded, None)
             free_slot_payload[slot] = encoded
         reports.append({
@@ -2906,6 +3096,71 @@ def repack_exe_string_pools(
             slot = table + 4 * index
             target = slot + struct.unpack_from("<I", source_exe, slot)[0]
             struct.pack_into("<I", output, slot, base + offsets[target] - slot)
+
+    pilot_table = EXE_STRING_POOLS["PILOTNAME"]["table"]
+    pilot_count = EXE_STRING_POOLS["PILOTNAME"]["entries"]
+    pilot_arena_start, pilot_arena_end = EXE_STRING_POOLS["PILOTNAME"]["arena"]
+    valid_pilot_entries = []
+    for index in range(pilot_count):
+        slot = pilot_table + 4 * index
+        target = slot + struct.unpack_from("<I", source_exe, slot)[0]
+        if (
+            pilot_arena_start <= target < pilot_arena_end
+            and read_encoded_string(source_exe, target, pilot_arena_end) is not None
+        ):
+            valid_pilot_entries.append(index)
+
+    def output_string_limit(target: int) -> int | None:
+        for start, end in arenas:
+            if start <= target < end:
+                return end
+        return None
+
+    pilot_widths: list[tuple[int, int]] = []
+    pilot_name_failures: list[dict[str, Any]] = []
+    for index in valid_pilot_entries:
+        slot = pilot_table + 4 * index
+        target = slot + struct.unpack_from("<I", output, slot)[0]
+        limit = output_string_limit(target)
+        raw = read_encoded_string(bytes(output), target, limit)
+        if raw is None:
+            pilot_name_failures.append({
+                "entry": index,
+                "reason": "unterminated_or_invalid_record",
+                "target": f"0x{target:X}",
+            })
+            continue
+        advance = encoded_display_advance(raw)
+        pilot_widths.append((index, advance))
+    if pilot_name_failures:
+        raise ValueError(
+            "PILOTNAME contains invalid rebuilt records: "
+            + ", ".join(str(row["entry"]) for row in pilot_name_failures[:8])
+        )
+    max_pilot_advance = max((advance for _index, advance in pilot_widths), default=0)
+    pilot_stats = dict(pilot_name_stats)
+    pilot_stats.update({
+        "compact_code_page": {
+            character: f"0x{index:02X}"
+            for character, index in sorted(
+                SMALL_BATTLE_NAME_GLYPHS.items(), key=lambda item: item[1]
+            )
+        },
+        "name_line_retail_advance_capacity": (
+            BATTLE_NAME_LINE_END - BATTLE_NAME_LINE_START
+        ),
+        "max_rebuilt_entry_advance": max_pilot_advance,
+        "max_rebuilt_entry_ids": [
+            index for index, advance in pilot_widths if advance == max_pilot_advance
+        ][:20],
+        "valid_entry_count": len(valid_pilot_entries),
+        "sanitized_invalid_entry_count": pilot_count - len(valid_pilot_entries),
+        "entries_over_retail_battle_name_capacity": sum(
+            advance > BATTLE_NAME_LINE_END - BATTLE_NAME_LINE_START
+            for _index, advance in pilot_widths
+        ),
+    })
+    reports.append({"pool": "PILOTNAME compact-name audit", **pilot_stats})
 
     adjacency_report = verify_adjacent_tables(output, runs, placement_run, run_floor)
 
