@@ -251,6 +251,14 @@ CONTROL_AMBIGUOUS_SLOTS = frozenset(
     index for index in range(0x600) if (index & 0xFF) >= 0xF0
 )
 
+# F4 70 (the original glyph is 肉) is emitted by the weapon-status renderer
+# as an inline marker after certain weapon names.  It is not present in the
+# text-pool records, so usage counting cannot discover it.  Repainting the
+# slot with the first Hangul syllable allocated there makes the marker appear
+# as an extra "아" in the V2 Gundam and Borot weapon lists.  Keep this slot
+# byte-for-byte Japanese just as the control-ambiguous slots above are kept.
+INLINE_UI_GLYPH_SLOTS = frozenset({0x470})
+
 NEWLINE = chr(10)
 
 BASE_MAPPING = Path("korean_patch/hangul_mapping.json")
@@ -2392,8 +2400,13 @@ def reserved_glyph_slots(
     reserve larger than the free space - finishing the translation is what makes
     the budget work, not restricting it.
     """
-    reserve: set[int] = set()
-    stats = {"pool_payloads": 0, "labels": 0, "dictionary_records": 0}
+    reserve: set[int] = set(INLINE_UI_GLYPH_SLOTS)
+    stats = {
+        "pool_payloads": 0,
+        "labels": 0,
+        "dictionary_records": 0,
+        "inline_ui_slots": sorted(INLINE_UI_GLYPH_SLOTS),
+    }
 
     pools: list[tuple[str, list[tuple[int, int]], tuple[int, int]]] = [
         (label, [(spec["table"], spec["entries"])], spec["arena"])

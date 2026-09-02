@@ -6,8 +6,9 @@ PlayStation 게임 **신 슈퍼로봇대전**(新スーパーロボット大戦,
 > **게임 데이터는 이 저장소에 없습니다.** 배포물은 원본 디스크에 적용하는 xdelta 바이너리 패치뿐입니다.
 > 본인이 소유한 디스크에서 직접 추출한 이미지가 필요합니다.
 
-현재 최신 릴리스는 **v1.0.6**이며, 초반부터 최종 시나리오까지 원문 대조 검수를 수행해
-오타·띄어쓰기·인물명·용어를 정리하고 상태창의 동적 한자 값도 한글화했습니다. v1.0.2는
+현재 최신 릴리스는 **v1.0.7**이며, 초반부터 최종 시나리오까지 원문 대조 검수를 수행해
+오타·띄어쓰기·인물명·용어를 정리하고 상태창의 동적 한자 값도 한글화했습니다. 무기 목록의
+인라인 UI 글리프까지 원본과 대조해 보존했으며, v1.0.2는
 부팅 검은 화면 문제로 철회되었습니다.
 
 ---
@@ -78,7 +79,7 @@ md5sum "Shin Super Robot Taisen (Track 1).bin"
 
 ### 방법 1 — 간편 적용 (Windows, 권장)
 
-1. 릴리스에서 `shin-srw-korean-v1.0.6-easy-apply.zip` 을 받아 압축을 풉니다.
+1. 릴리스에서 `shin-srw-korean-v1.0.7-easy-apply.zip` 을 받아 압축을 풉니다.
 2. 원본 `.bin` 2개를 압축 푼 폴더에 복사합니다.
 3. **`한글패치 적용하기.bat`** 을 더블클릭합니다.
 4. 원본 검증 → 패치 → 결과 검증이 자동으로 진행됩니다(1~2분).
@@ -92,14 +93,14 @@ md5sum "Shin Super Robot Taisen (Track 1).bin"
 
 ```bash
 xdelta3 -d -s "Shin Super Robot Taisen (Track 1).bin" \
-        shin-srw-korean-v1.0.6.xdelta \
-        "Shin Super Robot Taisen Korean v1.0.6 (Track 1).bin"
+        shin-srw-korean-v1.0.7.xdelta \
+        "Shin Super Robot Taisen Korean v1.0.7 (Track 1).bin"
 ```
 
 그 다음 아래 내용으로 `.cue` 파일을 만듭니다. Track 2 파일명은 실제 파일명과 같아야 합니다.
 
 ```
-FILE "Shin Super Robot Taisen Korean v1.0.6 (Track 1).bin" BINARY
+FILE "Shin Super Robot Taisen Korean v1.0.7 (Track 1).bin" BINARY
   TRACK 01 MODE2/2352
     INDEX 01 00:00:00
 FILE "Shin Super Robot Taisen (Track 2).bin" BINARY
@@ -121,16 +122,16 @@ Track 2 파일에는 정품 디스크와 같은 150섹터(2초) 프리갭이 이
 
 | 알고리즘 | 값 |
 |---|---|
-| MD5 | `241cccaeeedbd447c42f64acf9003de4` |
-| SHA-1 | `d80d95236e7ae86c5000816d4e24c7c38389cd67` |
-| SHA-256 | `75f8476a65af422bd249847b0ff359eb7922579ae6e3b54b1434cb50a0352338` |
-| CRC32 | `CD4CA79D` |
+| MD5 | `555de9d2332490b18d98896137ee0ec7` |
+| SHA-1 | `4a17c758614c6e0922f539e07874e477736977bf` |
+| SHA-256 | `598b50070080a34bd28e5bab7bf37c861900172e5650e8d7abbc6ecdc9a86c0e` |
+| CRC32 | `D339A249` |
 
-**패치 파일 `shin-srw-korean-v1.0.6.xdelta` — 620,604 바이트**
+**패치 파일 `shin-srw-korean-v1.0.7.xdelta` — 623,264 바이트**
 
 | 알고리즘 | 값 |
 |---|---|
-| SHA-256 | `9f875a0f55d813375f2d8fe7ec2dfec41c189191c8404934a53d1e2619e73302` |
+| SHA-256 | `b7f2386a74daa3b0cc6c82af8cc3c0cfd564cce59266f2517d61ddbf971b0701` |
 
 ### 문제 해결
 

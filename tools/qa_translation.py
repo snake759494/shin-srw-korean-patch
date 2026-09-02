@@ -56,6 +56,18 @@ REGRESSION_PATTERNS = (
     "핑거핫트",
     "레우르라",
     "조로앗",
+    "무.. 마, 말도 안 돼..!?",
+    "어떻게 된 거예요. 이건",
+    "타기 전에 말해요.",
+    "않을래요",
+    "구호반",
+    "조사해\n 다오",
+    "고즈 바르",
+    "게드라프",
+    "리그샤코",
+    "미리에라 카탄",
+    "유카 마이라스",
+    "엔젤하이로우",
 )
 
 
@@ -128,6 +140,17 @@ def check_built_exe(path: Path) -> list[str]:
         errors.append("built EXE status field at 0x70300 lost its four-byte padding")
     if actual[:2] == expected[:2]:
         errors.append("built EXE status field did not replace 無")
+    source_path = ROOT / "work" / "extracted" / "SLPS_005.50"
+    if source_path.is_file():
+        font_offset = 0x73438
+        inline_slot = 0x470
+        start = font_offset + inline_slot * 32
+        source_glyph = source_path.read_bytes()[start:start + 32]
+        built_glyph = data[start:start + 32]
+        if len(source_glyph) != 32 or built_glyph != source_glyph:
+            errors.append(
+                "built EXE repainted inline UI glyph F4 70 (weapon-list marker)"
+            )
     return errors
 
 
