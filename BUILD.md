@@ -32,7 +32,7 @@ Track 2 가 Track 1 과 같은 폴더에 있으면 자동으로 찾습니다. �
 ```
 verifying the result ...
   size    650607888 ok
-  sha256  00631539c6d6a983638f7fabf469757f9878bf6e28c6a6317a5579418a0d2037
+  sha256  3749b0aa232c25c7ba7d80f4a487e21924da7ddff0d7ce39021d76a477289fee
   matches the released build exactly.
 ```
 

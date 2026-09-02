@@ -23,7 +23,7 @@
 
 | 파일 | 크기 | SHA-256 |
 |---|---:|---|
-| `shin-srw-korean-v1.0.5.xdelta` | 620,388바이트 | `8f49f2f3e49d5a1710c431d35e2e9c2bc0cc820fb86a4396b6b8c7cd5aca8c88` |
-| `shin-srw-korean-v1.0.5-easy-apply.zip` | 845,493바이트 | `21e8b83518c1ecfe04ec0afb5eca731004466fd5cb59723876f19ad1654f121d` |
+| `shin-srw-korean-v1.0.5.xdelta` | 620,422바이트 | `5c03861994c1f7291a84a7f217cb895b4eb9ed450ae7da1c263357f898f67028` |
+| `shin-srw-korean-v1.0.5-easy-apply.zip` | 845,526바이트 | `3c31a4cc26ae96561e28fb7dd591290c90d35f8aa1a9c127d6229dd5022957d8` |
 
-패치 파일을 원본 Track 1에 역적용한 결과는 빌드 이미지와 바이트 단위로 일치하며, 결과 Track 1 SHA-256은 `135182e2afc0727ef3be1fecce968fbef85423b185d1e91c504cf107403d78d6`입니다.
+패치 파일을 원본 Track 1에 역적용한 결과는 빌드 이미지와 바이트 단위로 일치하며, 결과 Track 1 SHA-256은 `3749b0aa232c25c7ba7d80f4a487e21924da7ddff0d7ce39021d76a477289fee`입니다.

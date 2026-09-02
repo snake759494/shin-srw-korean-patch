@@ -123,14 +123,14 @@ Track 2 파일에는 정품 디스크와 같은 150섹터(2초) 프리갭이 이
 |---|---|
 | MD5 | `6b4077789dd498f63c847819ec4f1ed6` |
 | SHA-1 | `110bebac64fd7e2fab8d3aefb590498cf92f45dd` |
-| SHA-256 | `135182e2afc0727ef3be1fecce968fbef85423b185d1e91c504cf107403d78d6` |
+| SHA-256 | `3749b0aa232c25c7ba7d80f4a487e21924da7ddff0d7ce39021d76a477289fee` |
 | CRC32 | `AAE336DF` |
 
-**패치 파일 `shin-srw-korean-v1.0.5.xdelta` — 620,388 바이트**
+**패치 파일 `shin-srw-korean-v1.0.5.xdelta` — 620,422 바이트**
 
 | 알고리즘 | 값 |
 |---|---|
-| SHA-256 | `8f49f2f3e49d5a1710c431d35e2e9c2bc0cc820fb86a4396b6b8c7cd5aca8c88` |
+| SHA-256 | `5c03861994c1f7291a84a7f217cb895b4eb9ed450ae7da1c263357f898f67028` |
 
 ### 문제 해결
 

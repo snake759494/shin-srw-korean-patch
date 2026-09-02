@@ -14,8 +14,8 @@ $OUTNAME = 'Shin Super Robot Taisen Korean v1.0.5 (Track 1).bin'
 $CUENAME = 'Shin Super Robot Taisen Korean v1.0.5.cue'
 
 $EXP_SRC   = 'ef06dcf085fcccdc4617c2efed01f8b90d1dfd72f67e7cb325623eccb2514915'
-$EXP_OUT   = '135182e2afc0727ef3be1fecce968fbef85423b185d1e91c504cf107403d78d6'
-$EXP_PATCH = '8f49f2f3e49d5a1710c431d35e2e9c2bc0cc820fb86a4396b6b8c7cd5aca8c88'
+$EXP_OUT   = '3749b0aa232c25c7ba7d80f4a487e21924da7ddff0d7ce39021d76a477289fee'
+$EXP_PATCH = '5c03861994c1f7291a84a7f217cb895b4eb9ed450ae7da1c263357f898f67028'
 $EXP_TRK2  = '2fbf5a94ffc8b475741529c4a95d580c937ca37db31db227e0d6c7a917a1e95f'
 
 function Get-Sha256([string]$p) {
