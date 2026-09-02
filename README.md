@@ -6,9 +6,9 @@ PlayStation 게임 **신 슈퍼로봇대전**(新スーパーロボット大戦,
 > **게임 데이터는 이 저장소에 없습니다.** 배포물은 원본 디스크에 적용하는 xdelta 바이너리 패치뿐입니다.
 > 본인이 소유한 디스크에서 직접 추출한 이미지가 필요합니다.
 
-현재 최신 릴리스는 **v1.0.4**이며, 강화 확인창의 잔존 일본어와 `예/NO` 확인 라벨을
-`에서`·`네/아뇨`로 통일하고 크로노클의 대사를 다듬었습니다. v1.0.2는 부팅 검은 화면
-문제로 철회되었습니다.
+현재 최신 릴리스는 **v1.0.5**이며, 초반부터 최종 시나리오까지 원문 대조 검수를 수행해
+오타·띄어쓰기·인물명·용어를 정리하고 상태창의 동적 한자 값도 한글화했습니다. v1.0.2는
+부팅 검은 화면 문제로 철회되었습니다.
 
 ---
 
@@ -78,7 +78,7 @@ md5sum "Shin Super Robot Taisen (Track 1).bin"
 
 ### 방법 1 — 간편 적용 (Windows, 권장)
 
-1. 릴리스에서 `shin-srw-korean-v1.0.4-easy-apply.zip` 을 받아 압축을 풉니다.
+1. 릴리스에서 `shin-srw-korean-v1.0.5-easy-apply.zip` 을 받아 압축을 풉니다.
 2. 원본 `.bin` 2개를 압축 푼 폴더에 복사합니다.
 3. **`한글패치 적용하기.bat`** 을 더블클릭합니다.
 4. 원본 검증 → 패치 → 결과 검증이 자동으로 진행됩니다(1~2분).
@@ -92,14 +92,14 @@ md5sum "Shin Super Robot Taisen (Track 1).bin"
 
 ```bash
 xdelta3 -d -s "Shin Super Robot Taisen (Track 1).bin" \
-        shin-srw-korean-v1.0.4.xdelta \
-        "Shin Super Robot Taisen Korean v1.0.4 (Track 1).bin"
+        shin-srw-korean-v1.0.5.xdelta \
+        "Shin Super Robot Taisen Korean v1.0.5 (Track 1).bin"
 ```
 
 그 다음 아래 내용으로 `.cue` 파일을 만듭니다. Track 2 파일명은 실제 파일명과 같아야 합니다.
 
 ```
-FILE "Shin Super Robot Taisen Korean v1.0.4 (Track 1).bin" BINARY
+FILE "Shin Super Robot Taisen Korean v1.0.5 (Track 1).bin" BINARY
   TRACK 01 MODE2/2352
     INDEX 01 00:00:00
 FILE "Shin Super Robot Taisen (Track 2).bin" BINARY
@@ -121,16 +121,16 @@ Track 2 파일에는 정품 디스크와 같은 150섹터(2초) 프리갭이 이
 
 | 알고리즘 | 값 |
 |---|---|
-| MD5 | `fc04929957a591dc0358816c78175df8` |
-| SHA-1 | `f270ff93cae4dbdcad31c2cdb4f475ef9d412557` |
-| SHA-256 | `4e1f1bba392579d79a2e9d17b59d5b2b2ee1e382eff720601a33730c8216d9bd` |
-| CRC32 | `D222F4C0` |
+| MD5 | `6b4077789dd498f63c847819ec4f1ed6` |
+| SHA-1 | `110bebac64fd7e2fab8d3aefb590498cf92f45dd` |
+| SHA-256 | `135182e2afc0727ef3be1fecce968fbef85423b185d1e91c504cf107403d78d6` |
+| CRC32 | `AAE336DF` |
 
-**패치 파일 `shin-srw-korean-v1.0.4.xdelta` — 617,942 바이트**
+**패치 파일 `shin-srw-korean-v1.0.5.xdelta` — 620,388 바이트**
 
 | 알고리즘 | 값 |
 |---|---|
-| SHA-256 | `86027c12a4ae9f87718c3f0a2415a3500740a1add423cc3b5b81abb00bc0b8a1` |
+| SHA-256 | `8f49f2f3e49d5a1710c431d35e2e9c2bc0cc820fb86a4396b6b8c7cd5aca8c88` |
 
 ### 문제 해결
 

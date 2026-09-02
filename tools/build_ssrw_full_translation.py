@@ -2182,6 +2182,43 @@ def patch_enhancement_prompt_literals(
     return bytes(output), {"prompts_considered": len(specs), "prompts_applied": applied}
 
 
+def patch_status_value_literals(
+    patched_exe: bytes,
+    source_exe: bytes,
+    codec: Codec,
+    mapping: dict[str, int],
+) -> tuple[bytes, dict[str, Any]]:
+    """Replace the inline one-cell status-value table used by unit panels.
+
+    The status window does not obtain these two values from a string-pool
+    table.  At 0x70300 it points directly at the two-cell ``無``/``有`` table,
+    which is why a pool-only translation still showed Japanese in the shield
+    and terrain fields.  Keep the table at exactly four payload bytes followed
+    by its four retail padding bytes: the caller expects one 16-pixel glyph per
+    value and the surrounding pointer/layout must not move.
+    """
+    offset = 0x70300
+    old = bytes.fromhex("F0 61 F0 AA FF FF FF FF")
+    if source_exe[offset:offset + len(old)] != old:
+        raise ValueError("status value literal source mismatch at 0x70300")
+    encoded = encode_text("없있", codec, mapping)
+    if len(encoded) != 4:
+        raise ValueError(
+            "status value replacement must remain two wide glyphs (4 bytes), "
+            f"got {len(encoded)}"
+        )
+    replacement = encoded + bytes.fromhex("FF FF FF FF")
+    output = bytearray(patched_exe)
+    output[offset:offset + len(replacement)] = replacement
+    return bytes(output), {
+        "offset": "0x70300",
+        "retail_values": "無/有",
+        "korean_values": "없/있",
+        "payload_bytes": len(encoded),
+        "field_bytes": len(replacement),
+    }
+
+
 def load_fixed_exe_labels(path: Path) -> list[dict[str, Any]]:
     """Load the fixed-width label translations, if the file is present."""
     if not path.exists():
@@ -3272,6 +3309,9 @@ def main() -> int:
         + list(translation["menu"].values())
         + remaining_values
         + dictionary_values
+        # These are emitted by the inline status enum below, not by a JSON
+        # string pool, so include them in the glyph allocator explicitly.
+        + ["없", "있"]
     )
     usage = count_wide_usage([args.scenario_json, args.battle_json, args.menu_json])
     args.output_dir.mkdir(parents=True, exist_ok=True)
@@ -3347,6 +3387,9 @@ def main() -> int:
         patched_exe, source_exe
     )
     patched_exe, enhancement_prompt_report = patch_enhancement_prompt_literals(
+        patched_exe, source_exe, codec, mapping
+    )
+    patched_exe, status_value_report = patch_status_value_literals(
         patched_exe, source_exe, codec, mapping
     )
 
@@ -3475,6 +3518,7 @@ def main() -> int:
         "exe_fixed_labels": fixed_label_report,
         "small_label_font": small_label_font_report,
         "enhancement_prompt_literals": enhancement_prompt_report,
+        "status_value_literals": status_value_report,
         "terrain_panel_ring_lengths": terrain_panel_report,
         "encyclopedias": dictionary_reports,
         "scenario_title_graphics": title_report,
