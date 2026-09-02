@@ -32,7 +32,7 @@ Track 2 가 Track 1 과 같은 폴더에 있으면 자동으로 찾습니다. �
 ```
 verifying the result ...
   size    650607888 ok
-  sha256  3749b0aa232c25c7ba7d80f4a487e21924da7ddff0d7ce39021d76a477289fee
+  sha256  75f8476a65af422bd249847b0ff359eb7922579ae6e3b54b1434cb50a0352338
   matches the released build exactly.
 ```
 
@@ -76,16 +76,18 @@ verifying the result ...
 ## 4. 릴리스 패치 만들기
 
 ```bash
-py -3.14 make_release.py --version v1.0.5 \
+py -3.14 make_release.py --version v1.0.6 \
     --disc "E:\dump\Shin Super Robot Taisen (Track 1).bin" \
-    --xdelta "C:\tools\xdelta3.exe"
+    --xdelta "C:\tools\xdelta3.exe" \
+    --bundle-xdelta "C:\tools\xdelta3.exe"
 ```
 
 `.xdelta` 를 만든 뒤 **원본에 되돌려 적용해 결과 해시가 일치하는지 확인**하고,
 일치할 때만 남깁니다. 함께 `release/SHA256SUMS_<버전>.txt` 와 간편 적용 zip 을 만듭니다.
 
-zip 에는 `xdelta.exe` 가 들어가지 않습니다. 라이선스 표기를 분리하려고 저장소에 두지 않기 때문에,
-공개 전에 직접 넣어야 합니다. 자세한 내용은 [`easy-apply/README.md`](easy-apply/README.md) 를 보세요.
+`--bundle-xdelta` 를 지정하면 간편 적용 zip에 `xdelta.exe`가 함께 들어갑니다. xdelta는
+라이선스 표기를 분리하려고 저장소에는 두지 않으며, 자세한 내용은
+[`easy-apply/README.md`](easy-apply/README.md) 를 보세요.
 
 ---
 
