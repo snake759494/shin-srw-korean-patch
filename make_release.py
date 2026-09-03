@@ -18,6 +18,7 @@ with --xdelta or put it on PATH.
 from __future__ import annotations
 
 import argparse
+import re
 import shutil
 import subprocess
 import sys
@@ -39,6 +40,38 @@ EASY_APPLY_FILES = (
 # ordinary Windows machines while retaining the same lossless round trip.
 XDELTA_SOURCE_BLOCK = "33554432"
 XDELTA_WINDOW = "4194304"
+
+
+def validate_easy_apply_manifest(
+    path: Path,
+    version: str,
+    source_hash: str,
+    result_hash: str,
+    track2_hash: str,
+) -> None:
+    """Reject an easy-apply bundle whose script points at another release."""
+    text = path.read_text(encoding="utf-8")
+    if version not in text:
+        raise SystemExit(
+            "error: easy-apply/apply.ps1 does not contain release version "
+            + version
+        )
+    expected = {
+        "EXP_SRC": source_hash,
+        "EXP_OUT": result_hash,
+        "EXP_TRK2": track2_hash,
+    }
+    for name, value in expected.items():
+        match = re.search(
+            rf"^\s*\${name}\s*=\s*'([0-9a-fA-F]+)'\s*$",
+            text,
+            re.MULTILINE,
+        )
+        if match is None or match.group(1).lower() != value.lower():
+            actual = match.group(1) if match else "<missing>"
+            raise SystemExit(
+                f"error: easy-apply/apply.ps1 {name} is {actual}, expected {value}"
+            )
 
 
 def find_xdelta(explicit: str | None) -> str:
@@ -109,9 +142,30 @@ def main() -> int:
         missing = [n for n in EASY_APPLY_FILES if not (P.REPO / "easy-apply" / n).is_file()]
         if missing:
             raise SystemExit("error: easy-apply is missing " + ", ".join(missing))
+        patch_digest = P.sha256(patch)
+        apply_path = P.REPO / "easy-apply" / "apply.ps1"
+        validate_easy_apply_manifest(
+            apply_path,
+            args.version,
+            P.RETAIL_TRACK1_SHA256,
+            expected,
+            P.RETAIL_TRACK2_SHA256,
+        )
+        apply_text = apply_path.read_text(encoding="utf-8")
+        apply_text, replaced = re.subn(
+            r"(?m)^(\s*\$EXP_PATCH\s*=\s*)'[^']*'(\s*)$",
+            rf"\g<1>'{patch_digest}'\g<2>",
+            apply_text,
+            count=1,
+        )
+        if replaced != 1:
+            raise SystemExit("error: easy-apply/apply.ps1 has no EXP_PATCH assignment")
         with zipfile.ZipFile(bundle, "w", zipfile.ZIP_DEFLATED) as archive:
             for name in EASY_APPLY_FILES:
-                archive.write(P.REPO / "easy-apply" / name, name)
+                if name == "apply.ps1":
+                    archive.writestr(name, apply_text.encode("utf-8"))
+                else:
+                    archive.write(P.REPO / "easy-apply" / name, name)
             archive.write(patch, patch.name)
             # xdelta is third-party and stays out of the repository, but the zip
             # is useless without it, so it is bundled here at release time.
@@ -138,6 +192,11 @@ def main() -> int:
         "# patch (%s bytes)" % format(patch.stat().st_size, ","),
         "%s  %s" % (P.sha256(patch), patch.name),
     ]
+    if not args.no_zip:
+        lines.extend([
+            "# easy-apply archive (%s bytes)" % format(bundle.stat().st_size, ","),
+            "%s  %s" % (P.sha256(bundle), bundle.name),
+        ])
     sums = P.RELEASE / ("SHA256SUMS_%s.txt" % args.version)
     sums.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
     print("  %s" % sums.name)

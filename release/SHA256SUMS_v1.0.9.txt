@@ -6,5 +6,7 @@ ef06dcf085fcccdc4617c2efed01f8b90d1dfd72f67e7cb325623eccb2514915  Shin Super Rob
 2fbf5a94ffc8b475741529c4a95d580c937ca37db31db227e0d6c7a917a1e95f  Shin Super Robot Taisen (Track 2).bin
 # result (650,607,888 bytes)
 3164ef139f4e21b5a2cb1cd9f2e176e873da7ece85bd07e06467ad85a5be20ef  Shin Super Robot Taisen Korean v1.0.9 (Track 1).bin
-# patch (623,489 bytes)
-d17d2e9d6c5a12c62e49241af1d66a481323836096a078d12d7f4d3287bb7c1b  shin-srw-korean-v1.0.9.xdelta
+# patch (623,450 bytes)
+8cc7382bac705a5e042c1d45d8c8fdc6e592627dee71f13962c9f906e56e014a  shin-srw-korean-v1.0.9.xdelta
+# easy-apply archive (848,541 bytes)
+501da967714cb69de22fdc3a104d050e6fd86650d282008c95a763c7be4352a3  shin-srw-korean-v1.0.9-easy-apply.zip

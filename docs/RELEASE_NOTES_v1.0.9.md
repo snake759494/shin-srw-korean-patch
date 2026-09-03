@@ -1,4 +1,4 @@
-# v1.0.9 — 열린 이슈 #87~#106 전수 재검수 및 후속 패치
+# v1.0.9 — 열린 이슈 #87~#107 전수 재검수 및 후속 패치
 
 v1.0.9는 초반 플레이에서 발견된 문장 제보를 해당 화면의 문자열 하나만 바꾸는
 방식으로 처리하지 않고, 원본 디스크에서 다시 추출한 전체 시나리오·전투 대사와
@@ -255,9 +255,9 @@ v1.0.9는 초반 플레이에서 발견된 문장 제보를 해당 화면의 문
 | 파일 | 크기 | SHA-256 |
 |---|---:|---|
 | `Shin Super Robot Taisen Korean v1.0.9 (Track 1).bin` | 650,607,888 | `3164ef139f4e21b5a2cb1cd9f2e176e873da7ece85bd07e06467ad85a5be20ef` |
-| `shin-srw-korean-v1.0.9.xdelta` | 623,489 | `d17d2e9d6c5a12c62e49241af1d66a481323836096a078d12d7f4d3287bb7c1b` |
-| `shin-srw-korean-v1.0.9-easy-apply.zip` | 848,588 | `1ff05c5a7c2a5d3ce0dceb4a748f63056f160aaf523d2fe8f3b0bb9867db1232` |
-| `SHA256SUMS_v1.0.9.txt` | 646 | `6fd605307ae14817941289ebc4d2d2e70d97a5791c2ae8710abfa364f43dc5c7` |
+| `shin-srw-korean-v1.0.9.xdelta` | 623,450 | `8cc7382bac705a5e042c1d45d8c8fdc6e592627dee71f13962c9f906e56e014a` |
+| `shin-srw-korean-v1.0.9-easy-apply.zip` | 848,541 | `501da967714cb69de22fdc3a104d050e6fd86650d282008c95a763c7be4352a3` |
+| `SHA256SUMS_v1.0.9.txt` | 787 | `241dae637d7b0d24b27a45be8a12eb0aa1c05e5728c5b8436d32bb8f5981f849` |
 
 Track 2는 패치하지 않으며 기존 SHA-256
 `2fbf5a94ffc8b475741529c4a95d580c937ca37db31db227e0d6c7a917a1e95f`를 유지합니다.
@@ -274,3 +274,19 @@ DuckStation 실행 확인이 아직 없습니다. 사용자가 명시적으로 �
 허락하지 않은 상태에서 임의로 실행하거나, 그 확인 없이 #74를 닫지는 않습니다.
 
 릴리스: https://github.com/snake7594/shin-srw-korean-patch/releases/tag/v1.0.9
+
+## #107 — easy-apply 패키지 해시 불일치
+
+v1.0.9 easy-apply ZIP에 포함된 `apply.ps1`이 v1.0.8의 결과·패치 해시를
+참조하고 있어, 정상적인 v1.0.9 xdelta를 `[1/5] 패치 파일 검증` 단계에서
+손상된 파일로 오인하는 패키징 오류를 확인했습니다. 패치 생성기에도 다음
+검사를 추가했습니다.
+
+- ZIP을 만들기 전에 버전·원본 Track 1·결과 Track 1·Track 2 해시를 스크립트와 대조
+- xdelta 생성 후 계산한 패치 해시를 ZIP 내부 `apply.ps1`에 자동 주입
+- `SHA256SUMS_v1.0.9.txt`에 xdelta뿐 아니라 easy-apply ZIP 해시도 기록
+- 새 xdelta를 원본에 역적용해 Track 1 SHA-256 `3164ef…`와 일치하는지 재확인
+
+기존 v1.0.9 easy-apply 자산은 잘못된 스크립트가 들어간 파일이므로 교체했고,
+새 ZIP의 `EXP_PATCH`는 `8cc7382b…`로 실제 포함 패치와 일치합니다. 이슈 댓글에
+원인·확인 방법·새 자산 해시를 남겼습니다.
