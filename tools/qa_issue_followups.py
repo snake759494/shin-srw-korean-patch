@@ -49,7 +49,7 @@ SCENARIO_EXPECTED = {
     "SCE-058-0121": "하야토「코우지 군, 유미 교수에게서\n 마징가Z의 개조용 파츠를 받아 왔다.\n 정비사를 불러와 주지 않겠나」",
     "SCE-058-0124": "하야토「음, 카부토 쥬조 박사가\n 남기신 개발 노트의 아이디어로\n 만들어졌다더군」",
     "SCE-058-0127": "하야토「그래, 그 상자 안의 것을\n 마징가Z에 조립해 넣어 주게.\n 설명서도 들어 있을 거다」",
-    "SCE-059-0029": "샤아「그렇다. 외계인의 지식과\n 기술을 흡수하려면, 시간이 좀 더\n 필요하다.<WAIT> 그때까지 사람들이 얌전히\n 있어 줬으면 좋겠는데.\n 알겠나, 나나이」",
+    "SCE-059-0029": "샤아「그렇다. 이성인의 지식과\n 기술을 흡수하려면, 시간이 좀 더\n 필요하다.<WAIT> 그때까지 사람들이 얌전히\n 있어 줬으면 좋겠는데.\n 알겠나, 나나이」",
     "SCE-059-0033": "샤아「곁에 있어 주지 않으면\n 곤란해, 나나이」",
     "SCE-059-0045": "브라이트「아뇨, 대단한 건\n 아닙니다... 알겠습니다.\n 사이드5를 조사해 보겠습니다」",
     "SCE-059-0046": "자하남「뭐, 가 준다고!?\n 그렇군, 그렇군, 와하하하하!\n 그럼, 잘 부탁하네!」",
@@ -116,13 +116,116 @@ POOL_EXPECTED = {
 
 
 MENTAL_COMMANDS = {
+    1: "근성",
+    2: "대근성",
+    3: "보급",
+    4: "우정",
+    5: "신뢰",
+    6: "사랑",
+    7: "격노",
+    8: "기합",
     9: "가속",
     10: "열혈",
     11: "필중",
     12: "번뜩임",
+    13: "행운",
     14: "각성",
+    15: "위압",
+    16: "봐주기",
     17: "집중",
+    18: "격려",
+    19: "재동",
+    20: "부활",
+    21: "은신",
+    22: "탈력",
+    23: "자폭",
+    24: "탐색",
+    25: "족쇄",
+    26: "교란",
+    27: "정찰",
+    28: "철벽",
     29: "혼",
+    30: "기적",
+    31: "간파",
+}
+
+
+# These are the records touched by the current open-issue pass.  Keeping
+# their exact text here prevents a future rebuild from silently reverting a
+# screenshot correction while the full source-ID/count check protects every
+# other scenario record.
+ISSUE_SCENARIO_EXPECTED = {
+    "SCE-063-0056": "아무로「웃소, 샤크티를 찾을 수\n 있을지 어떨지는, 알 수 없다.\n 각오는 해야 된다!」",
+    "SCE-064-0010": "샤아「어디까지 내 일을 방해할 셈이냐\n 아무로....\n 그렇다면 여기서 결판을 내 주지」",
+    "SCE-064-0013": "나나이「대령님, 이제는 말리지 않겠습니다만,\n 아무로를 쓰러뜨리면....?」",
+    "SCE-064-0016": "샤아「착하군」",
+    "SCE-064-0017": "코우지「우와-, 이렇게 거대한 걸,\n 용케도 만들었군.\n 그렇지, 후지와라」",
+    "SCE-064-0018": "시노부「윽...\n 몇 번을 말해야 알아듣겠냐.\n 시노부다, 시.노.부」",
+    "SCE-064-0019": "코우지「일일이 신경 쓰지 말라고」",
+    "SCE-064-0020": "시노부「신경 쓰이니까 그렇게 말해 주는 거다」",
+    "SCE-064-0021": "하야토「모두, 조심해라.\n 어디서 공격해 올지 모른다」",
+    "SCE-064-0024": "아무로「그리고 여기다. 알겠나」",
+    "SCE-064-0030": "류세이「그 말은,\n 다 같이는 갈 수 없다는 얘기군요」",
+    "SCE-064-0031": "하야토「그렇다」",
+    "SCE-064-0032": "마헤리아「우리는 소중한 공주님이야.\n 확실히 지켜 줘」",
+    "SCE-064-0033": "라이「상당히 얄미운\n 공주님이군」",
+    "SCE-064-0036": "헬렌「공주님이라....\n 가끔은 괜찮네, 보호받는 것도」",
+    "SCE-064-0052": "료마「말리지 마.\n 끝까지 하게 놔둬.\n 때로는 레크리에이션도 필요하지」",
+    "SCE-064-0069": "라이「우와아, 기, 기다려, 난 아니야..\n 윽.... 잘도 그랬겠다!」",
+    "SCE-064-0076": "브라이트「....알겠다.\n 류세이, 시노부, 코우지, 앞으로\n 나와! 다리에 힘주고 이를 악물어라!」",
+    "SCE-064-0079": "시노부「쳇, 제대로 걸렸군...」",
+    "SCE-064-0080": "코우지「...어째서, 나까지\n 기합을 받는 거야」",
+    "SCE-064-0087": "아무로「이런, 자, 잠깐...\n 우리가 싸우면 체면이 안 서잖나」",
+    "SCE-064-0133": "젝스「후후, 너라면\n 좋은 승부를 할 수 있겠군.\n 전사에게는, 좋은 라이벌이 필요한\n 법이다」",
+    "SCE-064-0151": "샤아「음, 제법이군, 아무로.\n 하지만 이 정도 대미지로는,\n 사자비는 떨어지지 않는다」",
+    "SCE-064-0152": "아무로「뭐야!? 안 먹힌 건가?」",
+    "SCE-065-0009": "로메로「레지스탕스의 리더가 되면\n 표적이 되기 쉽지.\n 그가 진짜 진 자하남일세」",
+    "SCE-065-0011": "한겔그「웃소, 많이 컸구나.\n 너 혼자 지구에 남겨 두고 온 건\n 늘 마음에 걸렸다」",
+    "SCE-065-0015": "한겔그「아뇨,\n 저야말로 실례했습니다.\n 그런데, 용건이란?」",
+    "SCE-065-0016": "브라이트「혹시, 이성인 모함의\n 현재 위치를 파악하고 계십니까」",
+    "SCE-065-0017": "한겔그「알 수 있을 겁니다.\n 곧 조사해서 연락하도록\n 하겠습니다」",
+    "SCE-065-0028": "파라「그래, 샤아 대신 타시로가\n 인류를 지배하는 거야.\n 그러고 싶었잖아」",
+    "SCE-065-0050": "코우지「아무것도. 그렇지, 보스」",
+    "SCE-065-0052": "네스「우현에서 열원 접근 중!」",
+    "SCE-065-0056": "네스「우측 동력부 피탄!\n 출력이 계속 저하되고 있습니다」",
+    "SCE-065-0057": "브라이트「각 기 출격!\n 전원 본함을 지켜라!!」",
+    "SCE-065-0059": "류세이「지구인 따위에게 민망한 꼴을\n 보였습니다. 송구합니다」",
+    "SCE-065-0076": "크로노클「예, 알겠습니다.\n 피피니덴, 들었겠지.\n 이번엔 후퇴하지 마라!\n 후퇴하면 내가 쏘겠다!!\n 알겠나!」",
+    "SCE-065-0078": "피피니덴「크로노클 이놈..\n 전술로 후퇴한 것을\n 도망친 것처럼 하다니..\n 젠장!\n 루페 시노!\n 잘 들어라, 여기가 마지막이다」",
+    "SCE-065-0090": "쿠프「함장님!\n 응급 처치가 끝났습니다!\n 어떻게든 움직일 겁니다!」",
+    "SCE-065-0112": "라이「그래」",
+    "SCE-065-0156": "카테지나「나를 좋아하지, 웃소..\n 계속 사랑하고 있었던 거지..」",
+    "SCE-065-0181": "파라「저게 하얀 놈이라면\n 여기서 질긴 인연을 끊겠다!!」",
+    "SCE-065-0182": "파라「이 잔넥을 본 자는\n 모두 죽는 거야\n 아핫하하하하하하!」",
+    "SCE-066-0010": "곳초「샤아도 당했군.\n 루 카인, 상처는 어떠한가」",
+    "SCE-066-0011": "루 카인「예, 이제 괜찮습니다.\n 지구인 따위에게 민망한 꼴을\n 보였습니다. 송구합니다」",
+    "SCE-066-0045": "샤아「나나이, 사내들 싸움에\n 끼어들지 마라!」",
+    "SCE-066-0069": "샤아「목숨이 아까웠다면 네놈에게\n 사이코 프레임 정보 따위 줄\n 성싶으냐!」",
+    "SCE-066-0071": "샤아「한심한 모빌슈트와 싸워 봤자\n 이기는 데 의미가 있나!」",
+    "SCE-066-0072": "아무로「바보 취급하긴....!\n 그렇게 네놈은 영원히 타인을\n 내려다보는 것밖에 못 하는 거냐!」",
+    "SCE-067-0038": "브라이트「그럼 좋다.\n 지금부터 작전회의에\n 들어간다」",
+    "SCE-067-0045": "코우지「알겠습니다.\n 바베큐가 되고 싶진 않아요」",
+    "SCE-067-0046": "곳초「용케 여기까지 왔군.\n 하지만, 이걸로 끝이다.\n 모두 죽어 주어야겠다」",
+    "SCE-067-0053": "코우지「그야, 기쁜 게 당연\n 하죠.<WAIT> 하지만, 어쩐지, 이렇게.....\n 말로 표현을 못 하겠네」",
+    "SCE-067-0062": "젝스「나는 젝스 마키스!\n 싸울 의향은 없다!」",
+    "SCE-067-0066": "젝스「샤아에게서 메시지를 맡아 두었다.\n 받아 주었으면 한다」",
+    "SCE-067-0075": "그레스코「예, 이쪽 상황이\n 좋지 않다는 연락을 받았기에」",
+    "SCE-067-0081": "그레스코「카를라! 기우라!\n 너희는, 즉시 출격해라」",
+    "SCE-067-0083": "기우라! 핫!」",
+    "SCE-067-0084": "곳초「뭐라, 그레스코가 격침됐다고!?\n 윽..... 놀이는 끝이다!!」",
+    "SCE-067-0088": "곳초「너는?... 파라<WAIT> 이 내가 지구인인 네 도움을\n 빌린다고?\n 후후후후, 묘하군...」",
+    "SCE-067-0090": "곳초「이상한 여자군, 너는.\n 좋다!\n 네 도움을 받도록 하지」",
+}
+
+
+ISSUE_BATTLE_EXPECTED = {
+    "BTT-13-0B-005A96": "「떨어져라! 떨어져!!」",
+}
+
+
+TITLE_EXPECTED = {
+    "ベスパと異星人": "『베스파와 이성인』",
+    "エンジェル・ハイロゥ": "『엔젤 하일로』",
 }
 
 
@@ -188,13 +291,20 @@ def main() -> int:
     for record_id, expected in SCENARIO_EXPECTED.items():
         if full["scenario"].get(record_id) != expected:
             errors.append(f"scenario mismatch at {record_id}")
+    for record_id, expected in ISSUE_SCENARIO_EXPECTED.items():
+        if full["scenario"].get(record_id) != expected:
+            errors.append(f"current issue scenario mismatch at {record_id}")
     for record_id, expected in BATTLE_EXPECTED.items():
         if full["battle"].get(record_id) != expected:
             errors.append(f"battle mismatch at {record_id}")
+    for record_id, expected in ISSUE_BATTLE_EXPECTED.items():
+        if full["battle"].get(record_id) != expected:
+            errors.append(f"current issue battle mismatch at {record_id}")
 
     for group in (
         ("SCE-058-0190", "SCE-059-0146", "SCE-063-0142", "SCE-065-0172"),
         ("SCE-058-0142", "SCE-059-0098", "SCE-063-0094", "SCE-065-0124"),
+        ("SCE-057-0097", "SCE-058-0140", "SCE-059-0096", "SCE-063-0092", "SCE-065-0122"),
     ):
         values = {full["scenario"].get(record_id) for record_id in group}
         if len(values) != 1:
@@ -206,6 +316,16 @@ def main() -> int:
             if remaining.get(pool, {}).get(japanese) != expected:
                 errors.append(f"pool mismatch at {pool}/{japanese}")
 
+    for japanese, expected in TITLE_EXPECTED.items():
+        title_values = [
+            value
+            for rows in read_json(ROOT / "data" / "scenario_title_ko.json")["titles"].values()
+            for source, value in rows
+            if source == japanese
+        ]
+        if title_values != [expected]:
+            errors.append(f"scenario title mismatch at {japanese}")
+
     data_documents = [
         full,
         remaining,
@@ -215,7 +335,8 @@ def main() -> int:
     ]
     superseded = (
         "류마", "브로흐", "도고라", "독고라", "브루켄그",
-        "엔젤하이로", "엔젤.하이로우", "천상으천하", "무.. 마",
+        "엔젤하이로", "엔젤.하이로우", "엔젤 하이로우", "천상으천하", "무.. 마",
+        "외계인", "르 카인", "만젤로", "가슈란",
     )
     for document in data_documents:
         for value in all_strings(document):
@@ -240,17 +361,32 @@ def main() -> int:
             from extract_ssrw_japanese_text import Codec
 
             codec = Codec(read_json(ROOT / "data" / "ssrw_japanese_font_mapping.json"))
+            mapping_path = build_dir / "hangul_mapping.json"
+            if not mapping_path.is_file():
+                mapping_path = ROOT / "data" / "hangul_mapping.json"
             hangul = {
                 row["character"]: int(row["glyph_index"])
-                for row in read_json(ROOT / "data" / "hangul_mapping.json")["entries"]
+                for row in read_json(mapping_path)["entries"]
             }
             image = exe_path.read_bytes()
 
             def check_table(table: int, index: int, korean: str, arena_end: int) -> None:
                 nonlocal built_runtime_checks
                 slot = table + 4 * index
+                if slot + 4 > len(image):
+                    errors.append(f"built pool table is truncated at {table:#x}[{index}]")
+                    return
                 target = slot + struct.unpack_from("<I", image, slot)[0]
+                if target < slot + 4 or target >= arena_end:
+                    errors.append(
+                        f"built pool pointer is out of range at {table:#x}[{index}]: "
+                        f"{target:#x}"
+                    )
+                    return
                 actual = terminated(image, target, arena_end)
+                if actual is None:
+                    errors.append(f"built pool string is unterminated at {table:#x}[{index}]")
+                    return
                 expected = encode_text(korean, codec, hangul) + b"\xFF"
                 built_runtime_checks += 1
                 if actual != expected:
@@ -280,7 +416,10 @@ def main() -> int:
                     errors.append(f"built fixed label mismatch at {identifier}")
 
     print(f"translation counts: {counts}")
-    print(f"issue records checked: {len(SCENARIO_EXPECTED) + len(BATTLE_EXPECTED)}")
+    print(
+        "issue records checked: "
+        f"{len(SCENARIO_EXPECTED) + len(ISSUE_SCENARIO_EXPECTED) + len(BATTLE_EXPECTED) + len(ISSUE_BATTLE_EXPECTED)}"
+    )
     print(f"built executable checks: {built_runtime_checks}")
     if errors:
         print("QA FAILED:")

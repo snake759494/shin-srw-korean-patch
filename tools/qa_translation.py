@@ -126,6 +126,12 @@ def korean_payloads() -> Iterable[tuple[str, str]]:
                 if isinstance(value, str):
                     yield f"{filename}/{key}/{field}", value
 
+    titles = read_json(ROOT / "data" / "scenario_title_ko.json")
+    for group, rows in titles["titles"].items():
+        for source, value in rows:
+            if isinstance(value, str):
+                yield f"scenario_title_ko/{group}/{source}", value
+
 
 def check_built_exe(path: Path) -> list[str]:
     errors: list[str] = []

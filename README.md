@@ -6,12 +6,14 @@ PlayStation 게임 **신 슈퍼로봇대전**(新スーパーロボット大戦,
 > **게임 데이터는 이 저장소에 없습니다.** 배포물은 원본 디스크에 적용하는 xdelta 바이너리 패치뿐입니다.
 > 본인이 소유한 디스크에서 직접 추출한 이미지가 필요합니다.
 
-현재 최신 릴리스는 **v1.0.9**이며, 초반부터 최종 시나리오까지 원문 대조 검수를 수행해
+현재 최신 릴리스는 **v1.0.10**이며, 초반부터 최종 시나리오까지 원문 대조 검수를 수행해
 오타·띄어쓰기·인물명·용어를 정리하고 상태창의 동적 한자 값도 한글화했습니다. 무기 목록의
 인라인 UI 글리프까지 원본과 대조해 보존했으며, v1.0.2는
 부팅 검은 화면 문제로 철회되었습니다.
 
-v1.0.9에서는 전투 대사창의 파일럿 이름을 원본과 같은 8×16 셀 폭으로 출력하도록 별도
+v1.0.10에서는 열린 이슈 #108~#125의 제보 대사를 원문 레코드와 다시 대조하고, 반복
+레코드·정신 커맨드 31개·시스템 문자열·인물명·시나리오 제목까지 전체 빌드에 반영했습니다.
+이전 버전의 전투 대사창의 파일럿 이름을 원본과 같은 8×16 셀 폭으로 출력하도록 별도
 코드 페이지를 적용하고, 사용하지 않는 파일럿명 슬롯이 다음 테이블을 문자열로 읽지 않도록
 격리했습니다. BTTMES의 특수 교차 뱅크 인덱스도 실제 참조만 재배치해 전투 상태를 보존합니다.
 추가로 #87~#106의 초반·중반 시나리오, 전투 대사, 무기명, 인물명, 지형·정신 커맨드 화면을
@@ -85,7 +87,7 @@ md5sum "Shin Super Robot Taisen (Track 1).bin"
 
 ### 방법 1 — 간편 적용 (Windows, 권장)
 
-1. 릴리스에서 `shin-srw-korean-v1.0.9-easy-apply.zip` 을 받아 압축을 풉니다.
+1. 릴리스에서 `shin-srw-korean-v1.0.10-easy-apply.zip` 을 받아 압축을 풉니다.
 2. 원본 `.bin` 2개를 압축 푼 폴더에 복사합니다.
 3. **`한글패치 적용하기.bat`** 을 더블클릭합니다.
 4. 원본 검증 → 패치 → 결과 검증이 자동으로 진행됩니다(1~2분).
@@ -99,14 +101,14 @@ md5sum "Shin Super Robot Taisen (Track 1).bin"
 
 ```bash
 xdelta3 -d -s "Shin Super Robot Taisen (Track 1).bin" \
-        shin-srw-korean-v1.0.9.xdelta \
-        "Shin Super Robot Taisen Korean v1.0.9 (Track 1).bin"
+        shin-srw-korean-v1.0.10.xdelta \
+        "Shin Super Robot Taisen Korean v1.0.10 (Track 1).bin"
 ```
 
 그 다음 아래 내용으로 `.cue` 파일을 만듭니다. Track 2 파일명은 실제 파일명과 같아야 합니다.
 
 ```
-FILE "Shin Super Robot Taisen Korean v1.0.9 (Track 1).bin" BINARY
+FILE "Shin Super Robot Taisen Korean v1.0.10 (Track 1).bin" BINARY
   TRACK 01 MODE2/2352
     INDEX 01 00:00:00
 FILE "Shin Super Robot Taisen (Track 2).bin" BINARY
@@ -128,16 +130,16 @@ Track 2 파일에는 정품 디스크와 같은 150섹터(2초) 프리갭이 이
 
 | 알고리즘 | 값 |
 |---|---|
-| MD5 | `2bd5f9ad47486c9c911f564ef8535731` |
+| MD5 | `f334d97735f00055e25f86676bb55d7c` |
 | SHA-1 | `fbaba047f4916ca63e79dca330f27a10e3454aa8` |
-| SHA-256 | `3164ef139f4e21b5a2cb1cd9f2e176e873da7ece85bd07e06467ad85a5be20ef` |
+| SHA-256 | `b8de2934ad48fbb179467517d3eab2bee81eca874b0956a77c0cd8192438b2fd` |
 | CRC32 | `C5DC3856` |
 
-**패치 파일 `shin-srw-korean-v1.0.9.xdelta` — 623,450 바이트**
+**패치 파일 `shin-srw-korean-v1.0.10.xdelta` — 621,165 바이트**
 
 | 알고리즘 | 값 |
 |---|---|
-| SHA-256 | `8cc7382bac705a5e042c1d45d8c8fdc6e592627dee71f13962c9f906e56e014a` |
+| SHA-256 | `923dc2fb7b30649fd9b9ba9e49f86f96fdfc9fc5c6b7add309dc83885784aa94` |
 
 ### 문제 해결
 
