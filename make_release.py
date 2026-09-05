@@ -144,6 +144,13 @@ def main() -> int:
             raise SystemExit("error: easy-apply is missing " + ", ".join(missing))
         patch_digest = P.sha256(patch)
         apply_path = P.REPO / "easy-apply" / "apply.ps1"
+        # Rewrite the digest on the RAW bytes.  Reading this file as text and
+        # re-encoding it silently turned every CRLF into a bare LF and dropped
+        # the byte-order mark, and Windows PowerShell 5.1 reads a BOM-less
+        # UTF-8 script as ANSI - every Korean message in the applier came out
+        # as mojibake.  The file is UTF-8 with a BOM and CRLF line endings and
+        # has to stay that way in the zip.
+        apply_bytes = apply_path.read_bytes()
         validate_easy_apply_manifest(
             apply_path,
             args.version,
@@ -151,19 +158,22 @@ def main() -> int:
             expected,
             P.RETAIL_TRACK2_SHA256,
         )
-        apply_text = apply_path.read_text(encoding="utf-8")
-        apply_text, replaced = re.subn(
-            r"(?m)^(\s*\$EXP_PATCH\s*=\s*)'[^']*'(\s*)$",
-            rf"\g<1>'{patch_digest}'\g<2>",
-            apply_text,
+        apply_bytes, replaced = re.subn(
+            rb"(?m)^(\s*\$EXP_PATCH\s*=\s*)'[^']*'",
+            rb"\g<1>'" + patch_digest.encode("ascii") + b"'",
+            apply_bytes,
             count=1,
         )
         if replaced != 1:
             raise SystemExit("error: easy-apply/apply.ps1 has no EXP_PATCH assignment")
+        if not apply_bytes.startswith(b"\xef\xbb\xbf"):
+            raise SystemExit("error: easy-apply/apply.ps1 lost its UTF-8 BOM")
+        if apply_bytes.count(b"\n") != apply_bytes.count(b"\r\n"):
+            raise SystemExit("error: easy-apply/apply.ps1 must use CRLF line endings")
         with zipfile.ZipFile(bundle, "w", zipfile.ZIP_DEFLATED) as archive:
             for name in EASY_APPLY_FILES:
                 if name == "apply.ps1":
-                    archive.writestr(name, apply_text.encode("utf-8"))
+                    archive.writestr(name, apply_bytes)
                 else:
                     archive.write(P.REPO / "easy-apply" / name, name)
             archive.write(patch, patch.name)

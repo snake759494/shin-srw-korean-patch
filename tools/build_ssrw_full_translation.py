@@ -102,6 +102,24 @@ SMALL_BATTLE_NAME_GLYPHS = {
     "드": 0xEC,
     "아": SMALL_LABEL_AH_INDEX,
 }
+# 0xEC and 0xED sit above the battle text interpreter's opcode floor: the
+# dispatcher at RAM 0x800DAFA4 treats 0xEC..0xFF as controls and the table at
+# 0x80086044 sends 0xEC..0xEF to 0x800DB418, which branches back to the fetch
+# without advancing the script pointer.  That would be an infinite loop IF a
+# name's bytes ever reached that dispatcher - but PILOTNAME[1] 아무로 is stored
+# as ED 42 49 and the first battle plays normally, so names are evidently drawn
+# by a routine that does not dispatch them.  The two cells are kept for now,
+# with this note, rather than changed on an unverified theory.
+
+# Compact cells that only fixed labels use.  These are never emitted into a
+# pilot name, so they may sit above the battle interpreter's 0xEC opcode floor.
+SMALL_LABEL_GLYPHS = {
+    "아": SMALL_LABEL_AH_INDEX,
+}
+
+# The battle window's interpreter reads 0xEC and up as control opcodes, so a
+# name may only ever carry compact cells below that.
+BATTLE_OPCODE_FLOOR = 0xEC
 
 # A few short names are used by FC09 in the battle HUD but have no safe
 # compact-cell spelling: the compact cells made their final syllable visibly
@@ -505,7 +523,11 @@ def patch_small_label_font(source: bytes, bdf_path: Path) -> tuple[bytes, dict[s
     """Install the compact half-width glyphs used by labels and pilot names."""
     bdf = parse_bdf(bdf_path)
     output = bytearray(source)
+    # 아 keeps its compact cell for the ``아뇨`` button label even though pilot
+    # names no longer use it: labels are drawn by the window engine, whose
+    # control floor is 0xF0, so 0xED is a glyph there.
     glyphs = dict(SMALL_BATTLE_NAME_GLYPHS)
+    glyphs.update(SMALL_LABEL_GLYPHS)
     if len(set(glyphs.values())) != len(glyphs):
         raise ValueError("compact label/name glyph slots overlap")
     if any(not 0 <= index < 0xF0 for index in glyphs.values()):
@@ -539,7 +561,7 @@ def patch_small_label_font(source: bytes, bdf_path: Path) -> tuple[bytes, dict[s
 
 
 def encode_pilot_name_text(
-    korean: str, codec: Codec, mapping: dict[str, int]
+    korean: str, codec: Codec, mapping: dict[str, int], budget: int | None = None
 ) -> tuple[bytes, int]:
     """Encode a PILOTNAME value with the retail compact-name code page.
 
@@ -552,6 +574,17 @@ def encode_pilot_name_text(
     """
     if korean in PILOT_NAME_WIDE_ONLY:
         return encode_text(korean, codec, mapping), 0
+
+    # A compact cell only reads as Korean if the half-width bank was repainted,
+    # and nothing in the message itself says so: the name is raw bytes whose
+    # meaning lives in a different build step.  When that step and the data
+    # disagree the name comes out as the retail kana - "산시로" reads "산ウお",
+    # which is issue #137.  So take the compact page only when the plain wide
+    # encoding would be wider than the Japanese it replaces; a name that fits
+    # on its own has no reason to depend on the second bank.
+    wide = encode_text(korean, codec, mapping)
+    if budget is not None and encoded_display_advance(wide) <= budget:
+        return wide, 0
 
     output = bytearray()
     compact_glyphs = 0
@@ -2891,6 +2924,7 @@ def repack_exe_string_pools(
     pilot_name_stats = {
         "translated_records": 0,
         "compact_glyphs": 0,
+        "records_using_compact_cells": 0,
         "wide_fallback_hangul": 0,
         "max_display_advance": 0,
         "max_display_advance_entries": [],
@@ -2904,9 +2938,27 @@ def repack_exe_string_pools(
         if korean is None or korean == japanese:
             return raw, False
         if pool_label == "PILOTNAME":
-            encoded, compact_glyphs = encode_pilot_name_text(korean, codec, mapping)
+            encoded, compact_glyphs = encode_pilot_name_text(
+                korean, codec, mapping, budget=encoded_display_advance(raw)
+            )
+            # only top-level bytes are dispatched; the byte after F0-F5 is that
+            # glyph's operand and may legitimately be anything
+            position = 0
+            while position < len(encoded):
+                byte = encoded[position]
+                if 0xF0 <= byte <= 0xF5:
+                    position += 2
+                    continue
+                if byte >= BATTLE_OPCODE_FLOOR and byte not in SMALL_BATTLE_NAME_GLYPHS.values():
+                    raise ValueError(
+                        "pilot name %r encodes byte %#04x, which the battle "
+                        "interpreter reads as a control opcode" % (korean, byte)
+                    )
+                position += 1
             pilot_name_stats["translated_records"] += 1
             pilot_name_stats["compact_glyphs"] += compact_glyphs
+            if compact_glyphs:
+                pilot_name_stats["records_using_compact_cells"] += 1
             pilot_name_stats["wide_fallback_hangul"] += sum(
                 1 for character in korean
                 if "가" <= character <= "힣"
