@@ -97,8 +97,16 @@ BATTLE_EXPECTED = {
 
 
 POOL_EXPECTED = {
-    "PILOTFULL": {"ブロッホ": "브롯흐"},
-    "PILOTNAME": {"ブロッホ": "브롯흐"},
+    "PILOTFULL": {
+        "ブロッホ": "브롯흐",
+        "ゾンビ兵": "좀비병",
+        "兵士": "병사",
+    },
+    "PILOTNAME": {
+        "ブロッホ": "브롯흐",
+        "ゾンビ兵": "좀비병",
+        "兵士": "병사",
+    },
     "UNITNAME": {
         "ドッゴ-ラ": "돗고라",
         "ブルッケング": "브루켕",
@@ -111,6 +119,7 @@ POOL_EXPECTED = {
     "SYS": {
         "エンジェル.ハイロゥ": "엔젤 하일로",
         "エンジェルハイロゥ": "엔젤 하일로",
+        "空水": "공해",
     },
 }
 
@@ -155,6 +164,45 @@ MENTAL_COMMANDS = {
 # screenshot correction while the full source-ID/count check protects every
 # other scenario record.
 ISSUE_SCENARIO_EXPECTED = {
+    "SCE-008-0082": "레인「도몬, 기다려....\n 앗, 안녕히 계세요.\n 도몬, 도몬이라니까!」",
+    "SCE-008-0089": "사콘「호오...\n 그가, 그 유명한 킹 오브\n 하트인가. 그런 거 치곤 젊군」",
+    "SCE-009-0004": "다이몬지 박사「유럽의 상황은....\n ..긴박한 이유로, 서둘러 손을\n 써야겠다고 판단해, 그들을 남겨\n 두고 왔습니다」",
+    "SCE-009-0006": "다이몬지 박사「예, 하지만, 이번엔,\n 저희 쪽이 허술해지고 맙니다」",
+    "SCE-009-0007": "오카 장관「걱정할 것 없네. 이미,\n 대공마룡대 보강을 위한 새 멤버를\n 모으고 있네. 소개하지」",
+    "SCE-009-0025": "오카 장관「경찰도 범인 체포에\n 전력을 다하고 있네만, 단서조차\n 잡지 못하고 있네. 제군들도, 주변을\n 충분히 경계하도록」",
+    "SCE-009-0044": "아키라「저 녀석은, 슈퍼로봇\n 매니아야. 좀 징그럽긴 해도, 악의는\n 없어. 너무 신경 쓰지 않는 게\n 좋아」",
+    "SCE-009-0050": "류세이「R-1은 리얼로봇 계열이라\n 소형이거든. 브라○가처럼\n 거대화라도 하면 재미있을 텐데」",
+    "SCE-009-0051": "산시로「뭘 알아들을 수도 없는\n 소리를 하고 있는 거냐.\n 적들에게 격추당한다!」",
+    "SCE-009-0056": "피트「누구랑 마찬가지로, 열혈\n 외길을 걷는 건 틀림없지」",
+    "SCE-010-0035": "다이몬지 박사「사람을 납치했다고?\n 사콘 군, 자세하게 조사해 주게」",
+    "SCE-010-0066": "미도리「쿨한 느낌이 멋지네.\n 그렇지, 이쿠에 양」",
+    "SCE-011-0009": "오카 장관「음, 대신 극동지부 소속\n 수전기대에게, 유럽으로 가게 할\n 생각이네」",
+    "SCE-011-0010": "류세이「수전기대?\n 그거 단쿠가잖아.<WAIT> 알아? 수전기대에는 어그레시브\n 모드라는 게 있어서 말이야...」",
+    "SCE-011-0011": "사콘「수전기대라... 또 다시,\n 문제아들이군」",
+    "SCE-011-0018": "다이몬지 박사「아니요, 신경 쓰지\n 마십시오.\n 그런데, 무엇을 운반하면\n 되겠습니까?」",
+    "SCE-011-0043": "사콘「수리는 필요하지만, 큰 피해는\n 아닌듯 싶습니다」",
+    "SCE-011-0044": "다이몬지 박사「그런가.\n 교수님, 들으신 대로입니다.<WAIT> 폐가 되지 않도록, 수리가\n 끝날 때까지 잠시 자리를\n 빌리겠습니다」",
+    "SCE-011-0050": "산시로「어이 이봐, 너무 내 옆에\n 붙지 마라」",
+    "SCE-011-0055": "라이「무슨 소리를 한 거냐? 류세이?」",
+    "SCE-012-0006": "유미 교수「해저화산치고는 조금\n 부자연스럽습니다.\n 인공적인 것이 아닐까 하고..」",
+    "SCE-012-0009": "다이몬지 박사「이성인의 기지가,\n 오가사와라 제도에 있다는\n 말씀입니까?」",
+    "SCE-012-0010": "유미 교수「그럴 가능성이 높지\n 않을까 생각합니다.」",
+    "SCE-012-0029": "아키라「적당히 좀 해요!\n 정말이지」",
+    "SCE-013-0007": "왓타「엄마, 이래저래 저금하고\n 있었으니까」",
+    "SCE-013-0008": "카키코지「다이몬지 박사님, 참으로\n 죄송합니다만, 저희는 일단 도쿄로\n 돌아가겠습니다」",
+    "SCE-013-0040": "히이로「뭘 하고 있는 거냐, 나는..\n 이 녀석이 죽어 주는 편이 나을\n 텐데」",
+    "SCE-014-0005": "사콘「그렇군요.\n 가이킹의 조종도 함께 해\n 버리겠습니다」",
+    "SCE-014-0015": "다이몬지 박사「대뜸 미안하네만,\n 사야카 양과 함께 제트 스크랜더를\n 가지고 유럽으로 가주게」",
+    "SCE-014-0090": "동방불패「아니... 내가 인정한\n 킹 오브 하트인가!」",
+    "SCE-014-0111": "도몬「함부로 내 이름을 부르지 마라」",
+    "SCE-014-0112": "레인「도몬!\n 미안해요, 류세이 씨.<WAIT> 이 사람, 겉보기엔 무뚝뚝해도\n 속은 좋은 사람이에요」",
+    "SCE-014-0113": "라이「류세이는 겉보기엔 바보인데\n 속도 바보지」",
+    "SCE-014-0114": "류세이「라이!! 이 자식, 더는 못 참아!\n 앗, 서라!」<WAIT> 우당탕",
+    "SCE-014-0117": "장갈「넵, 그것이 도무지 알 수\n 없는 노릇이옵니다」",
+    "SCE-014-0127": "동방불패「도몬, 이 잔챙이들을\n 후딱 처치해 버리자꾸나!」",
+    "SCE-015-0097": "다이몬지 박사「가이킹을 발진시켜라」",
+    "SCE-037-0049": "동방불패「도몬.., 유파, 동방불패\n 최종오의, 석파천경권!\n 확실히 전수했노라!」",
+    "SCE-037-0063": "동방불패「....도몬,<WAIT> ...나는, 너에게 사죄해야만 한다.\n 나는 지구권에 와서, 두 사람의\n 인간과 접촉을 가졌다.\n 하나는 네 아버지, 캇슈 박사다.\n 그리고, 또 한 사람의 남자\n 샤아 아즈나블.\n 지금 생각하면, 그자와 만난 것이\n 문제였다.\n 그자를 알게 된 때가 나빴던\n 것이다.<WAIT> 그것은, 지구와 콜로니가 몇\n 번이고, 치열한 전투를 되풀이한\n 뒤,<WAIT> 루나 조약에 의해 간신히 평화가\n 만들어졌을 때였다.\n 루나 조약, 너도 알다시피,\n 지구.달.각 콜로니군이,<WAIT> 서로를 독립국가로 인정하고,\n 서로에게 일체의 간섭을 하지\n 않는다는 진부한 타협안이다.\n 허나, 싸움에 지쳐 버린 인간들에게\n 는, 단순하기에 오히려\n 유효했다.\n 평화로워졌다고는 해도, 전쟁의\n 영향은 곳곳에 짙게 남아 있었다.<WAIT> 그자도, 지난 전쟁에서 많은 부하와\n 백성을 희생 시키고, 또, 그자\n 자신이 수많은 목숨을 앗아, 마음은\n 황폐해지고 깊이 상처 입었을\n 것이다<WAIT> 누구보다 인간을 사랑하는 마음을\n 지니 면서도, 그 이상으로 인간을\n 미워하고 있었다. 확실히, 시기가\n 너무 나빴다. 하지만, 여기 도착한\n 지 얼마 되지 않은 나로서는 그런\n 것을 알 리 없었다.<WAIT> 그자는, 지도자로서의 자질이\n 뛰어나고, 냉정침착하고 사려 깊은\n 태도와, 폭넓은 식견을 지니고\n 있었다.<WAIT> 그것에 현혹되고 만 것이다.\n 나는, 지구인의 대표로서 그자를\n 이해하려 했다.\n 그 결과, 나는 지구인이란\n 불안정하고 파괴를 즐기는 호전적\n 종족이며,<WAIT> 우리에게, 장래 위험 인자가 될 수\n 있는 존재라고 인식하고 말았다.<WAIT> 그리고, 최악의 사태에 대비할\n 필요가 생겨 나는 네 아버지 캇슈\n 박사를 이용한 것이다」",
     "SCE-063-0056": "아무로「웃소, 샤크티를 찾을 수\n 있을지 어떨지는, 알 수 없다.\n 각오는 해야 된다!」",
     "SCE-064-0010": "샤아「어디까지 내 일을 방해할 셈이냐\n 아무로....\n 그렇다면 여기서 결판을 내 주지」",
     "SCE-064-0013": "나나이「대령님, 이제는 말리지 않겠습니다만,\n 아무로를 쓰러뜨리면....?」",
@@ -357,6 +405,7 @@ def main() -> int:
             errors.append(f"built EXE not found: {exe_path}")
         else:
             sys.path.insert(0, str(ROOT / "tools"))
+            import build_ssrw_full_translation as build
             from build_ssrw_screenshot_korean_test import encode_text
             from extract_ssrw_japanese_text import Codec
 
@@ -399,10 +448,11 @@ def main() -> int:
                 check_table(0x703B4, index, korean, 0x72434)
             for index, korean in enumerate(("육", "우", "공")):
                 check_table(0x702BC, index, korean, 0x72434)
+            check_table(0x702BC, 4, "공해", 0x72434)
 
-            status = encode_text("없있", codec, hangul) + b"\xFF" * 4
+            status = encode_text("무유", codec, hangul) + b"\xFF" * 4
             if image[0x70300:0x70300 + len(status)] != status:
-                errors.append("built inline status field at 0x70300 is not 없/있")
+                errors.append("built inline status field at 0x70300 is not 무/유")
             built_runtime_checks += 1
 
             fixed = read_json(ROOT / "data" / "fixed_label_translation_ko.json")["entries"]
@@ -410,10 +460,25 @@ def main() -> int:
                 if entry.get("korean") not in {"지형", "정신", "정신명령"}:
                     continue
                 offset = int(entry["offset"], 16)
-                expected = encode_text(entry["korean"], codec, hangul)
+                expected = build.encode_fixed_label_text(
+                    entry["korean"], codec, hangul
+                )
                 built_runtime_checks += 1
                 if image[offset:offset + len(expected)] != expected:
                     errors.append(f"built fixed label mismatch at {identifier}")
+
+            for index, korean in ((55, "병사"), (100, "좀비병"), (244, "류세이")):
+                slot = 0x6A938 + 4 * index
+                target = slot + struct.unpack_from("<I", image, slot)[0]
+                actual = terminated(image, target, 0x72434)
+                expected = build.encode_pilot_name_text(
+                    korean, codec, hangul
+                )[0] + b"\xFF"
+                built_runtime_checks += 1
+                if actual != expected:
+                    errors.append(
+                        f"built PILOTNAME mismatch at index {index} ({korean})"
+                    )
 
     print(f"translation counts: {counts}")
     print(

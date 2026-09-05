@@ -1445,7 +1445,7 @@
    "offset": "0x82EB6",
    "budget": 3,
    "japanese": "タイプ",
-   "korean": "형",
+   "korean": "지형",
    "terminated": false,
    "pool": "WIN"
   },
@@ -1541,7 +1541,7 @@
    "offset": "0x8314B",
    "budget": 3,
    "japanese": "タイプ",
-   "korean": "형",
+   "korean": "지형",
    "terminated": false,
    "pool": "WIN"
   },
@@ -3461,7 +3461,7 @@
    "offset": "0x866A7",
    "budget": 3,
    "japanese": "タイプ",
-   "korean": "형",
+   "korean": "지형",
    "terminated": false,
    "pool": "WIN"
   },

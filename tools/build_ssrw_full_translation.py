@@ -103,6 +103,13 @@ SMALL_BATTLE_NAME_GLYPHS = {
     "아": SMALL_LABEL_AH_INDEX,
 }
 
+# A few short names are used by FC09 in the battle HUD but have no safe
+# compact-cell spelling: the compact cells made their final syllable visibly
+# smaller than the rest of the name (issues #130/#131).  These names stay in
+# the normal 16-pixel Hangul font; their measured advances fit the retail
+# 20-unit name field.
+PILOT_NAME_WIDE_ONLY = frozenset({"류세이", "좀비병", "병사"})
+
 # The 0x6C..0x80 range is the compact speaker-name line in the retail battle
 # layout (the body line is reset separately by F6).  Keep this as a static
 # audit bound; it is not used to truncate or rewrite a name.
@@ -543,6 +550,9 @@ def encode_pilot_name_text(
     back to the normal wide font; it is never silently replaced by another
     character.
     """
+    if korean in PILOT_NAME_WIDE_ONLY:
+        return encode_text(korean, codec, mapping), 0
+
     output = bytearray()
     compact_glyphs = 0
     position = 0
@@ -1536,50 +1546,129 @@ def rebuild_bttmes(
     pointer_count = table_bytes // 4
     pointers = list(struct.unpack_from(f"<{pointer_count}I", source, 0))
     records = sorted(battle_doc["records"], key=lambda row: int(row["source_offset"]))
-    cursor = table_bytes
-    output = bytearray(source[:table_bytes])
-    changes = []
-    for row in records:
-        start = int(row["source_offset"])
-        end = int(row["record_end"])
-        if start < cursor or end > len(source):
-            raise ValueError(f"invalid BTTMES record range: {row['id']}")
-        output.extend(source[cursor:start])
-        header = source[start:start + 4]
-        original_body = source[start + 4:end]
-        if row["id"] not in translations:
-            new_body = original_body
-        else:
-            new_body = encode_text(translations[row["id"]], codec, mapping) + b"\xFF"
-        new_start = len(output)
-        output.extend(header + new_body)
-        new_end = len(output)
-        changes.append({
-            "id": row["id"],
-            "old_source_offset": start,
-            "new_source_offset": new_start,
-            "old_record_bytes": end - start,
-            "new_record_bytes": 4 + len(new_body),
-            "growth_bytes": (4 + len(new_body)) - (end - start),
-            "korean": translations.get(row["id"], ""),
-        })
-        cursor = end
-    output.extend(source[cursor:])
 
-    def relocate(old_offset: int) -> int:
-        delta = 0
-        for change in changes:
-            old_start = change["old_source_offset"]
-            old_end = old_start + change["old_record_bytes"]
-            if old_offset >= old_end:
-                delta += change["growth_bytes"]
-            elif old_offset >= old_start:
-                return old_offset + delta
+    # Retail quantises this archive: every one of its 256 bank pointers is a
+    # multiple of 2048, and each bank is zero-padded out to that boundary.  The
+    # battle-message loader reads a bank by sector, so a bank that no longer
+    # starts on a sector boundary is delivered at the wrong offset inside its
+    # RAM buffer.  Repacking without this pass left 2 of 256 pointers aligned
+    # and froze the game on a black screen once play reached a bank whose
+    # drift mattered (issues #136, #140, #143).  Pad the same way retail does.
+    bank_starts = sorted({value for value in pointers if table_bytes <= value < len(source)})
+
+    def lay_out(pads: dict[int, tuple[int, int]]) -> tuple[bytearray, list[dict[str, Any]], list[dict[str, Any]]]:
+        """Emit the archive, rewriting each bank's trailing zero padding.
+
+        `pads` maps the old offset where a bank's content ends to
+        (old padding bytes there, new padding bytes).  Retail pads every bank
+        out to a sector, so the padding is replaced rather than added to -
+        topping it up instead would push a grown bank into a fourth sector that
+        retail never needed.
+
+        Returns the image, the record changes (for reporting) and the full edit
+        list including the padding, which is what offset relocation must use.
+        """
+        out = bytearray(source[:table_bytes])
+        record_changes: list[dict[str, Any]] = []
+        layout: list[dict[str, Any]] = []
+        edits: list[tuple[int, int, Any]] = []
+        for content_end, (old_len, new_len) in pads.items():
+            edits.append((content_end, 0, (old_len, new_len)))
+        for row in records:
+            edits.append((int(row["source_offset"]), 1, row))
+        edits.sort(key=lambda edit: (edit[0], edit[1]))
+        cursor = table_bytes
+        for old_start, kind, payload in edits:
+            if old_start < cursor:
+                raise ValueError("BTTMES edits overlap at %#x" % old_start)
+            out.extend(source[cursor:old_start])
+            if kind == 0:
+                old_len, new_len = payload
+                new_start = len(out)
+                out.extend(bytes(new_len))
+                layout.append({
+                    "kind": "sector_padding",
+                    "old_source_offset": old_start,
+                    "new_source_offset": new_start,
+                    "old_record_bytes": old_len,
+                    "new_record_bytes": new_len,
+                    "growth_bytes": new_len - old_len,
+                })
+                cursor = old_start + old_len
+                continue
+            end = int(payload["record_end"])
+            if end > len(source):
+                raise ValueError(f"invalid BTTMES record range: {payload['id']}")
+            header = source[old_start:old_start + 4]
+            original_body = source[old_start + 4:end]
+            if payload["id"] not in translations:
+                new_body = original_body
             else:
-                break
-        return old_offset + delta
+                new_body = encode_text(translations[payload["id"]], codec, mapping) + b"\xFF"
+            new_start = len(out)
+            out.extend(header + new_body)
+            change = {
+                "id": payload["id"],
+                "old_source_offset": old_start,
+                "new_source_offset": new_start,
+                "old_record_bytes": end - old_start,
+                "new_record_bytes": 4 + len(new_body),
+                "growth_bytes": (4 + len(new_body)) - (end - old_start),
+                "korean": translations.get(payload["id"], ""),
+            }
+            record_changes.append(change)
+            layout.append(change)
+            cursor = end
+        out.extend(source[cursor:])
+        return out, record_changes, layout
+
+    def make_relocate(layout: list[dict[str, Any]]):
+        def relocate(old_offset: int) -> int:
+            delta = 0
+            for change in layout:
+                old_start = change["old_source_offset"]
+                old_end = old_start + change["old_record_bytes"]
+                if old_offset >= old_end:
+                    delta += change["growth_bytes"]
+                elif old_offset >= old_start:
+                    return old_offset + delta
+                else:
+                    break
+            return old_offset + delta
+        return relocate
+
+    # A bank's padding depends only on what precedes it, so one forward sweep
+    # settles the whole layout.  The last bank's padding is what makes the file
+    # itself end on a sector, which retail also does.
+    def trailing_zero_start(start: int, end: int) -> int:
+        cut = end
+        while cut > start and source[cut - 1] == 0:
+            cut -= 1
+        return cut
+
+    bank_limits = bank_starts + [len(source)]
+    pads: dict[int, tuple[int, int]] = {}
+    for position, bank in enumerate(bank_starts):
+        limit = bank_limits[position + 1]
+        content_end = trailing_zero_start(bank, limit)
+        _image, _changes, layout = lay_out(pads)
+        new_content_end = make_relocate(layout)(content_end)
+        need = (-new_content_end) % USER_DATA_SIZE
+        pads[content_end] = (limit - content_end, need)
+    output, changes, layout = lay_out(pads)
+    relocate = make_relocate(layout)
+    padding_bytes = sum(new_len for _old, new_len in pads.values())
 
     new_pointers = [relocate(value) for value in pointers]
+    misaligned = [
+        value for value, original in zip(new_pointers, pointers)
+        if table_bytes <= original < len(source) and value % USER_DATA_SIZE
+    ]
+    if misaligned:
+        raise ValueError(
+            "%d BTTMES bank pointers are not sector aligned after repacking"
+            % len(misaligned)
+        )
     struct.pack_into(f"<{pointer_count}I", output, 0, *new_pointers)
     if any(value > len(output) for value in new_pointers):
         raise ValueError("BTTMES pointer moved outside rebuilt file")
@@ -1850,6 +1939,15 @@ def rebuild_bttmes(
         "new_bttmes_bytes": len(output),
         "bttmes_growth_bytes": len(output) - len(source),
         "shifted_pointer_count": sum(a != b for a, b in zip(pointers, new_pointers)),
+        "sector_alignment_padding_bytes": padding_bytes,
+        "padded_banks": len(pads),
+        "sector_aligned_bank_pointers": sum(
+            1 for value, original in zip(new_pointers, pointers)
+            if table_bytes <= original < len(source) and value % USER_DATA_SIZE == 0
+        ),
+        "bank_pointers_total": sum(
+            1 for original in pointers if table_bytes <= original < len(source)
+        ),
         "bank_count": len(banks),
         "banks_with_rebuilt_index": rebuilt_banks,
         "rebuilt_bank_index_entries": rebuilt_bank_entries,
@@ -1869,7 +1967,10 @@ def rebuild_bttmes(
             f"{mid_message} battle-script jumps land in the middle of a message; "
             f"retail has none.  The jump walk missed some operands."
         )
-    return bytes(output), report, changes
+    # The audits downstream rebuild the old->new offset map from this list, so
+    # it has to describe the padding as well as the records; a model that knows
+    # only the records predicts every post-padding offset wrongly.
+    return bytes(output), report, layout
 
 
 def mirror_archive_tables(
@@ -2268,6 +2369,10 @@ def encode_fixed_label_text(
     """
     if korean == "아뇨":
         return bytes((SMALL_LABEL_AH_INDEX,)) + encode_text("뇨", codec, mapping)
+    if korean == "지형":
+        return bytes((SMALL_BATTLE_NAME_GLYPHS["지"],)) + encode_text(
+            "형", codec, mapping
+        )
     return encode_text(korean, codec, mapping)
 
 
@@ -2364,7 +2469,7 @@ def patch_status_value_literals(
     old = bytes.fromhex("F0 61 F0 AA FF FF FF FF")
     if source_exe[offset:offset + len(old)] != old:
         raise ValueError("status value literal source mismatch at 0x70300")
-    encoded = encode_text("없있", codec, mapping)
+    encoded = encode_text("무유", codec, mapping)
     if len(encoded) != 4:
         raise ValueError(
             "status value replacement must remain two wide glyphs (4 bytes), "
@@ -2376,7 +2481,7 @@ def patch_status_value_literals(
     return bytes(output), {
         "offset": "0x70300",
         "retail_values": "無/有",
-        "korean_values": "없/있",
+        "korean_values": "무/유",
         "payload_bytes": len(encoded),
         "field_bytes": len(replacement),
     }
@@ -3579,7 +3684,7 @@ def main() -> int:
         + dictionary_values
         # These are emitted by the inline status enum below, not by a JSON
         # string pool, so include them in the glyph allocator explicitly.
-        + ["없", "있"]
+        + ["무", "유"]
     )
     usage = count_wide_usage([args.scenario_json, args.battle_json, args.menu_json])
     args.output_dir.mkdir(parents=True, exist_ok=True)

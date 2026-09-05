@@ -1,5 +1,5 @@
 @echo off
-rem === Shin Super Robot Taisen Korean patch v1.0.10 ===
+rem === Shin Super Robot Taisen Korean patch v1.0.11 ===
 rem ASCII-only launcher. All Korean messages are printed by apply.ps1.
 rem Double-click this file, or drag the retail "(Track 1).bin" onto it.
 powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0apply.ps1" %*
