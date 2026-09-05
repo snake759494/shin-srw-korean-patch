@@ -142,24 +142,53 @@ def check_exe_pools(source: bytes, rebuilt: bytes, build_dir: Path) -> dict[str,
     expected = build.encode_pilot_name_text("아무로", codec, mapping)[0] + b"\xFF"
     if pilot_raw != expected:
         errors.append(
-            "PILOTNAME[1] is not the compact 아무로 record: "
+            "PILOTNAME[1] is not the expected 아무로 record: "
             f"got {pilot_raw.hex(' ') if pilot_raw else '<invalid>'}, "
             f"expected {expected.hex(' ')}"
         )
-    elif build.encoded_display_advance(pilot_raw) != 6:
-        errors.append("PILOTNAME[1] does not retain the original three-cell advance")
+    else:
+        # The battle name line is a full-width window - layout record 0 of the
+        # table at RAM 0x800FCBBC carries flags bit 2 - so a lone byte is drawn
+        # as wide glyph 0x600|byte and advances 3, exactly like a wide pair.
+        # Measuring it with the body-text rule of 2 per byte is what made the
+        # old compact code page look as though it saved width.  Compare code
+        # units against the Japanese name instead: three cells stay three cells.
+        retail_target = pilot_slot + struct.unpack_from("<I", source, pilot_slot)[0]
+        retail_raw = build.read_encoded_string(
+            source, retail_target, arena_limit(retail_target)
+        )
+        korean_units = build.encoded_display_advance(pilot_raw, full_width=True)
+        retail_units = build.encoded_display_advance(retail_raw, full_width=True)
+        if retail_raw is None or korean_units != retail_units:
+            errors.append(
+                "PILOTNAME[1] no longer matches the retail name width: "
+                f"{korean_units} vs {retail_units} units"
+            )
 
     bdf = parse_bdf(ROOT / "font" / "Galmuri14.bdf")
     small_font_errors = []
-    for character, index in build.SMALL_BATTLE_NAME_GLYPHS.items():
+    # Only the two cells the fixed labels use are repainted now; names no
+    # longer touch the half-width bank at all.
+    for character, index in build.SMALL_LABEL_GLYPHS.items():
         expected_glyph = render_glyph(bdf[ord(character)], 8, 8, 16)
         offset = build.SMALL_FONT_OFFSET + index * build.SMALL_GLYPH_BYTES
         if rebuilt[offset:offset + build.SMALL_GLYPH_BYTES] != expected_glyph:
             small_font_errors.append(character)
     if small_font_errors:
         errors.append(
-            "compact name glyphs differ from the recorded 8x16 render: "
+            "compact label glyphs differ from the recorded 8x16 render: "
             + ", ".join(small_font_errors)
+        )
+    repainted = [
+        b for b in range(256)
+        if rebuilt[build.SMALL_FONT_OFFSET + b * 16:build.SMALL_FONT_OFFSET + b * 16 + 16]
+        != source[build.SMALL_FONT_OFFSET + b * 16:build.SMALL_FONT_OFFSET + b * 16 + 16]
+    ]
+    if set(repainted) != set(build.SMALL_LABEL_GLYPHS.values()):
+        errors.append(
+            "half-width bank repaints %s, expected only %s"
+            % ([hex(b) for b in repainted],
+               [hex(b) for b in sorted(build.SMALL_LABEL_GLYPHS.values())])
         )
 
     return {

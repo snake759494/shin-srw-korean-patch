@@ -79,54 +79,16 @@ SMALL_LABEL_AH_INDEX = 0xED
 # code page used only by PILOTNAME, while the same syllables remain available
 # in the normal wide table for dialogue and menus.  0xED is already the
 # compact cell used by the fixed "아뇨" label and is therefore shared by names.
-SMALL_BATTLE_NAME_GLYPHS = {
-    "무": 0x42,
-    "로": 0x49,
-    "이": 0x4B,
-    "스": 0x51,
-    "리": 0x53,
-    "사": 0x67,
-    "라": 0x72,
-    "카": 0x78,
-    "지": 0x7B,
-    "병": 0x85,
-    "마": 0x94,
-    "시": 0x95,
-    "미": 0x9D,
-    "나": 0xA0,
-    "하": 0xA2,
-    "장": 0xC4,
-    "레": 0xD5,
-    "트": 0xDB,
-    "오": 0xE0,
-    "드": 0xEC,
-    "아": SMALL_LABEL_AH_INDEX,
-}
-# 0xEC and 0xED sit above the battle text interpreter's opcode floor: the
-# dispatcher at RAM 0x800DAFA4 treats 0xEC..0xFF as controls and the table at
-# 0x80086044 sends 0xEC..0xEF to 0x800DB418, which branches back to the fetch
-# without advancing the script pointer.  That would be an infinite loop IF a
-# name's bytes ever reached that dispatcher - but PILOTNAME[1] 아무로 is stored
-# as ED 42 49 and the first battle plays normally, so names are evidently drawn
-# by a routine that does not dispatch them.  The two cells are kept for now,
-# with this note, rather than changed on an unverified theory.
-
 # Compact cells that only fixed labels use.  These are never emitted into a
 # pilot name, so they may sit above the battle interpreter's 0xEC opcode floor.
 SMALL_LABEL_GLYPHS = {
-    "아": SMALL_LABEL_AH_INDEX,
+    "아": SMALL_LABEL_AH_INDEX,   # 아뇨
+    "지": 0x7B,                   # 지형
 }
 
 # The battle window's interpreter reads 0xEC and up as control opcodes, so a
 # name may only ever carry compact cells below that.
 BATTLE_OPCODE_FLOOR = 0xEC
-
-# A few short names are used by FC09 in the battle HUD but have no safe
-# compact-cell spelling: the compact cells made their final syllable visibly
-# smaller than the rest of the name (issues #130/#131).  These names stay in
-# the normal 16-pixel Hangul font; their measured advances fit the retail
-# 20-unit name field.
-PILOT_NAME_WIDE_ONLY = frozenset({"류세이", "좀비병", "병사"})
 
 # The 0x6C..0x80 range is the compact speaker-name line in the retail battle
 # layout (the body line is reset separately by F6).  Keep this as a static
@@ -526,8 +488,7 @@ def patch_small_label_font(source: bytes, bdf_path: Path) -> tuple[bytes, dict[s
     # 아 keeps its compact cell for the ``아뇨`` button label even though pilot
     # names no longer use it: labels are drawn by the window engine, whose
     # control floor is 0xF0, so 0xED is a glyph there.
-    glyphs = dict(SMALL_BATTLE_NAME_GLYPHS)
-    glyphs.update(SMALL_LABEL_GLYPHS)
+    glyphs = dict(SMALL_LABEL_GLYPHS)
     if len(set(glyphs.values())) != len(glyphs):
         raise ValueError("compact label/name glyph slots overlap")
     if any(not 0 <= index < 0xF0 for index in glyphs.values()):
@@ -563,52 +524,42 @@ def patch_small_label_font(source: bytes, bdf_path: Path) -> tuple[bytes, dict[s
 def encode_pilot_name_text(
     korean: str, codec: Codec, mapping: dict[str, int], budget: int | None = None
 ) -> tuple[bytes, int]:
-    """Encode a PILOTNAME value with the retail compact-name code page.
+    """Encode a PILOTNAME value.  Plain wide Hangul, like every other pool.
 
-    The normal encoder deliberately emits every Hangul syllable as a wide
-    F0-F5 pair.  FC09 names are the one exception: a syllable with an assigned
-    compact cell is emitted as one byte so the battle name line keeps the
-    Japanese advance.  Any syllable outside the 20-cell subset safely falls
-    back to the normal wide font; it is never silently replaced by another
-    character.
+    v1.0.8 spelled these names with a "compact" half-width code page, on the
+    belief that a one-byte cell keeps the retail 8-pixel advance.  It does not,
+    and the belief cost two bugs.
+
+    FC09 hands the name record to the battle window's own interpreter (the
+    dispatcher at RAM 0x800DAFA4; 0x800DB380 is `j 0x800DB418` with
+    `move $s1,$v0` in the delay slot, so the handler's return value becomes the
+    script stream).  That window is layout record 0 of the table at RAM
+    0x800FCBBC, whose flags carry bit 2 - the full-width flag.  With that bit
+    set the dispatcher takes the branch at 0x800DAFE8: a single byte is drawn
+    as wide glyph 0x600|byte out of the companion bank at file 0x7F438, which
+    this build never touches, and it advances THREE units, exactly like a wide
+    pair.  So a compact cell saved no width at all, and it rendered as the
+    retail kana sitting in that companion bank - byte 0x95 as ウ and 0x49 as
+    お, which is the "산ウお" of issue #137 (and #130, #131).
+
+    Worse, the page assigned 드 to 0xEC and 아 to 0xED.  The dispatcher reads
+    0xEC..0xFF as opcodes and the table at 0x80086044 sends 0xEC..0xEF to
+    0x800DB418, which branches back to the fetch without advancing the script
+    pointer.  A name carrying either byte spins forever and no frame is ever
+    presented - the black screen of issues #136, #140 and #143.
     """
-    if korean in PILOT_NAME_WIDE_ONLY:
-        return encode_text(korean, codec, mapping), 0
-
-    # A compact cell only reads as Korean if the half-width bank was repainted,
-    # and nothing in the message itself says so: the name is raw bytes whose
-    # meaning lives in a different build step.  When that step and the data
-    # disagree the name comes out as the retail kana - "산시로" reads "산ウお",
-    # which is issue #137.  So take the compact page only when the plain wide
-    # encoding would be wider than the Japanese it replaces; a name that fits
-    # on its own has no reason to depend on the second bank.
-    wide = encode_text(korean, codec, mapping)
-    if budget is not None and encoded_display_advance(wide) <= budget:
-        return wide, 0
-
-    output = bytearray()
-    compact_glyphs = 0
-    position = 0
-    while position < len(korean):
-        character = korean[position]
-        if character == "<":
-            # PILOTNAME currently contains no control markup, but delegating a
-            # future tagged value to the canonical encoder prevents this
-            # compact loop from treating an opcode argument as text.
-            encoded = encode_text(korean[position:], codec, mapping)
-            output.extend(encoded)
-            break
-        if character in SMALL_BATTLE_NAME_GLYPHS:
-            output.append(SMALL_BATTLE_NAME_GLYPHS[character])
-            compact_glyphs += 1
-        else:
-            output.extend(encode_text(character, codec, mapping))
-        position += 1
-    return bytes(output), compact_glyphs
+    return encode_text(korean, codec, mapping), 0
 
 
-def encoded_display_advance(raw: bytes) -> int:
-    """Return the renderer's x advance for one encoded string."""
+def encoded_display_advance(raw: bytes, full_width: bool = False) -> int:
+    """Return the renderer's x advance for one encoded string.
+
+    Body text draws a single byte from the 8x16 bank and advances 2.  A window
+    whose layout flags carry bit 2 - the battle dialogue window is one - takes
+    the branch at RAM 0x800DAFE8 instead and draws that byte as wide glyph
+    0x600|byte, advancing 3 just like a wide pair.  Measuring a name with the
+    body-text rule is what made the compact code page look like it saved width.
+    """
     advance = 0
     position = 0
     while position < len(raw):
@@ -623,7 +574,7 @@ def encoded_display_advance(raw: bytes) -> int:
         elif byte >= 0xF6:
             position += 1 + CONTROL_ARGS.get(byte, 0)
         else:
-            advance += 2
+            advance += 3 if full_width else 2
             position += 1
     return advance
 
@@ -2403,7 +2354,7 @@ def encode_fixed_label_text(
     if korean == "아뇨":
         return bytes((SMALL_LABEL_AH_INDEX,)) + encode_text("뇨", codec, mapping)
     if korean == "지형":
-        return bytes((SMALL_BATTLE_NAME_GLYPHS["지"],)) + encode_text(
+        return bytes((SMALL_LABEL_GLYPHS["지"],)) + encode_text(
             "형", codec, mapping
         )
     return encode_text(korean, codec, mapping)
@@ -2949,7 +2900,7 @@ def repack_exe_string_pools(
                 if 0xF0 <= byte <= 0xF5:
                     position += 2
                     continue
-                if byte >= BATTLE_OPCODE_FLOOR and byte not in SMALL_BATTLE_NAME_GLYPHS.values():
+                if byte >= BATTLE_OPCODE_FLOOR:
                     raise ValueError(
                         "pilot name %r encodes byte %#04x, which the battle "
                         "interpreter reads as a control opcode" % (korean, byte)
@@ -2960,11 +2911,9 @@ def repack_exe_string_pools(
             if compact_glyphs:
                 pilot_name_stats["records_using_compact_cells"] += 1
             pilot_name_stats["wide_fallback_hangul"] += sum(
-                1 for character in korean
-                if "가" <= character <= "힣"
-                and character not in SMALL_BATTLE_NAME_GLYPHS
+                1 for character in korean if "가" <= character <= "힣"
             )
-            advance = encoded_display_advance(encoded)
+            advance = encoded_display_advance(encoded, full_width=True)
             if advance > pilot_name_stats["max_display_advance"]:
                 pilot_name_stats["max_display_advance"] = advance
                 pilot_name_stats["max_display_advance_entries"] = [japanese]
@@ -3287,7 +3236,7 @@ def repack_exe_string_pools(
                 "target": f"0x{target:X}",
             })
             continue
-        advance = encoded_display_advance(raw)
+        advance = encoded_display_advance(raw, full_width=True)
         pilot_widths.append((index, advance))
     if pilot_name_failures:
         raise ValueError(
@@ -3297,12 +3246,7 @@ def repack_exe_string_pools(
     max_pilot_advance = max((advance for _index, advance in pilot_widths), default=0)
     pilot_stats = dict(pilot_name_stats)
     pilot_stats.update({
-        "compact_code_page": {
-            character: f"0x{index:02X}"
-            for character, index in sorted(
-                SMALL_BATTLE_NAME_GLYPHS.items(), key=lambda item: item[1]
-            )
-        },
+        "compact_code_page": "removed in v1.0.13",
         "name_line_retail_advance_capacity": (
             BATTLE_NAME_LINE_END - BATTLE_NAME_LINE_START
         ),
