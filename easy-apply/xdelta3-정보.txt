@@ -11,4 +11,4 @@ xdelta3 자체를 수정하지 않았습니다. 최신 버전과 소스 코드�
 
 한글패치(번역 데이터, 스크립트)의 저작권/라이선스는 별개이며,
 프로젝트 저장소를 참고하세요:
-  https://github.com/snake7594/shin-srw-korean-patch
+  https://github.com/snake759494/shin-srw-korean-patch

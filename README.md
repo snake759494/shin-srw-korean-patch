@@ -6,20 +6,25 @@ PlayStation 게임 **신 슈퍼로봇대전**(新スーパーロボット大戦,
 > **게임 데이터는 이 저장소에 없습니다.** 배포물은 원본 디스크에 적용하는 xdelta 바이너리 패치뿐입니다.
 > 본인이 소유한 디스크에서 직접 추출한 이미지가 필요합니다.
 
-현재 최신 릴리스는 **v1.0.12**이며, 초반부터 최종 시나리오까지 원문 대조 검수를 수행해
+현재 최신 릴리스는 **v1.0.13**이며, 초반부터 최종 시나리오까지 원문 대조 검수를 수행해
 오타·띄어쓰기·인물명·용어를 정리하고 상태창의 동적 한자 값도 한글화했습니다. 무기 목록의
 인라인 UI 글리프까지 원본과 대조해 보존했으며, v1.0.2는
 부팅 검은 화면 문제로 철회되었습니다.
 
-v1.0.12에서는 열린 이슈 #126~#135의 제보를 원문 레코드와 다시 대조하고, 반복
-레코드·정신 커맨드 31개·시스템 문자열·인물명·시나리오 제목까지 전체 빌드에 반영했습니다.
-이전 버전의 전투 대사창의 파일럿 이름을 원본과 같은 8×16 셀 폭으로 출력하도록 별도
-코드 페이지를 적용하고, 사용하지 않는 파일럿명 슬롯이 다음 테이블을 문자열로 읽지 않도록
-격리했습니다. 이번에는 전투 전용 파일럿명도 문제가 제보된 이름만 일반 16px 글리프로 고정해
-축소 글리프가 이름 끝에 붙는 현상을 제거했습니다. BTTMES의 특수 교차 뱅크 인덱스도 실제
-참조만 재배치해 전투 상태를 보존합니다. 추가로 #87~#106의 초반·중반 시나리오, 전투 대사,
-무기명, 인물명, 지형·정신 커맨드 화면을
-원문 레코드와 실행 파일의 고정 문자열 풀까지 다시 대조했습니다.
+v1.0.13은 전투 중 검은 화면 프리징(라이딘·가이킹·19화 데이비드 공격 시)과 전투창의
+파일럿 이름이 `산ウお`처럼 일본어로 보이던 문제를 근본적으로 고쳤습니다. 두 문제의 원인은
+v1.0.8이 도입한 파일럿명 압축 코드 페이지 하나였습니다. 전투창은 이름 레코드를 스크립트로
+실행하며 0xEC 이상을 명령어로 읽는데, 압축 페이지가 `드`·`아`를 그 자리에 놓아 해석기가
+무한 루프에 빠졌고, 이 창은 전각 창이라 한 바이트 글자가 패치가 손대지 않은 전각 뱅크의
+가나로 그려졌습니다. 이제 파일럿 이름은 다른 텍스트와 같은 16×16 한글로 저장되며, 새 검사
+도구 `tools/qa_battle_names.py`가 완성 이미지에서 위험한 이름이 0개임을 확인합니다.
+자세한 내용은 [docs/RELEASE_NOTES_v1.0.13.md](docs/RELEASE_NOTES_v1.0.13.md)에 있습니다.
+그 밖에 유닛 능력창 `지형`, 대사·인터미션 문장, 정신 커맨드 표기 등의 제보를 원문 레코드와
+대조해 반영했고, 시나리오 제목 그래픽과 타이틀 메뉴 4항목도 한글화되어 있습니다.
+
+> **저장소 이전 안내** — 이전 배포 저장소(`snake7594/…`)는 계정 문제로 접근할 수 없게 되어
+> 이 저장소로 옮겼습니다. `docs/` 의 지난 릴리스 노트에 적힌 이슈 번호는 이전 저장소 기준이며
+> 여기서는 열리지 않습니다. 새 제보는 이 저장소의 Issues 에 남겨 주세요.
 
 ---
 
@@ -89,7 +94,7 @@ md5sum "Shin Super Robot Taisen (Track 1).bin"
 
 ### 방법 1 — 간편 적용 (Windows, 권장)
 
-1. 릴리스에서 `shin-srw-korean-v1.0.12-easy-apply.zip` 을 받아 압축을 풉니다.
+1. 릴리스에서 `shin-srw-korean-v1.0.13-easy-apply.zip` 을 받아 압축을 풉니다.
 2. 원본 `.bin` 2개를 압축 푼 폴더에 복사합니다.
 3. **`한글패치 적용하기.bat`** 을 더블클릭합니다.
 4. 원본 검증 → 패치 → 결과 검증이 자동으로 진행됩니다(1~2분).
@@ -103,14 +108,14 @@ md5sum "Shin Super Robot Taisen (Track 1).bin"
 
 ```bash
 xdelta3 -d -s "Shin Super Robot Taisen (Track 1).bin" \
-        shin-srw-korean-v1.0.12.xdelta \
-        "Shin Super Robot Taisen Korean v1.0.12 (Track 1).bin"
+        shin-srw-korean-v1.0.13.xdelta \
+        "Shin Super Robot Taisen Korean v1.0.13 (Track 1).bin"
 ```
 
 그 다음 아래 내용으로 `.cue` 파일을 만듭니다. Track 2 파일명은 실제 파일명과 같아야 합니다.
 
 ```
-FILE "Shin Super Robot Taisen Korean v1.0.12 (Track 1).bin" BINARY
+FILE "Shin Super Robot Taisen Korean v1.0.13 (Track 1).bin" BINARY
   TRACK 01 MODE2/2352
     INDEX 01 00:00:00
 FILE "Shin Super Robot Taisen (Track 2).bin" BINARY
@@ -132,16 +137,16 @@ Track 2 파일에는 정품 디스크와 같은 150섹터(2초) 프리갭이 이
 
 | 알고리즘 | 값 |
 |---|---|
-| MD5 | `d61bed92d8f3a491609f9d6d90d80ac9` |
-| SHA-1 | `ce3f23983c10d0ca4cc754cb96e7ba1f13f95b61` |
-| SHA-256 | `6f183aaad7d49e597df6ebefbe36706e1812289da9cd49392cf2949036e07538` |
-| CRC32 | `2EEB8FC5` |
+| MD5 | `3138ee33b8c17c2373b479c2627b0f55` |
+| SHA-1 | `69c222a79c7c38a2d9486376d83ceba79053063d` |
+| SHA-256 | `527c7b4c7205063cd7b9a51417a8a51d1d5d10ee20f71d1db000c6e570311ba7` |
+| CRC32 | `DF8C9159` |
 
-**패치 파일 `shin-srw-korean-v1.0.12.xdelta` — 610,634 바이트**
+**패치 파일 `shin-srw-korean-v1.0.13.xdelta` — 609,894 바이트**
 
 | 알고리즘 | 값 |
 |---|---|
-| SHA-256 | `11b25ecabd83439cfc362cd070d89adb0baed15e9c1020c30005244e23af3579` |
+| SHA-256 | `0b911a7a94120a16259211e95d195f6bac45b0d2f5b4816d579fe4aae24280e0` |
 
 ### 문제 해결
 
@@ -159,7 +164,7 @@ Track 2 파일에는 정품 디스크와 같은 150섹터(2초) 프리갭이 이
 정품 디스크와 Python 3.11+ 만 있으면 릴리스와 **바이트 단위로 동일한** 이미지를 만들 수 있습니다.
 
 ```bash
-git clone https://github.com/snake7594/shin-srw-korean-patch
+git clone https://github.com/snake759494/shin-srw-korean-patch
 cd shin-srw-korean-patch
 py -3.14 -m pip install -r requirements.txt
 
@@ -194,4 +199,4 @@ docs/           릴리스 노트
 - 폰트 `font/Galmuri14.bdf` 는 quiple 이 만든 Galmuri14 이며 SIL Open Font License 1.1 을 따릅니다. 전문은 [`LICENSES/Galmuri-OFL-1.1.md`](LICENSES/Galmuri-OFL-1.1.md) 에 있습니다.
 - 그 밖의 고지는 [NOTICE.md](NOTICE.md) 를 보세요.
 
-같은 방식으로 작업한 자매 프로젝트: [srwcb-korean-patch](https://github.com/snake7594/srwcb-korean-patch) (제2차 · 제3차 · EX 컴플리트 박스)
+같은 방식으로 작업한 자매 프로젝트: srwcb-korean-patch (제2차 · 제3차 · EX 컴플리트 박스) — 새 계정으로 이전 준비 중

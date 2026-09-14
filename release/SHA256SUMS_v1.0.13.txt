@@ -1,0 +1,12 @@
+# Shin Super Robot Taisen Korean patch v1.0.13
+#
+# source (retail Track 1, MODE2/2352, 650,139,840 bytes)
+ef06dcf085fcccdc4617c2efed01f8b90d1dfd72f67e7cb325623eccb2514915  Shin Super Robot Taisen (Track 1).bin
+# source (retail Track 2, audio, 32,104,800 bytes - not modified)
+2fbf5a94ffc8b475741529c4a95d580c937ca37db31db227e0d6c7a917a1e95f  Shin Super Robot Taisen (Track 2).bin
+# result (650,589,072 bytes)
+527c7b4c7205063cd7b9a51417a8a51d1d5d10ee20f71d1db000c6e570311ba7  Shin Super Robot Taisen Korean v1.0.13 (Track 1).bin
+# patch (609,894 bytes)
+0b911a7a94120a16259211e95d195f6bac45b0d2f5b4816d579fe4aae24280e0  shin-srw-korean-v1.0.13.xdelta
+# easy-apply archive (835,002 bytes)
+86aefd457b3cf7aea19712a1923baa6b4c1e71bda96ffc06e19bb63e0e2e178a  shin-srw-korean-v1.0.13-easy-apply.zip
