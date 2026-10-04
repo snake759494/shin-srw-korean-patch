@@ -189,6 +189,8 @@ EXE_SYS_POOL_ARENA = (0x70EB0, 0x72434)
 # decoder renders with <...> markers so no translation ever matches it and it is
 # copied through untouched.
 EXE_DEMO_POOL = {"table": 0x86E80, "entries": 9, "arena": (0x86F40, 0x86FC8)}
+# デモ選択 as it is encoded inside that window script (issue #7 on the new repo)
+DEMO_MENU_HEADER_JAPANESE = bytes.fromhex("B6D1F276F519")
 
 # Pools whose text is also read sequentially - a window continues past the
 # terminator into the next string - so retail's exact layout must survive.  The
@@ -321,7 +323,7 @@ SCENARIO_ONE_FIXED_OVERRIDES = {
     "SCE-001-0093": "잇페이「또 나왔군!」",
     "SCE-001-0094": "켄이치「덤벼라!\n원수는 모두 없앤다!」",
     "SCE-001-0095": "하마구치 박사「기다려, 켄이치!\n저건 아군 대공마룡이다.\n함께 싸워라」",
-    "SCE-001-0096": "켄이치「아군?좋아」",
+    "SCE-001-0096": "켄이치「아군? 좋아」",
     "SCE-001-0097": "하이넬「지구에 저런 로봇이?\n장갈! 보고엔 없었다」",
     "SCE-001-0099": "하이넬「하하하! 좋다!\n제법 재미있어졌군.\n장갈, 다음 수도 준비했겠지?」",
     "SCE-001-0100": "장갈「맡겨 주십시오!」",
@@ -343,7 +345,7 @@ SCENARIO_ONE_FIXED_OVERRIDES = {
     "SCE-001-0117": "수녀「조용히.\n새 친구를 소개할게요」",
     "SCE-001-0118": "히이로「히이로 유이」",
     "SCE-001-0119": "리리나(분명 그애야)",
-    "SCE-001-0120": "수녀「히이로는 리리나 옆에 앉아요.<WAIT>\n모르는 건 리리나에게 물어요.\n수업을 시작할게요」",
+    "SCE-001-0120": "수녀「히이로는 리리나 옆에 앉아요.<WAIT>모르는 건 리리나에게 물어요.\n수업을 시작할게요」",
     "SCE-001-0121": "리리나「잘 부탁」",
     "SCE-001-0122": "히이로「...」",
 }
@@ -1309,34 +1311,96 @@ def rebuild_scenario_member(
     # pool start.  The stub travels with the post-pool script while its target
     # does not, so the retail displacement goes stale the moment the pool grows -
     # in member 3 it ends up 0x4A0 bytes into the Korean text.  Retarget it.
-    stub = new_headers[13]
-    if 0 <= stub < len(rebuilt) - 3 and rebuilt[stub] == 0x78 and rebuilt[stub + 3] == 0x75:
-        old_stub = old_headers[13]
-        old_target = old_stub + 1 + struct.unpack_from("<h", decompressed, old_stub + 1)[0]
-        # The stub aims at a four-byte struct that the extractor sees either inside
-        # record 0's preserved prefix or as a record of its own, so resolve it the
-        # same way a dialogue dispatch is resolved and follow the record.
-        new_target = None
+    #
+    # The stub is not always that simple form.  Chapters whose objectives change
+    # mid-map use a conditional chain - `76 <u16> 78 <s16> 77 <u16> 78 <s16> 75` -
+    # that picks one of several objective blocks by event flag.  Only retargeting
+    # the simple form left both displacements of that chain stale, so the mission
+    # screen of members 20, 25, 29, 34, 41 (chapter 9), 43, 45 and 67 read its
+    # victory and defeat lists out of the middle of Korean dialogue and showed
+    # nothing.  Every `78` in the chain is followed now.
+    #
+    # Each block starts `04 00 <u16>`: two offsets, relative to their own
+    # position, to the victory list and the defeat list.  The victory list's
+    # later lines are records of their own and grow with the translation, but
+    # the defeat offset was never rewritten, so a longer victory list pushed the
+    # defeat list away from where the block still pointed (members 42, 45, 46 and
+    # several mid-map blocks showed an empty defeat condition).  Rewrite it too.
+    def follow_record(old_position):
+        # Resolve a retail position the way a dialogue dispatch is resolved:
+        # find the record that holds it and carry the offset into the record
+        # along, provided the bytes before it are unchanged.
         for row in records:
             row_start = int(row["source_offset"])
             row_raw = bytes.fromhex(row["raw_hex"])
-            if not row_start <= old_target < row_start + len(row_raw):
+            if not row_start <= old_position < row_start + len(row_raw):
                 continue
-            relative = old_target - row_start
+            relative = old_position - row_start
             if relative and row_raw[:relative] != new_record_raws[row["id"]][:relative]:
+                return None
+            return new_record_starts[row["id"]] + relative
+        return None
+
+    stub = new_headers[13]
+    old_stub = old_headers[13]
+    stub_operands = []
+    if 0 <= old_stub < len(decompressed) and 0 <= stub < len(rebuilt):
+        cursor = 0
+        while old_stub + cursor < len(decompressed):
+            opcode = decompressed[old_stub + cursor]
+            if opcode == 0x75:
                 break
-            new_target = new_record_starts[row["id"]] + relative
+            if opcode in (0x76, 0x77):
+                cursor += 3
+                continue
+            if opcode == 0x78:
+                stub_operands.append(cursor + 1)
+                cursor += 3
+                continue
+            # anything else is not an objective selector; leave it alone
+            stub_operands = []
             break
-        if new_target is not None:
-            new_displacement = new_target - (stub + 1)
-            if not -0x8000 <= new_displacement <= 0x7FFF:
-                raise ValueError(
-                    f"member {member_index} handler-13 stub displacement exceeds s16"
-                )
-            struct.pack_into("<h", rebuilt, stub + 1, new_displacement)
-            if stub + 1 + struct.unpack_from("<h", rebuilt, stub + 1)[0] != new_target:
-                raise ValueError(f"member {member_index} handler-13 stub retarget failed")
-            relocated_event_references += 1
+        if rebuilt[stub:stub + cursor + 1] != decompressed[old_stub:old_stub + cursor + 1]:
+            stub_operands = []
+    rewritten_blocks = set()
+    for operand in stub_operands:
+        old_operand = old_stub + operand
+        new_operand = stub + operand
+        old_target = old_operand + struct.unpack_from("<h", decompressed, old_operand)[0]
+        new_target = follow_record(old_target)
+        if new_target is None:
+            continue
+        new_displacement = new_target - new_operand
+        if not -0x8000 <= new_displacement <= 0x7FFF:
+            raise ValueError(
+                f"member {member_index} handler-13 stub displacement exceeds s16"
+            )
+        struct.pack_into("<h", rebuilt, new_operand, new_displacement)
+        if new_operand + struct.unpack_from("<h", rebuilt, new_operand)[0] != new_target:
+            raise ValueError(f"member {member_index} handler-13 stub retarget failed")
+        relocated_event_references += 1
+
+        if (old_target in rewritten_blocks
+                or decompressed[old_target:old_target + 2] != b"\x04\x00"
+                or rebuilt[new_target:new_target + 2] != b"\x04\x00"):
+            continue
+        rewritten_blocks.add(old_target)
+        old_defeat = old_target + 2 + struct.unpack_from("<H", decompressed, old_target + 2)[0]
+        new_defeat = follow_record(old_defeat)
+        if new_defeat is None:
+            raise ValueError(
+                f"member {member_index} objective block @{old_target:#x}: defeat list "
+                f"@{old_defeat:#x} does not resolve to a record"
+            )
+        if not 0 <= new_defeat - (new_target + 2) <= 0xFFFF:
+            raise ValueError(f"member {member_index} defeat offset out of range")
+        struct.pack_into("<H", rebuilt, new_target + 2, new_defeat - (new_target + 2))
+        # the defeat list must start right after the victory list's closing FF FF
+        if rebuilt[new_defeat - 2:new_defeat] != b"\xff\xff":
+            raise ValueError(
+                f"member {member_index} objective block @{new_target:#x}: defeat list "
+                f"does not follow the victory list's terminator"
+            )
     unreached = patch_unreached_strings(rebuilt, codec, mapping, member_index)
     applied.extend(unreached)
     if rebuilt.find(SCENARIO_TEXT_TAIL_SIGNATURE, pool_start) != new_signature:
@@ -1761,10 +1825,16 @@ def rebuild_bttmes(
     # already junk) and is left alone, so a mis-parsed opcode cannot do harm.
     JUMP_OPCODES = (0x07, 0x0E, 0x0F, 0x10, 0x11, 0x12, 0x14, 0x1E, 0x1F)
 
-    def message_headers(image: bytes, start: int, end: int) -> list[int]:
+    def message_headers(image: bytes, start: int, end: int, floor: int = 0) -> list[int]:
+        # FC 08 opens a message, but the same two bytes also turn up inside the
+        # script area as the little-endian jump-table entry 0x08FC.  Retail never
+        # has one there; the Korean text moved a message of bank 0x3F000 to
+        # exactly 0x8FC and its table entry was taken for a header.  The script
+        # area keeps its retail size, so messages never start before retail's
+        # first one: callers pass that as `floor`.
         return [
             i - start
-            for i in range(start, end - 3)
+            for i in range(start + floor, end - 3)
             if image[i] == 0xFC and image[i + 1] == 0x08
         ]
 
@@ -1866,7 +1936,9 @@ def rebuild_bttmes(
             [value for value in new_pointers if value > new_bank] or [len(output)]
         )
         old_headers = message_headers(source, old_bank, old_end)
-        new_headers = message_headers(bytes(output), new_bank, new_end)
+        new_headers = message_headers(
+            bytes(output), new_bank, new_end, old_headers[0] if old_headers else 0
+        )
         if len(old_headers) != len(new_headers):
             skipped_banks += 1
             continue
@@ -1903,7 +1975,10 @@ def rebuild_bttmes(
             [value for value in new_pointers if value > new_bank] or [len(output)]
         )
         block = bytes(output[new_bank:new_end])
-        headers = set(message_headers(bytes(output), new_bank, new_end))
+        retail_first = message_headers(source, old_bank, bank_bounds[position + 1])
+        headers = set(message_headers(
+            bytes(output), new_bank, new_end, retail_first[0] if retail_first else 0
+        ))
         old_block = source[old_bank:bank_bounds[position + 1]]
         for site in jump_operands(old_block):
             if site + 2 > len(block):
@@ -2886,6 +2961,16 @@ def repack_exe_string_pools(
     ) -> tuple[bytes, bool]:
         japanese = Codec.rendered(codec.tokenize(raw, stop_at_terminator=True))
         korean = table_map.get(japanese)
+        if (pool_label == "DEMO" and korean is None
+                and DEMO_MENU_HEADER_JAPANESE in raw):
+            # Entry 0 is the demo menu's window script; only its header text
+            # デモ選択 is language.  Swap it in place for 데모 plus two
+            # one-byte spaces so the script keeps its exact length.
+            header = encode_text("데모", codec, mapping)
+            header += bytes(len(DEMO_MENU_HEADER_JAPANESE) - len(header))
+            if len(header) != len(DEMO_MENU_HEADER_JAPANESE):
+                raise ValueError("demo menu header does not fit")
+            return raw.replace(DEMO_MENU_HEADER_JAPANESE, header, 1), True
         if korean is None or korean == japanese:
             return raw, False
         if pool_label == "PILOTNAME":

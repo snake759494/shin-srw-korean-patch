@@ -3005,7 +3005,7 @@
    "offset": "0x85C04",
    "budget": 21,
    "japanese": "ユニットに強化パ-ツを取り付ける。",
-   "korean": "유닛에 강화파츠 장착.",
+   "korean": "유닛에 강화품 장착.",
    "terminated": false,
    "pool": "WIN"
   },
@@ -3790,6 +3790,14 @@
    "budget": 7,
    "japanese": "マップ兵器",
    "korean": "맵병기",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-WIN-083F84@44": {
+   "offset": "0x83FB0",
+   "budget": 2,
+   "japanese": "順",
+   "korean": "순",
    "terminated": false,
    "pool": "WIN"
   }

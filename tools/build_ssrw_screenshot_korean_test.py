@@ -178,6 +178,9 @@ def load_or_extend_mapping(
     return mapping
 
 
+PLAIN_V = b"\x2b"
+
+
 def encode_text(text: str, codec: Codec, hangul: dict[str, int]) -> bytes:
     output = bytearray()
     position = 0
@@ -210,7 +213,15 @@ def encode_text(text: str, codec: Codec, hangul: dict[str, int]) -> bytes:
             variants = codec.inverse.get(character, [])
             if not variants:
                 raise ValueError(f"no original encoding for {character!r} in {text!r}")
-            output.extend(min(variants, key=lambda value: (len(value), value)))
+            # The font has two V cells: 0x0C is the barred Roman numeral of
+            # ボルテスⅤ and 0x2B the plain letter of retail's own "LV".  Picking
+            # the lower code turned every V - LV, TV, V-MAX, V2 - into the
+            # numeral; keep the numeral for Voltes only.
+            if (character == "V" and PLAIN_V in variants
+                    and not text[:position].replace(" ", "").endswith("볼테스")):
+                output.extend(PLAIN_V)
+            else:
+                output.extend(min(variants, key=lambda value: (len(value), value)))
         position += 1
     return bytes(output)
 

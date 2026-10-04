@@ -162,6 +162,44 @@ def check_built_exe(path: Path) -> list[str]:
     return errors
 
 
+DIALOGUE_COLUMNS = 20      # scenario and battle windows: every character is one cell
+ENCYCLOPEDIA_COLUMNS = 25  # pilot / robot encyclopedia window
+WINDOW_MARKUP = re.compile(r"<[^>]+>")
+
+
+def check_window_widths(translation: dict, battle_source: dict) -> list[str]:
+    """Text the window cannot hold is not clipped but wrapped onto the next row.
+
+    A dialogue line past 20 cells pushes its tail to the next row (issue #4), and
+    a battle page with more text rows than the window has wraps its last row over
+    the speaker's name (#3).  The encyclopedias do not wrap at all, so a line
+    past 25 cells is drawn beyond the frame (#7, #8).
+    """
+    errors = []
+    for section in ("scenario", "battle"):
+        for key, value in translation[section].items():
+            if key.startswith("SCE-000-"):
+                continue  # the prologue uses a wider, name-on-its-own-row window
+            for page in re.split(r"<WAIT>|<PAGE>", value):
+                rows = page.split("\n")
+                for row in rows:
+                    if len(WINDOW_MARKUP.sub("", row)) > DIALOGUE_COLUMNS:
+                        errors.append(f"{key}: row wider than {DIALOGUE_COLUMNS} cells: {row!r}")
+                if section == "battle":
+                    text_rows = rows[1:] if rows[0].startswith("<FC:") else rows
+                    japanese = battle_source.get(key, "")
+                    allowed = max(2, len(japanese.split("\n")) - japanese.startswith("<FC:"))
+                    if len(text_rows) > allowed:
+                        errors.append(f"{key}: {len(text_rows)} text rows in a 2-row battle window")
+    for name in ("robotdic_ko.json", "pilotdic_ko.json"):
+        entries = read_json(ROOT / "data" / name)["entries"]
+        for key, entry in entries.items():
+            for row in entry.get("korean", "").split("\n"):
+                if len(WINDOW_MARKUP.sub("x", row)) > ENCYCLOPEDIA_COLUMNS:
+                    errors.append(f"{key}: encyclopedia row wider than {ENCYCLOPEDIA_COLUMNS}: {row!r}")
+    return errors
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--built-exe", type=Path, help="optional built SLPS_005.50")
@@ -192,6 +230,8 @@ def main() -> int:
         for pattern in REGRESSION_PATTERNS:
             if pattern in value:
                 errors.append(f"regression phrase {pattern!r} at {location}")
+
+    errors.extend(check_window_widths(translation, battle_source))
 
     if args.built_exe:
         if not args.built_exe.is_file():

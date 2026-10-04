@@ -190,9 +190,13 @@ def audit_bttmes(source: bytes, rebuilt: bytes, applied_path: Path) -> dict[str,
             for offset in range(old_start, old_end - 1)
             if source[offset] == 0xFC and source[offset + 1] == 0x08
         ]
+        # The script area keeps its retail size, so no message starts before
+        # retail's first one; an FC 08 earlier than that is a jump-table entry
+        # whose value happens to be 0x08FC (bank 0x3F000 since v1.0.15).
+        floor = old_headers[0] if old_headers else 0
         new_headers = [
             offset - new_start
-            for offset in range(new_start, new_end - 1)
+            for offset in range(new_start + floor, new_end - 1)
             if rebuilt[offset] == 0xFC and rebuilt[offset + 1] == 0x08
         ]
         if len(old_headers) != len(new_headers):
