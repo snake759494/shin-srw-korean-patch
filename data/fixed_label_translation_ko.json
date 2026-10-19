@@ -1149,7 +1149,7 @@
    "offset": "0x459F2",
    "budget": 29,
    "japanese": " 以前のデ-タはきえてしまいます。よろしいですか? ",
-   "korean": "  이전 데이터 삭제.할까요?  ",
+   "korean": "   이전 데이터 삭제할까요?  ",
    "terminated": true,
    "pool": "SYSMSG"
   },
@@ -3133,7 +3133,7 @@
    "offset": "0x85DE8",
    "budget": 19,
    "japanese": "ロ-ドするデ-タを選択してください",
-   "korean": "데이터 선택하세요",
+   "korean": "데이터를 선택하세요",
    "terminated": false,
    "pool": "WIN"
   },
@@ -3149,7 +3149,7 @@
    "offset": "0x85E44",
    "budget": 19,
    "japanese": "セ-ブするデ-タを選択してください",
-   "korean": "데이터 선택하세요",
+   "korean": "데이터를 선택하세요",
    "terminated": false,
    "pool": "WIN"
   },
@@ -3798,6 +3798,14 @@
    "budget": 2,
    "japanese": "順",
    "korean": "순",
+   "terminated": false,
+   "pool": "WIN"
+  },
+  "EXE-SPIRIT-0704B8": {
+   "offset": "0x704B8",
+   "budget": 30,
+   "japanese": "加熱幸必閃覚威手集隠足撹鉄魂極",
+   "korean": "가열행필번각위봐집은족교철혼극",
    "terminated": false,
    "pool": "WIN"
   }

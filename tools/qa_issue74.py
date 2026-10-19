@@ -184,11 +184,12 @@ def check_exe_pools(source: bytes, rebuilt: bytes, build_dir: Path) -> dict[str,
         if rebuilt[build.SMALL_FONT_OFFSET + b * 16:build.SMALL_FONT_OFFSET + b * 16 + 16]
         != source[build.SMALL_FONT_OFFSET + b * 16:build.SMALL_FONT_OFFSET + b * 16 + 16]
     ]
-    if set(repainted) != set(build.SMALL_LABEL_GLYPHS.values()):
+    # plus the comma and period cells, redrawn as Western marks (issue #14)
+    expected_cells = set(build.SMALL_LABEL_GLYPHS.values()) | set(build.WESTERN_PUNCTUATION_CELLS)
+    if set(repainted) != expected_cells:
         errors.append(
             "half-width bank repaints %s, expected only %s"
-            % ([hex(b) for b in repainted],
-               [hex(b) for b in sorted(build.SMALL_LABEL_GLYPHS.values())])
+            % ([hex(b) for b in repainted], [hex(b) for b in sorted(expected_cells)])
         )
 
     return {
@@ -241,6 +242,22 @@ def check_battle_path(
         errors.append("retail first BTT record is not the expected FC08 bank/message")
     if rebuilt_btt[first_offset:first_offset + 4] != source_btt[first_offset:first_offset + 4]:
         errors.append("first BTT FC08 header changed")
+
+    # A member over the 16 KiB scenario buffer is compacted by the builder.  The
+    # indent strip is acceptable; a spaceless line is what players reported as
+    # "각기출격!" in issue #19, so the wording has to be shortened instead.
+    report_path = build_dir / "build_report.json"
+    if report_path.is_file():
+        report_doc = json.loads(report_path.read_text(encoding="utf-8"))
+        for member in report_doc.get("scedata", {}).get("member_reports", []):
+            compaction = member.get("member_compaction") or {}
+            spaceless = [row["id"] for row in compaction.get("compacted_records", [])
+                         if row.get("kind") == "spaceless"]
+            if spaceless:
+                errors.append(
+                    f"member {member.get('member_index')}: {len(spaceless)} lines lost "
+                    f"all spaces to fit the scenario buffer (first {spaceless[0]})"
+                )
 
     applied = build_dir / "translation_applied.json"
     semantic = audit_bttmes(source_btt, rebuilt_btt, applied)

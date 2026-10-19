@@ -104,9 +104,12 @@ def main() -> int:
     exe = read_extent(built, EXE_LBA, EXE_SIZE)
     retail = (P.EXTRACTED / "SLPS_005.50").read_bytes()
 
+    # The comma and period cells are redrawn as Western marks in both banks on
+    # purpose (issue #14); a name using them shows the same mark either way.
+    punctuation = {0x3A, 0x3B}
     repainted = {b for b in range(256)
                  if exe[SMALL_FONT + b * 16:SMALL_FONT + b * 16 + 16]
-                 != retail[SMALL_FONT + b * 16:SMALL_FONT + b * 16 + 16]}
+                 != retail[SMALL_FONT + b * 16:SMALL_FONT + b * 16 + 16]} - punctuation
 
     hangs, kana, wide_line = [], [], []
     checked = translated = 0
@@ -132,8 +135,11 @@ def main() -> int:
         if code_units(raw) * 3 > WINDOW_COLUMNS:
             wide_line.append((entry, code_units(raw)))
 
-    companion_intact = (exe[COMPANION_BANK:COMPANION_BANK + COMPANION_BYTES]
-                        == retail[COMPANION_BANK:COMPANION_BANK + COMPANION_BYTES])
+    companion_intact = all(
+        exe[COMPANION_BANK + c * 32:COMPANION_BANK + c * 32 + 32]
+        == retail[COMPANION_BANK + c * 32:COMPANION_BANK + c * 32 + 32]
+        for c in range(256) if c not in punctuation
+    )
     print("PILOTNAME records read from the image : %d (%d translated)" % (checked, translated))
     print("records that would hang the battle VM : %d" % len(hangs))
     for entry, byte, raw in hangs[:8]:

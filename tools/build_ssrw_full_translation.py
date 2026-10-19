@@ -483,6 +483,47 @@ def patch_full_font(source: bytes, bdf_path: Path, mapping: dict[str, int]) -> b
     return bytes(output)
 
 
+# The encoder writes "," as 0x3A and "." as 0x3B, the cells retail uses for
+# 、 and ・.  Korean text then shows a hooked mid-height comma and a mid-height
+# dot ("마치、", "하아아・・・", issue #14).  No translated text needs the
+# Japanese shapes - the deliberate ・ of "1・예" or "F・O" is cell 0xE6 - so
+# both cells are redrawn as Western marks sitting on the baseline, in the
+# 8x16 bank dialogue windows use and in the companion full-width bank the
+# battle window draws single bytes from (0x7F438 + byte*32).
+WESTERN_PUNCTUATION_CELLS = {0x3A: ",", 0x3B: "."}
+COMPANION_FONT_OFFSET = 0x7F438
+_HALF_ROWS = {
+    # rows 0..15 of an 8-pixel-wide cell; retail letters sit on row 13
+    ",": {12: ".##.....", 13: ".##.....", 14: "..#.....", 15: ".#......"},
+    ".": {12: ".##.....", 13: ".##....."},
+}
+_WIDE_ROWS = {
+    # same marks in the 16x16 companion cell, at the column retail's ! uses
+    ",": {12: "....##..", 13: "....##..", 14: ".....#..", 15: "....#..."},
+    ".": {12: "....##..", 13: "....##.."},
+}
+
+
+def patch_western_punctuation(source: bytes) -> tuple[bytes, dict[str, Any]]:
+    output = bytearray(source)
+    applied = []
+    for index, mark in WESTERN_PUNCTUATION_CELLS.items():
+        half = bytearray(SMALL_GLYPH_BYTES)
+        for row, bits in _HALF_ROWS[mark].items():
+            half[row] = int(bits.replace("#", "1").replace(".", "0"), 2)
+        offset = SMALL_FONT_OFFSET + index * SMALL_GLYPH_BYTES
+        output[offset:offset + SMALL_GLYPH_BYTES] = half
+        # wide cells keep the left byte of each row at [y] and the right at [16+y]
+        wide = bytearray(32)
+        for row, bits in _WIDE_ROWS[mark].items():
+            wide[row] = int(bits.replace("#", "1").replace(".", "0"), 2)
+        companion = COMPANION_FONT_OFFSET + index * 32
+        output[companion:companion + 32] = wide
+        applied.append({"character": mark, "message_byte": f"0x{index:02X}",
+                        "half_offset": f"0x{offset:X}", "companion_offset": f"0x{companion:X}"})
+    return bytes(output), {"cells": applied}
+
+
 def patch_small_label_font(source: bytes, bdf_path: Path) -> tuple[bytes, dict[str, Any]]:
     """Install the compact half-width glyphs used by labels and pilot names."""
     bdf = parse_bdf(bdf_path)
@@ -765,16 +806,33 @@ def fit_member_translations(
             if saving > 0:
                 candidates.append((saving, record_id, variant, kind))
 
+    # Stripping the continuation indent is barely visible; deleting every space
+    # in a line is not ("각기출격!" - issue #19).  Sorting all candidates by
+    # saving alone picked the spaceless variant of nearly every record, because
+    # it always saves more.  Exhaust the indent strip first and fall back to the
+    # spaceless form only for what is still over.
     applied: list[dict[str, Any]] = []
-    used: set[str] = set()
-    for saving, record_id, variant, kind in sorted(candidates, reverse=True):
-        if total <= capacity:
-            break
-        if record_id in used:
-            continue
-        used.add(record_id)
-        total -= saving
-        effective[record_id] = variant
+    chosen: dict[str, tuple[int, str]] = {}
+    for tier in ("whitespace", "spaceless"):
+        for saving, record_id, variant, kind in sorted(candidates, reverse=True):
+            if total <= capacity:
+                break
+            if kind != tier:
+                continue
+            previous = chosen.get(record_id)
+            if previous is not None:
+                if kind == "whitespace":
+                    continue
+                # upgrade a record already stripped of its indent
+                extra = saving - previous[0]
+                if extra <= 0:
+                    continue
+                total -= extra
+            else:
+                total -= saving
+            chosen[record_id] = (saving, kind)
+            effective[record_id] = variant
+    for record_id, (saving, kind) in chosen.items():
         applied.append({"id": record_id, "saved_bytes": saving, "kind": kind})
 
     if total > capacity:
@@ -3786,6 +3844,7 @@ def main() -> int:
     patched_exe, small_label_font_report = patch_small_label_font(
         patched_exe, args.bdf
     )
+    patched_exe, punctuation_font_report = patch_western_punctuation(patched_exe)
     if len(patched_exe) != len(source_exe):
         raise ValueError("patched executable size changed")
 

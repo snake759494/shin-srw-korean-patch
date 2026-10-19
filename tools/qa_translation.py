@@ -178,6 +178,11 @@ def check_window_widths(translation: dict, battle_source: dict) -> list[str]:
     errors = []
     for section in ("scenario", "battle"):
         for key, value in translation[section].items():
+            # The dialogue font has no apostrophe: byte 0x27 is a kana cell, so
+            # '적' showed as ョ적ョ (issue #13).  Only the objective records start
+            # with a literal ' that is part of their binary header.
+            if "'" in value[1:]:
+                errors.append(f"{key}: apostrophe renders as a kana glyph; use 『』 or 「」")
             if key.startswith("SCE-000-"):
                 continue  # the prologue uses a wider, name-on-its-own-row window
             for page in re.split(r"<WAIT>|<PAGE>", value):

@@ -216,9 +216,10 @@ def encode_text(text: str, codec: Codec, hangul: dict[str, int]) -> bytes:
             # The font has two V cells: 0x0C is the barred Roman numeral of
             # ボルテスⅤ and 0x2B the plain letter of retail's own "LV".  Picking
             # the lower code turned every V - LV, TV, V-MAX, V2 - into the
-            # numeral; keep the numeral for Voltes only.
-            if (character == "V" and PLAIN_V in variants
-                    and not text[:position].replace(" ", "").endswith("볼테스")):
+            # numeral.  v1.0.15 kept the numeral after 볼테스 only, but players
+            # read it as a different glyph from every other V (issues #13, #15),
+            # so the plain letter is used throughout.
+            if character == "V" and PLAIN_V in variants:
                 output.extend(PLAIN_V)
             else:
                 output.extend(min(variants, key=lambda value: (len(value), value)))
