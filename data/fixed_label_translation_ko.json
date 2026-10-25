@@ -2965,7 +2965,7 @@
    "offset": "0x85B84",
    "budget": 18,
    "japanese": "それまでクリアした面をセ-ブする。",
-   "korean": "클리어 면 저장.",
+   "korean": "클리어한 맵 저장.",
    "terminated": false,
    "pool": "WIN"
   },
@@ -2973,7 +2973,7 @@
    "offset": "0x85B9C",
    "budget": 18,
    "japanese": "それまでクリアした面をロ-ドする。",
-   "korean": "저장한 면 로드.",
+   "korean": "저장한 맵 로드.",
    "terminated": false,
    "pool": "WIN"
   },
@@ -3021,7 +3021,7 @@
    "offset": "0x85C34",
    "budget": 18,
    "japanese": "パイロットの乗り換えに使用。",
-   "korean": "파일럿 교체용.",
+   "korean": "파일럿 교체.",
    "terminated": false,
    "pool": "WIN"
   },
@@ -3029,7 +3029,7 @@
    "offset": "0x85C4C",
    "budget": 11,
    "japanese": "次のマップへ進む。",
-   "korean": "다음맵진행.",
+   "korean": "다음 맵으로",
    "terminated": false,
    "pool": "WIN"
   },
