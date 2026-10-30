@@ -53,7 +53,7 @@
    "offset": "0x4531B",
    "budget": 14,
    "japanese": " したデ-タがありますか?",
-   "korean": "클리어데이터?",
+   "korean": "클리어 기록?",
    "terminated": true,
    "pool": "SYSMSG"
   },
@@ -221,7 +221,7 @@
    "offset": "0x4542D",
    "budget": 14,
    "japanese": " したデ-タがありますか?",
-   "korean": "클리어데이터?",
+   "korean": "클리어 기록?",
    "terminated": true,
    "pool": "SYSMSG"
   },
